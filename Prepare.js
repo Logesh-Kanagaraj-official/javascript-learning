@@ -17,15 +17,6 @@ const data = {
 
 console.log("categories and items:", data);
 
-// first javascript array, object, function, loop, conditional statement, 
-// promise, async await, class, inheritance, closure, callback, event handling, 
-// DOM manipulation, fetch API, error handling, destructuring, spread operator, 
-// template literals, modules, hoisting, scope, this keyword
-// [8:10 pm, 26/12/2025] Jothish❤: DOM manipulation, ES6 functions, Promises, loops, Sync and async, (bind,call,apply), objects, JSON, Arrays(splice,slice), Strings(indexof,substring)
-//Fetch, shallow copy, Hoisting,Closures, Scope of variables, Callback function
-
-
-// array
 
 
 
@@ -81,3 +72,15 @@ function outer() {
 }
 let finals = outer(); 
 console.log(finals()); // Output: 30
+
+// Need To study
+
+// first javascript array, object, function, loop, conditional statement, 
+// promise, async await, class, inheritance, closure, callback, event handling, 
+// DOM manipulation, fetch API, error handling, destructuring, spread operator, 
+// template literals, modules, hoisting, scope, this keyword
+// [8:10 pm, 26/12/2025] Jothish❤: DOM manipulation, ES6 functions, Promises, loops, Sync and async, (bind,call,apply), objects, JSON, Arrays(splice,slice), Strings(indexof,substring)
+//Fetch, shallow copy, Hoisting,Closures, Scope of variables, Callback function
+
+
+// array
