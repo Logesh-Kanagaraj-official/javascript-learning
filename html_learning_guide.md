@@ -625,7 +625,7 @@ These elements were deprecated in HTML5:
 
 [Back to Top](#1--table-of-contents)
 
-## 11. CDN
+## 7. CDN
 
 ### Definition
 
@@ -875,7 +875,7 @@ These elements were deprecated in HTML5:
 
 [Back to Top](#1--table-of-contents)
 
-## 12. Links vs Anchor Tags
+## 8. Links vs Anchor Tags
 
 ### Definition
 
@@ -1178,7 +1178,7 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 
 [Back to Top](#1--table-of-contents)
 
-## 13. Lists in HTML
+## 9. Lists in HTML
 
 ### Definition
 
@@ -1281,13 +1281,13 @@ Used when the sequence or order matters (steps, rankings, etc.)
 
 #### Output:
 
-## 14. Preheat oven to 350°F
+1. Preheat oven to 350°F
 
-## 15. Mix flour, sugar, and eggs
+2. Mix flour, sugar, and eggs
 
-## 16. Pour into baking pan
+3. Pour into baking pan
 
-## 17. Bake for 30 minutes
+4. Bake for 30 minutes
 
 #### Ordered List Attributes
 
@@ -1729,7 +1729,7 @@ Lists can be nested inside each other for hierarchical structure.
 
 [Back to Top](#1--table-of-contents)
 
-## 18. Elements and Attributes
+## 10. Elements and Attributes
 
 ### Definition
 
@@ -1915,7 +1915,7 @@ Use `data-*` to store custom information:
 
 [Back to Top](#1--table-of-contents)
 
-## 19. Inline vs Block Elements
+## 11. Inline vs Block Elements
 
 ### Definition
 
@@ -2107,7 +2107,7 @@ CSS can create hybrid behavior:
 
 [Back to Top](#1--table-of-contents)
 
-## 20. Alt Attribute in Images
+## 12. Alt Attribute in Images
 
 ### Definition
 
@@ -2294,7 +2294,7 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 
 [Back to Top](#1--table-of-contents)
 
-## 25. iframe Tag
+## 13. iframe Tag
 
 ### Definition
 
@@ -2483,7 +2483,7 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 
 [Back to Top](#1--table-of-contents)
 
-## 26. HTML Entities
+## 14. HTML Entities
 
 ### Definition
 
@@ -2491,13 +2491,13 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 
 ### Why Use Entities?
 
-## 27. Display reserved HTML characters (`<`, `>`, `&`)
+1. Display reserved HTML characters (`<`, `>`, `&`)
 
-## 28. Display special characters (©, ®, €)
+2. Display special characters (©, ®, €)
 
-## 29. Non-breaking spaces
+3. Non-breaking spaces
 
-## 30. Symbols and emojis
+4. Symbols and emojis
 
 ### Reserved Character Entities
 
@@ -2737,7 +2737,7 @@ You can also use numeric codes:
 
 [Back to Top](#1--table-of-contents)
 
-## 31. Meta Tags
+## 15. Meta Tags
 
 ### Definition
 
@@ -2923,7 +2923,7 @@ You can also use numeric codes:
 
 ?? [Back to Top](#1--table-of-contents)
 
-## 32. HTML Formatting Elements
+## 16. HTML Formatting Elements
 
 ### Text Formatting Tags
 
@@ -3113,7 +3113,7 @@ function hello() {
 
 [Back to Top](#1--table-of-contents)
 
-## 33. ID vs Class
+## 17. ID vs Class
 
 ### Definition
 
@@ -3397,7 +3397,7 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 
 [Back to Top](#1--table-of-contents)
 
-## 34. DOM Tree Building
+## 18. DOM Tree Building
 
 ### Definition
 
@@ -3534,21 +3534,21 @@ element.querySelectorAll("*");
 ### DOM Building Process
 
 ```
-## 35. HTML Parsing
+## 19. HTML Parsing
    ↓
-## 36. Tokenization (breaking HTML into tokens)
+2. Tokenization (breaking HTML into tokens)
    ↓
-## 37. Tree Construction (building DOM tree)
+3. Tree Construction (building DOM tree)
    ↓
-## 38. DOM Tree Complete
+4. DOM Tree Complete
    ↓
-## 39. CSSOM Tree Built (CSS)
+5. CSSOM Tree Built (CSS)
    ↓
-## 40. Render Tree (DOM + CSSOM)
+6. Render Tree (DOM + CSSOM)
    ↓
-## 41. Layout (calculate positions)
+7. Layout (calculate positions)
    ↓
-## 42. Paint (render to screen)
+8. Paint (render to screen)
 ```
 
 ### How Br owsers Build the DOM
@@ -3669,7 +3669,7 @@ element.querySelectorAll("*");
 
 This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building comprehensively.
 
-## 43. Semantic Tags Deep Dive
+## 20. Semantic Tags Deep Dive
 
 ### Complete List of Semantic HTML5 Elements
 
@@ -3907,7 +3907,7 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 
 [Back to Top](#1--table-of-contents)
 
-## 44. Shadow DOM
+## 21. Shadow DOM
 
 ### Definition
 
@@ -4120,7 +4120,7 @@ console.log(element.shadowRoot); // null
 
 [Back to Top](#1--table-of-contents)
 
-## 45. iframe vs Embedded Content
+## 22. iframe vs Embedded Content
 
 ### iframe
 
@@ -4230,7 +4230,7 @@ console.log(element.shadowRoot); // null
 
 [Back to Top](#1--table-of-contents)
 
-## 46. SVG vs Canvas
+## 23. SVG vs Canvas
 
 ### SVG (Scalable Vector Graphics)
 
@@ -4397,7 +4397,7 @@ animate();
 
 [Back to Top](#1--table-of-contents)
 
-## 47. Name Attribute in Forms
+## 24. Name Attribute in Forms
 
 ### Definition
 
@@ -4552,7 +4552,7 @@ username=john
 
 ?? [Back to Top](#1--table-of-contents)
 
-## 48. Required vs Readonly vs Disabled
+## 25. Required vs Readonly vs Disabled
 
 ### Required
 
@@ -4740,7 +4740,7 @@ Field is **completely disabled** - cannot edit, and value is NOT submitted.
 
 [Back to Top](#1--table-of-contents)
 
-## 49. Figure and Figcaption
+## 26. Figure and Figcaption
 
 ### Definition
 
@@ -4957,7 +4957,7 @@ function greet(name) {
 
 [Back to Top](#1--table-of-contents)
 
-## 50. Custom Elements
+## 27. Custom Elements
 
 ### Definition
 
@@ -5236,7 +5236,7 @@ customElements.define("my-element", MyElement);
 
 [Back to Top](#1--table-of-contents)
 
-## 51. HTML Security
+## 28. HTML Security
 
 ### Common Security Threats
 
@@ -5478,7 +5478,7 @@ customElements.define("my-element", MyElement);
 
 [Back to Top](#1--table-of-contents)
 
-## 52. Setting Multiple Languages in HTML
+## 29. Setting Multiple Languages in HTML
 
 ### Lang Attribute
 
