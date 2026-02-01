@@ -487,13 +487,10 @@ These elements were deprecated in HTML5:
 
 ### Purpose
 
-## 7. **Tells the browser how to render the page** - Which HTML version to use
-
-## 8. **Triggers standards mode** - Ensures consistent rendering across browsers
-
-## 9. **Prevents quirks mode** - Avoids legacy rendering behaviors
-
-## 10. **Validation** - Helps validators check your code correctly
+1. **Tells the browser how to render the page** - Which HTML version to use
+2. **Triggers standards mode** - Ensures consistent rendering across browsers
+3. **Prevents quirks mode** - Avoids legacy rendering behaviors
+4. **Validation** - Helps validators check your code correctly
 
 ### HTML5 DOCTYPE
 
@@ -1741,13 +1738,9 @@ Lists can be nested inside each other for hierarchical structure.
 ### Element Structure
 
 ```html
-<tagname attribute="value">Content goes here</tagname> │ │ │ │ │ │
-│ └─ Closing tag │ │
-└───────────────────── Content │
-└──────────────────────────────────────
-Attribute
-└──────────────────────────────────────────────
-Opening tag
+<tagname attribute="value">Content goes here</tagname> │ │ │ │ │ │ │ └─ Closing
+tag │ │ └───────────────────── Content │ └──────────────────────────────────────
+Attribute └────────────────────────────────────────────── Opening tag
 ```
 
 ### Types of Elements
@@ -2098,13 +2091,13 @@ CSS can create hybrid behavior:
 
 | Element    | Type   | Can Contain Blocks? | Respects width/height? |
 | ---------- | ------ | ------------------- | ---------------------- |
-| `<div>`    | Block  | ✅ Yes             | ✅ Yes                |
-| `<p>`      | Block  | ❌ No               | ✅ Yes                |
+| `<div>`    | Block  | ✅ Yes              | ✅ Yes                 |
+| `<p>`      | Block  | ❌ No               | ✅ Yes                 |
 | `<span>`   | Inline | ❌ No               | ❌ No                  |
 | `<a>`      | Inline | ❌ No\*             | ❌ No                  |
-| `<button>` | Inline | ✅ Yes             | ❌ No                  |
-| `<img>`    | Inline | N/A                 | ✅ Yes\*\*            |
-| `<header>` | Block  | ✅ Yes             | ✅ Yes                |
+| `<button>` | Inline | ✅ Yes              | ❌ No                  |
+| `<img>`    | Inline | N/A                 | ✅ Yes\*\*             |
+| `<header>` | Block  | ✅ Yes              | ✅ Yes                 |
 | `<strong>` | Inline | ❌ No               | ❌ No                  |
 
 \*In HTML5, `<a>` can contain block elements
@@ -2128,13 +2121,10 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 
 ### Why Alt is Important
 
-## 21. **Accessibility** - Screen readers read alt text to visually impaired users
-
-## 22. **SEO** - Search engines use alt text to understand images
-
-## 23. **Fallback** - Displays if image fails to load
-
-## 24. **Context** - Provides context when images are disabled
+1. **Accessibility** - Screen readers read alt text to visually impaired users
+2. **SEO** - Search engines use alt text to understand images
+3. **Fallback** - Displays if image fails to load
+4. **Context** - Provides context when images are disabled
 
 ### Writing Good Alt Text
 
@@ -3193,8 +3183,8 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 | **Per element**    | One ID per element     | Multiple classes per element |
 | **CSS selector**   | `#idname`              | `.classname`                 |
 | **Priority**       | Higher specificity     | Lower specificity            |
-| **Use for anchor** | ✅ Yes (`#section`)   | ❌ No                        |
-| **Use for forms**  | ✅ Yes (label `for`)  | ❌ No                        |
+| **Use for anchor** | ✅ Yes (`#section`)    | ❌ No                        |
+| **Use for forms**  | ✅ Yes (label `for`)   | ❌ No                        |
 | **JavaScript**     | `getElementById()`     | `getElementsByClassName()`   |
 
 ### When to Use ID
@@ -4207,11 +4197,11 @@ console.log(element.shadowRoot); // null
 | Feature        | `<iframe>`        | `<object>`    | `<embed>`      | `<video>`/`<audio>` |
 | -------------- | ----------------- | ------------- | -------------- | ------------------- |
 | **Purpose**    | Full webpage      | Generic files | Plugin content | Media only          |
-| **Fallback**   | Limited           | ✅ Yes       | ❌ No          | ✅ Yes             |
-| **SEO**        | ❌ Poor           | ❌ Poor       | ❌ Poor        | ✅ Good            |
-| **JS API**     | Limited           | Limited       | Limited        | ✅ Rich            |
+| **Fallback**   | Limited           | ✅ Yes        | ❌ No          | ✅ Yes              |
+| **SEO**        | ❌ Poor           | ❌ Poor       | ❌ Poor        | ✅ Good             |
+| **JS API**     | Limited           | Limited       | Limited        | ✅ Rich             |
 | **Security**   | Sandbox available | Less secure   | Less secure    | Secure              |
-| **Modern use** | Still common      | Rare          | Deprecated     | ✅ Preferred       |
+| **Modern use** | Still common      | Rare          | Deprecated     | ✅ Preferred        |
 
 ### When to Use Each
 
@@ -4302,15 +4292,15 @@ console.log(element.shadowRoot); // null
 | Feature           | SVG                           | Canvas                    |
 | ----------------- | ----------------------------- | ------------------------- |
 | **Format**        | Vector (XML)                  | Bitmap (pixels)           |
-| **Scalability**   | ✅ Infinite, no quality loss | ❌ Pixelated when scaled  |
-| **DOM**           | ✅ Part of DOM               | ❌ Single element         |
-| **Events**        | ✅ Per element               | ❌ On canvas only         |
-| **Accessibility** | ✅ Good (text, alt)          | ❌ Limited                |
+| **Scalability**   | ✅ Infinite, no quality loss  | ❌ Pixelated when scaled  |
+| **DOM**           | ✅ Part of DOM                | ❌ Single element         |
+| **Events**        | ✅ Per element                | ❌ On canvas only         |
+| **Accessibility** | ✅ Good (text, alt)           | ❌ Limited                |
 | **Best for**      | Icons, logos, simple graphics | Games, complex animations |
 | **Performance**   | Slow with many objects        | Fast with many objects    |
 | **File size**     | Smaller for simple graphics   | Larger                    |
-| **SEO**           | ✅ Searchable                | ❌ Not searchable         |
-| **Editing**       | ✅ Easy (CSS, JS, XML)       | ❌ Must redraw            |
+| **SEO**           | ✅ Searchable                 | ❌ Not searchable         |
+| **Editing**       | ✅ Easy (CSS, JS, XML)        | ❌ Must redraw            |
 
 ### When to Use SVG
 
@@ -4655,10 +4645,10 @@ Field is **completely disabled** - cannot edit, and value is NOT submitted.
 
 | Feature         | `required`      | `readonly`               | `disabled`             |
 | --------------- | --------------- | ------------------------ | ---------------------- |
-| **Can edit?**   | ✅ Yes         | ❌ No                    | ❌ No                  |
-| **Submitted?**  | ✅ Yes         | ✅ Yes                  | ❌ **No**              |
-| **Can focus?**  | ✅ Yes         | ✅ Yes                  | ❌ No                  |
-| **Validation?** | ✅ Yes         | ❌ No                    | ❌ No                  |
+| **Can edit?**   | ✅ Yes          | ❌ No                    | ❌ No                  |
+| **Submitted?**  | ✅ Yes          | ✅ Yes                   | ❌ **No**              |
+| **Can focus?**  | ✅ Yes          | ✅ Yes                   | ❌ No                  |
+| **Validation?** | ✅ Yes          | ❌ No                    | ❌ No                  |
 | **Appearance**  | Normal          | Normal                   | Grayed out             |
 | **Use case**    | Mandatory field | Display calculated value | Conditionally inactive |
 
@@ -5755,19 +5745,14 @@ Specifies the language of content for accessibility and SEO.
 </html>
 ```
 
-### Benefits of Using Lang Attribute
+### Benefits
 
-## 53. **Accessibility** - Screen readers pronounce text correctly
-
-## 54. **SEO** - Search engines identify language
-
-## 55. **Spellcheck** - Browsers use correct dictionary
-
-## 56. **Translation** - Browser translation tools work better
-
-## 57. **CSS Styling** - Can style by language
-
-## 58. **Font Selection** - Browsers choose appropriate fonts
+1. **Accessibility** - Screen readers pronounce text correctly
+2. **SEO** - Search engines identify language
+3. **Spellcheck** - Browsers use correct dictionary
+4. **Translation** - Browser translation tools work better
+5. **CSS Styling** - Can style by language
+6. **Font Selection** - Browsers choose appropriate fonts
 
 ```css
 /* CSS based on language */
