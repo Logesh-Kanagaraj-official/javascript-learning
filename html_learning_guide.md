@@ -1,12 +1,12 @@
-﻿# HTML Complete Learning Guide
+# HTML Complete Learning Guide
 
 **From Basics to Advanced**
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 1. ðŸ“Œ Table of Contents
+## 1. 📌 Table of Contents
 
 1. [What is HTML?](#2-what-is-html)
 2. [Semantic Tags](#3-semantic-tags)
@@ -35,7 +35,7 @@
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ## 2. What is HTML?
 
@@ -68,7 +68,7 @@
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ## 3. Semantic Tags
 
@@ -102,7 +102,7 @@
 ### Example: Non-Semantic vs Semantic
 
 ```html
-<!-- âŒ Non-Semantic (Bad Practice) -->
+<!-- ❌ Non-Semantic (Bad Practice) -->
 <div id="header">
   <div id="nav">
     <a href="/">Home</a>
@@ -119,7 +119,7 @@
   <p>&copy; 2026 My Website</p>
 </div>
 
-<!-- âœ… Semantic (Best Practice) -->
+<!-- ✅ Semantic (Best Practice) -->
 <header>
   <nav>
     <a href="/">Home</a>
@@ -201,7 +201,7 @@
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ## 4. Void Tags
 
@@ -291,7 +291,7 @@
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ## 5. HTML vs HTML5
 
@@ -477,7 +477,7 @@ These elements were deprecated in HTML5:
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ## 6. DOCTYPE in HTML
 
@@ -487,13 +487,13 @@ These elements were deprecated in HTML5:
 
 ### Purpose
 
-## 1. **Tells the browser how to render the page** - Which HTML version to use
+## 7. **Tells the browser how to render the page** - Which HTML version to use
 
-## 2. **Triggers standards mode** - Ensures consistent rendering across browsers
+## 8. **Triggers standards mode** - Ensures consistent rendering across browsers
 
-## 3. **Prevents quirks mode** - Avoids legacy rendering behaviors
+## 9. **Prevents quirks mode** - Avoids legacy rendering behaviors
 
-## 4. **Validation** - Helps validators check your code correctly
+## 10. **Validation** - Helps validators check your code correctly
 
 ### HTML5 DOCTYPE
 
@@ -501,7 +501,7 @@ These elements were deprecated in HTML5:
 <!DOCTYPE html>
 ```
 
-âœ… **Simple, case-insensitive, and recommended for all new projects**
+✅ **Simple, case-insensitive, and recommended for all new projects**
 
 ### Why DOCTYPE is Important
 
@@ -594,41 +594,41 @@ These elements were deprecated in HTML5:
 ### How Browsers Use DOCTYPE
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚   Browser receives HTML document    â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-             â”‚
-             â–¼
-      â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-      â”‚ Check DOCTYPE â”‚
-      â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-             â”‚
-    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”
-    â”‚                 â”‚
-    â–¼                 â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”    â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚ Present â”‚    â”‚   Missing    â”‚
-â””â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”˜    â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-     â”‚                â”‚
-     â–¼                â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”  â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚Standards Modeâ”‚  â”‚ Quirks Mode â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜  â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌─────────────────────────────────────┐
+│   Browser receives HTML document    │
+└────────────┬────────────────────────┘
+             │
+             ▼
+      ┌──────────────┐
+      │ Check DOCTYPE │
+      └──────┬───────┘
+             │
+    ┌────────┴────────┐
+    │                 │
+    ▼                 ▼
+┌─────────┐    ┌──────────────┐
+│ Present │    │   Missing    │
+└────┬────┘    └──────┬───────┘
+     │                │
+     ▼                ▼
+┌──────────────┐  ┌─────────────┐
+│Standards Mode│  │ Quirks Mode │
+└──────────────┘  └─────────────┘
 ```
 
 ### Best Practices
 
-âœ… **Always include DOCTYPE** as the first line  
-âœ… **Use HTML5 DOCTYPE** for all new projects  
-âœ… **Write it in uppercase** (convention, but case-insensitive)  
-âœ… **No space before DOCTYPE**  
-âŒ **Never omit DOCTYPE** - causes rendering issues
+✅ **Always include DOCTYPE** as the first line  
+✅ **Use HTML5 DOCTYPE** for all new projects  
+✅ **Write it in uppercase** (convention, but case-insensitive)  
+✅ **No space before DOCTYPE**  
+❌ **Never omit DOCTYPE** - causes rendering issues
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 7. CDN
+## 11. CDN
 
 ### Definition
 
@@ -637,30 +637,30 @@ These elements were deprecated in HTML5:
 ### How CDN Works
 
 ```
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚                    Origin Server                          â”‚
-â”‚                  (Your Main Server)                       â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-                        â”‚
-                        â”‚ Content Distribution
-                        â”‚
-        â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-        â”‚                               â”‚
-        â–¼                               â–¼
-â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”                â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚   CDN Edge   â”‚                â”‚   CDN Edge   â”‚
-â”‚ Server (USA) â”‚                â”‚ Server (Asia)â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”˜                â””â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”˜
-        â”‚                               â”‚
-        â”‚                               â”‚
-    â”Œâ”€â”€â”€â–¼â”€â”€â”€â”€â”                     â”Œâ”€â”€â”€â”€â–¼â”€â”€â”€â”
-    â”‚ User A â”‚                     â”‚ User B â”‚
-    â”‚  (USA) â”‚                     â”‚ (India)â”‚
-    â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜                     â””â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+┌──────────────────────────────────────────────────────────┐
+│                    Origin Server                          │
+│                  (Your Main Server)                       │
+└───────────────────────┬──────────────────────────────────┘
+                        │
+                        │ Content Distribution
+                        │
+        ┌───────────────┴───────────────┐
+        │                               │
+        ▼                               ▼
+┌──────────────┐                ┌──────────────┐
+│   CDN Edge   │                │   CDN Edge   │
+│ Server (USA) │                │ Server (Asia)│
+└───────┬──────┘                └──────┬───────┘
+        │                               │
+        │                               │
+    ┌───▼────┐                     ┌────▼───┐
+    │ User A │                     │ User B │
+    │  (USA) │                     │ (India)│
+    └────────┘                     └────────┘
 ```
 
-**Without CDN:** User â†’ Origin Server (slow, long distance)  
-**With CDN:** User â†’ Nearest Edge Server (fast, short distance)
+**Without CDN:** User → Origin Server (slow, long distance)  
+**With CDN:** User → Nearest Edge Server (fast, short distance)
 
 ### Benefits of CDN
 
@@ -753,11 +753,11 @@ These elements were deprecated in HTML5:
 ### CDN vs Local Hosting
 
 ```html
-<!-- âŒ Local Hosting (Slower, your server bandwidth) -->
+<!-- ❌ Local Hosting (Slower, your server bandwidth) -->
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <script src="js/jquery.min.js"></script>
 
-<!-- âœ… CDN Hosting (Faster, cached across sites) -->
+<!-- ✅ CDN Hosting (Faster, cached across sites) -->
 <link
   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
   rel="stylesheet"
@@ -792,16 +792,16 @@ These elements were deprecated in HTML5:
 #### 3. Use HTTPS
 
 ```html
-<!-- âœ… Always use HTTPS -->
+<!-- ✅ Always use HTTPS -->
 <script src="https://cdn.example.com/library.js"></script>
 
-<!-- âŒ Don't use HTTP -->
+<!-- ❌ Don't use HTTP -->
 <script src="http://cdn.example.com/library.js"></script>
 ```
 
 ### When to Use CDN
 
-âœ… **Use CDN for:**
+✅ **Use CDN for:**
 
 - Popular libraries (jQuery, React, Bootstrap)
 - Fonts (Google Fonts, Font Awesome)
@@ -809,7 +809,7 @@ These elements were deprecated in HTML5:
 - Global audience websites
 - High-traffic websites
 
-âŒ **Don't use CDN for:**
+❌ **Don't use CDN for:**
 
 - Sensitive/private data
 - Frequently changing files
@@ -876,9 +876,9 @@ These elements were deprecated in HTML5:
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 8. Links vs Anchor Tags
+## 12. Links vs Anchor Tags
 
 ### Definition
 
@@ -1145,7 +1145,7 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 
 ### Best Practices
 
-âœ… **Use descriptive link text**
+✅ **Use descriptive link text**
 
 ```html
 <!-- Good -->
@@ -1155,13 +1155,13 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 <a href="guide.pdf">Click here</a>
 ```
 
-âœ… **Add title for accessibility**
+✅ **Add title for accessibility**
 
 ```html
 <a href="profile.html" title="View your profile">My Profile</a>
 ```
 
-âœ… **Secure external links**
+✅ **Secure external links**
 
 ```html
 <a href="https://example.com" target="_blank" rel="noopener noreferrer">
@@ -1169,7 +1169,7 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 </a>
 ```
 
-âœ… **Use `aria-label` for icon links**
+✅ **Use `aria-label` for icon links**
 
 ```html
 <a href="https://facebook.com" aria-label="Visit our Facebook page">
@@ -1179,9 +1179,9 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 9. Lists in HTML
+## 13. Lists in HTML
 
 ### Definition
 
@@ -1275,7 +1275,7 @@ Used when the sequence or order matters (steps, rankings, etc.)
 ```html
 <h3>Recipe Steps</h3>
 <ol>
-  <li>Preheat oven to 350Â°F</li>
+  <li>Preheat oven to 350°F</li>
   <li>Mix flour, sugar, and eggs</li>
   <li>Pour into baking pan</li>
   <li>Bake for 30 minutes</li>
@@ -1284,13 +1284,13 @@ Used when the sequence or order matters (steps, rankings, etc.)
 
 #### Output:
 
-## 1. Preheat oven to 350Â°F
+## 14. Preheat oven to 350°F
 
-## 2. Mix flour, sugar, and eggs
+## 15. Mix flour, sugar, and eggs
 
-## 3. Pour into baking pan
+## 16. Pour into baking pan
 
-## 4. Bake for 30 minutes
+## 17. Bake for 30 minutes
 
 #### Ordered List Attributes
 
@@ -1523,7 +1523,7 @@ Lists can be nested inside each other for hierarchical structure.
     <h2>2. Ordered List (Recipe)</h2>
     <ol>
       <li>Gather ingredients</li>
-      <li>Preheat oven to 350Â°F</li>
+      <li>Preheat oven to 350°F</li>
       <li>Mix dry ingredients</li>
       <li>Add wet ingredients</li>
       <li>Pour into pan</li>
@@ -1618,7 +1618,7 @@ Lists can be nested inside each other for hierarchical structure.
 
       /* Custom bullet with emoji */
       .emoji-list li::before {
-        content: "âœ“ ";
+        content: "✓ ";
         color: green;
         font-weight: bold;
       }
@@ -1690,13 +1690,13 @@ Lists can be nested inside each other for hierarchical structure.
 
 ### Best Practices
 
-âœ… **Use the right list type:**
+✅ **Use the right list type:**
 
 - `<ul>` for items with no specific order
 - `<ol>` for sequential steps or rankings
 - `<dl>` for term-definition pairs
 
-âœ… **Only use `<li>` inside list elements**
+✅ **Only use `<li>` inside list elements**
 
 ```html
 <!-- Correct -->
@@ -1708,7 +1708,7 @@ Lists can be nested inside each other for hierarchical structure.
 <li>Item</li>
 ```
 
-âœ… **Nest lists properly**
+✅ **Nest lists properly**
 
 ```html
 <!-- Correct -->
@@ -1722,7 +1722,7 @@ Lists can be nested inside each other for hierarchical structure.
 </ul>
 ```
 
-âœ… **Use semantic meaning**
+✅ **Use semantic meaning**
 
 - Navigation menus: `<nav><ul><li>`
 - Tables of contents: `<ol>`
@@ -1730,9 +1730,9 @@ Lists can be nested inside each other for hierarchical structure.
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 10. Elements and Attributes
+## 18. Elements and Attributes
 
 ### Definition
 
@@ -1741,12 +1741,12 @@ Lists can be nested inside each other for hierarchical structure.
 ### Element Structure
 
 ```html
-<tagname attribute="value">Content goes here</tagname> â”‚ â”‚ â”‚ â”‚ â”‚ â”‚
-â”‚ â””â”€ Closing tag â”‚ â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ Content â”‚
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+<tagname attribute="value">Content goes here</tagname> │ │ │ │ │ │
+│ └─ Closing tag │ │
+└───────────────────── Content │
+└──────────────────────────────────────
 Attribute
-â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+└──────────────────────────────────────────────
 Opening tag
 ```
 
@@ -1814,7 +1814,7 @@ These can be used on **any** HTML element:
 <p lang="es">Hola Mundo</p>
 
 <!-- dir - text direction -->
-<p dir="rtl">Ù…Ø±Ø­Ø¨Ø§ Ø¨Ø§Ù„Ø¹Ø§Ù„Ù…</p>
+<p dir="rtl">مرحبا بالعالم</p>
 
 <!-- hidden - hide element -->
 <div hidden>This is hidden</div>
@@ -1899,20 +1899,20 @@ Use `data-*` to store custom information:
 ### Attribute Best Practices
 
 ```html
-<!-- âœ… Use double quotes -->
+<!-- ✅ Use double quotes -->
 <img src="photo.jpg" alt="Photo" />
 
-<!-- âŒ Avoid single quotes (not standard) -->
+<!-- ❌ Avoid single quotes (not standard) -->
 <img src="photo.jpg" alt="Photo" />
 
-<!-- âœ… Lowercase attribute names -->
+<!-- ✅ Lowercase attribute names -->
 <div class="container">
-  <!-- âŒ Avoid uppercase -->
+  <!-- ❌ Avoid uppercase -->
   <div class="container">
-    <!-- âœ… Use semantic attributes -->
+    <!-- ✅ Use semantic attributes -->
     <input type="email" required aria-label="Email address" />
 
-    <!-- âŒ Don't rely only on styling -->
+    <!-- ❌ Don't rely only on styling -->
     <div onclick="submit()">Submit</div>
   </div>
 </div>
@@ -1920,9 +1920,9 @@ Use `data-*` to store custom information:
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 11. Inline vs Block Elements
+## 19. Inline vs Block Elements
 
 ### Definition
 
@@ -2098,23 +2098,23 @@ CSS can create hybrid behavior:
 
 | Element    | Type   | Can Contain Blocks? | Respects width/height? |
 | ---------- | ------ | ------------------- | ---------------------- |
-| `<div>`    | Block  | âœ… Yes             | âœ… Yes                |
-| `<p>`      | Block  | âŒ No               | âœ… Yes                |
-| `<span>`   | Inline | âŒ No               | âŒ No                  |
-| `<a>`      | Inline | âŒ No\*             | âŒ No                  |
-| `<button>` | Inline | âœ… Yes             | âŒ No                  |
-| `<img>`    | Inline | N/A                 | âœ… Yes\*\*            |
-| `<header>` | Block  | âœ… Yes             | âœ… Yes                |
-| `<strong>` | Inline | âŒ No               | âŒ No                  |
+| `<div>`    | Block  | ✅ Yes             | ✅ Yes                |
+| `<p>`      | Block  | ❌ No               | ✅ Yes                |
+| `<span>`   | Inline | ❌ No               | ❌ No                  |
+| `<a>`      | Inline | ❌ No\*             | ❌ No                  |
+| `<button>` | Inline | ✅ Yes             | ❌ No                  |
+| `<img>`    | Inline | N/A                 | ✅ Yes\*\*            |
+| `<header>` | Block  | ✅ Yes             | ✅ Yes                |
+| `<strong>` | Inline | ❌ No               | ❌ No                  |
 
 \*In HTML5, `<a>` can contain block elements
 \*\*img is inline but respects width/height (replaced element)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 12. Alt Attribute in Images
+## 20. Alt Attribute in Images
 
 ### Definition
 
@@ -2128,17 +2128,17 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 
 ### Why Alt is Important
 
-## 1. **Accessibility** - Screen readers read alt text to visually impaired users
+## 21. **Accessibility** - Screen readers read alt text to visually impaired users
 
-## 2. **SEO** - Search engines use alt text to understand images
+## 22. **SEO** - Search engines use alt text to understand images
 
-## 3. **Fallback** - Displays if image fails to load
+## 23. **Fallback** - Displays if image fails to load
 
-## 4. **Context** - Provides context when images are disabled
+## 24. **Context** - Provides context when images are disabled
 
 ### Writing Good Alt Text
 
-#### âœ… DO:
+#### ✅ DO:
 
 ```html
 <!-- Descriptive and specific -->
@@ -2162,7 +2162,7 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 </a>
 ```
 
-#### âŒ DON'T:
+#### ❌ DON'T:
 
 ```html
 <!-- Too generic -->
@@ -2282,31 +2282,29 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 ### Accessibility Best Practices
 
 ```html
-<!-- âœ… Always include alt attribute -->
+<!-- ✅ Always include alt attribute -->
 <img src="photo.jpg" alt="Description" />
 
-<!-- âœ… Use empty alt for decorative images -->
+<!-- ✅ Use empty alt for decorative images -->
 <img src="decoration.png" alt="" />
 
-<!-- âœ… Keep it concise (under 125 characters) -->
+<!-- ✅ Keep it concise (under 125 characters) -->
 <img src="scene.jpg" alt="Mountain lake at sunset" />
 
-<!-- âŒ Never omit alt attribute -->
+<!-- ❌ Never omit alt attribute -->
 <img src="photo.jpg" />
 <!-- Invalid! -->
 
-<!-- âœ… For complex images, provide detailed description nearby -->
+<!-- ✅ For complex images, provide detailed description nearby -->
 <img src="chart.png" alt="Sales data chart" />
 <p id="chart-desc">Detailed description of the chart data...</p>
 ```
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 13. iframe Tag
-
-## 14. iframe Tag
+## 25. iframe Tag
 
 ### Definition
 
@@ -2468,34 +2466,34 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 ### Best Practices
 
 ```html
-<!-- âœ… Always include title for accessibility -->
+<!-- ✅ Always include title for accessibility -->
 <iframe src="page.html" title="Description of iframe content"></iframe>
 
-<!-- âœ… Use lazy loading for performance -->
+<!-- ✅ Use lazy loading for performance -->
 <iframe src="heavy.html" loading="lazy"></iframe>
 
-<!-- âœ… Add sandbox for untrusted content -->
+<!-- ✅ Add sandbox for untrusted content -->
 <iframe src="untrusted.html" sandbox="allow-scripts"></iframe>
 
-<!-- âœ… Responsive design -->
+<!-- ✅ Responsive design -->
 <iframe src="page.html" style="width: 100%; max-width: 800px;"></iframe>
 
-<!-- âŒ Don't use frameborder (deprecated) -->
+<!-- ❌ Don't use frameborder (deprecated) -->
 <iframe frameborder="0"></iframe>
 
-<!-- âœ… Use CSS instead -->
+<!-- ✅ Use CSS instead -->
 <iframe style="border: none;"></iframe>
 ```
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 15. HTML Entities
+## 26. HTML Entities
 
 ### Definition
 
@@ -2503,13 +2501,13 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 
 ### Why Use Entities?
 
-## 1. Display reserved HTML characters (`<`, `>`, `&`)
+## 27. Display reserved HTML characters (`<`, `>`, `&`)
 
-## 2. Display special characters (Â©, Â®, â‚¬)
+## 28. Display special characters (©, ®, €)
 
-## 3. Non-breaking spaces
+## 29. Non-breaking spaces
 
-## 4. Symbols and emojis
+## 30. Symbols and emojis
 
 ### Reserved Character Entities
 
@@ -2557,61 +2555,61 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 ```html
 <!-- Copyright and trademark -->
 &copy;
-<!-- Â© copyright -->
+<!-- © copyright -->
 &reg;
-<!-- Â® registered -->
+<!-- ® registered -->
 &trade;
-<!-- â„¢ trademark -->
+<!-- ™ trademark -->
 
 <!-- Currency -->
 &cent;
-<!-- Â¢ cent -->
+<!-- ¢ cent -->
 &pound;
-<!-- Â£ pound -->
+<!-- £ pound -->
 &yen;
-<!-- Â¥ yen -->
+<!-- ¥ yen -->
 &euro;
-<!-- â‚¬ euro -->
+<!-- € euro -->
 
 <!-- Math symbols -->
 &times;
-<!-- Ã— multiplication -->
+<!-- × multiplication -->
 &divide;
-<!-- Ã· division -->
+<!-- ÷ division -->
 &plusmn;
-<!-- Â± plus-minus -->
+<!-- ± plus-minus -->
 &ne;
-<!-- â‰  not equal -->
+<!-- ≠ not equal -->
 &le;
-<!-- â‰¤ less than or equal -->
+<!-- ≤ less than or equal -->
 &ge;
-<!-- â‰¥ greater than or equal -->
+<!-- ≥ greater than or equal -->
 &infin;
-<!-- âˆž infinity -->
+<!-- ∞ infinity -->
 &sum;
-<!-- âˆ‘ summation -->
+<!-- ∑ summation -->
 &pi;
-<!-- Ï€ pi -->
+<!-- π pi -->
 
 <!-- Arrows -->
 &larr;
-<!-- â† left arrow -->
+<!-- ← left arrow -->
 &uarr;
-<!-- â†‘ up arrow -->
+<!-- ↑ up arrow -->
 &rarr;
-<!-- â†’ right arrow -->
+<!-- → right arrow -->
 &darr;
-<!-- â†“ down arrow -->
+<!-- ↓ down arrow -->
 &harr;
-<!-- â†” left-right arrow -->
+<!-- ↔ left-right arrow -->
 
 <!-- Punctuation -->
 &ndash;
-<!-- â€“ en dash -->
+<!-- – en dash -->
 &mdash;
-<!-- â€” em dash -->
+<!-- — em dash -->
 &hellip;
-<!-- â€¦ ellipsis -->
+<!-- … ellipsis -->
 &lsquo;
 <!-- ' left single quote -->
 &rsquo;
@@ -2621,25 +2619,25 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 &rdquo;
 <!--  " right double quote -->
 &bull;
-<!-- â€¢ bullet -->
+<!-- • bullet -->
 
 <!-- Misc -->
 &deg;
-<!-- Â° degree -->
+<!-- ° degree -->
 &frac14;
-<!-- Â¼ one quarter -->
+<!-- ¼ one quarter -->
 &frac12;
-<!-- Â½ one half -->
+<!-- ½ one half -->
 &frac34;
-<!-- Â¾ three quarters -->
+<!-- ¾ three quarters -->
 &hearts;
-<!-- â™¥ heart -->
+<!-- ♥ heart -->
 &spades;
-<!-- â™  spade -->
+<!-- ♠ spade -->
 &clubs;
-<!-- â™£ club -->
+<!-- ♣ club -->
 &diams;
-<!-- â™¦ diamond -->
+<!-- ♦ diamond -->
 ```
 
 ### Accented Characters
@@ -2647,29 +2645,29 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 ```html
 <!-- Acute accent -->
 &aacute; &eacute; &iacute; &oacute; &uacute;
-<!-- Ã¡ Ã© Ã­ Ã³ Ãº -->
+<!-- á é í ó ú -->
 
 <!-- Grave accent -->
 &agrave; &egrave; &igrave; &ograve; &ugrave;
-<!-- Ã  Ã¨ Ã¬ Ã² Ã¹ -->
+<!-- à è ì ò ù -->
 
 <!-- Circumflex -->
 &acirc; &ecirc; &icirc; &ocirc; &ucirc;
-<!-- Ã¢ Ãª Ã® Ã´ Ã» -->
+<!-- â ê î ô û -->
 
 <!-- Tilde -->
 &atilde; &ntilde; &otilde;
-<!-- Ã£ Ã± Ãµ -->
+<!-- ã ñ õ -->
 
 <!-- Umlaut -->
 &auml; &euml; &iuml; &ouml; &uuml;
-<!-- Ã¤ Ã« Ã¯ Ã¶ Ã¼ -->
+<!-- ä ë ï ö ü -->
 
 <!-- Example -->
 <p>Caf&eacute;</p>
-<!-- CafÃ© -->
+<!-- Café -->
 <p>Se&ntilde;or</p>
-<!-- SeÃ±or -->
+<!-- Señor -->
 ```
 
 ### Numeric Entities
@@ -2679,15 +2677,15 @@ You can also use numeric codes:
 ```html
 <!-- Decimal -->
 &#169;
-<!-- Â© -->
+<!-- © -->
 &#8364;
-<!-- â‚¬ -->
+<!-- € -->
 
 <!-- Hexadecimal -->
 &#x00A9;
-<!-- Â© -->
+<!-- © -->
 &#x20AC;
-<!-- â‚¬ -->
+<!-- € -->
 
 <!-- Example -->
 <p>Copyright &#169; 2026</p>
@@ -2733,7 +2731,7 @@ You can also use numeric codes:
     <p>Mr.&nbsp;Smith won&nbsp;$1,000</p>
 
     <!-- Accented characters -->
-    <p>Jalape&ntilde;o â€¢ Caf&eacute; â€¢ R&eacute;sum&eacute;</p>
+    <p>Jalape&ntilde;o • Caf&eacute; • R&eacute;sum&eacute;</p>
 
     <!-- Symbols -->
     <p>Rating: &hearts; &hearts; &hearts; &hearts;</p>
@@ -2743,13 +2741,13 @@ You can also use numeric codes:
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 16. Meta Tags
+## 31. Meta Tags
 
 ### Definition
 
@@ -2933,9 +2931,9 @@ You can also use numeric codes:
 
 ---
 
-?? [Back to Top](#table-of-contents)
+?? [Back to Top](#1--table-of-contents)
 
-## 17. HTML Formatting Elements
+## 32. HTML Formatting Elements
 
 ### Text Formatting Tags
 
@@ -3042,10 +3040,10 @@ function hello() {
 <bdo dir="ltr">This text goes left to right</bdo>
 
 <!-- Bi-directional isolation -->
-<p>User <bdi>Ø¥ÙŠØ§Ù†</bdi> posted a comment.</p>
+<p>User <bdi>إيان</bdi> posted a comment.</p>
 
 <!-- Ruby annotation (East Asian typography) -->
-<ruby> æ¼¢ <rt>kan</rt> å­— <rt>ji</rt> </ruby>
+<ruby> 漢 <rt>kan</rt> 字 <rt>ji</rt> </ruby>
 ```
 
 ### Complete Examples
@@ -3095,7 +3093,7 @@ function hello() {
 
     <blockquote>
       The only way to do great work is to love what you do.
-      <footer>â€” Steve Jobs</footer>
+      <footer>— Steve Jobs</footer>
     </blockquote>
 
     <!-- Abbreviations -->
@@ -3119,13 +3117,13 @@ function hello() {
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 18. ID vs Class
+## 33. ID vs Class
 
 ### Definition
 
@@ -3195,28 +3193,28 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 | **Per element**    | One ID per element     | Multiple classes per element |
 | **CSS selector**   | `#idname`              | `.classname`                 |
 | **Priority**       | Higher specificity     | Lower specificity            |
-| **Use for anchor** | âœ… Yes (`#section`)   | âŒ No                        |
-| **Use for forms**  | âœ… Yes (label `for`)  | âŒ No                        |
+| **Use for anchor** | ✅ Yes (`#section`)   | ❌ No                        |
+| **Use for forms**  | ✅ Yes (label `for`)  | ❌ No                        |
 | **JavaScript**     | `getElementById()`     | `getElementsByClassName()`   |
 
 ### When to Use ID
 
 ```html
-<!-- âœ… Page sections (navigation anchors) -->
+<!-- ✅ Page sections (navigation anchors) -->
 <section id="about">About Us</section>
 <a href="#about">Go to About</a>
 
-<!-- âœ… Form labels -->
+<!-- ✅ Form labels -->
 <label for="email">Email:</label>
 <input type="email" id="email" />
 
-<!-- âœ… Unique page elements -->
+<!-- ✅ Unique page elements -->
 <header id="main-header"></header>
 <nav id="primary-nav"></nav>
 <main id="content"></main>
 <footer id="site-footer"></footer>
 
-<!-- âœ… JavaScript manipulation of specific element -->
+<!-- ✅ JavaScript manipulation of specific element -->
 <button id="submit-btn">Submit</button>
 <script>
   document.getElementById("submit-btn").addEventListener("click", submit);
@@ -3226,20 +3224,20 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 ### When to Use Class
 
 ```html
-<!-- âœ… Styling multiple elements -->
+<!-- ✅ Styling multiple elements -->
 <div class="product-card">Product 1</div>
 <div class="product-card">Product 2</div>
 <div class="product-card">Product 3</div>
 
-<!-- âœ… Utility classes -->
+<!-- ✅ Utility classes -->
 <p class="text-center text-bold text-large">Centered bold text</p>
 
-<!-- âœ… Component variations -->
+<!-- ✅ Component variations -->
 <button class="btn btn-primary">Primary</button>
 <button class="btn btn-secondary">Secondary</button>
 <button class="btn btn-danger">Delete</button>
 
-<!-- âœ… State classes -->
+<!-- ✅ State classes -->
 <div class="modal hidden">Modal content</div>
 <button class="active">Active button</button>
 ```
@@ -3289,27 +3287,27 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 ### Best Practices
 
 ```html
-<!-- âœ… Good: Descriptive names -->
+<!-- ✅ Good: Descriptive names -->
 <div id="user-profile" class="card highlighted">
-  <!-- âŒ Bad: Generic names -->
+  <!-- ❌ Bad: Generic names -->
   <div id="div1" class="box1">
-    <!-- âœ… Good: Use class for styling -->
+    <!-- ✅ Good: Use class for styling -->
     <button class="btn-primary">Click me</button>
 
-    <!-- âŒ Bad: Use ID for styling (less reusable) -->
+    <!-- ❌ Bad: Use ID for styling (less reusable) -->
     <button id="blue-button" style="color: blue;">Click me</button>
 
-    <!-- âœ… Good: Kebab-case naming -->
+    <!-- ✅ Good: Kebab-case naming -->
     <div class="user-profile-card">
-      <!-- âŒ Bad: Spaces or special characters -->
+      <!-- ❌ Bad: Spaces or special characters -->
       <div class="user profile card">
         <!-- Invalid! -->
         <div id="user@profile">
           <!-- Invalid! -->
 
-          <!-- âœ… Good: Semantic naming -->
+          <!-- ✅ Good: Semantic naming -->
           <nav class="primary-navigation">
-            <!-- âŒ Bad: Presentational naming -->
+            <!-- ❌ Bad: Presentational naming -->
             <nav class="blue-background-menu"></nav>
           </nav>
         </div>
@@ -3403,13 +3401,13 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 19. DOM Tree Building
+## 34. DOM Tree Building
 
 ### Definition
 
@@ -3419,24 +3417,24 @@ The **DOM (Document Object Model)** is a tree-like structure that represents the
 
 ```
 Document
-â”‚
-â””â”€â”€ html
-    â”œâ”€â”€ head
-    â”‚   â”œâ”€â”€ meta
-    â”‚   â”œâ”€â”€ title
-    â”‚   â”‚   â””â”€â”€ "Page Title" (text node)
-    â”‚   â””â”€â”€ link
-    â””â”€â”€ body
-        â”œâ”€â”€ header
-        â”‚   â””â”€â”€ h1
-        â”‚       â””â”€â”€ "Welcome" (text node)
-        â”œâ”€â”€ main
-        â”‚   â”œâ”€â”€ p
-        â”‚   â”‚   â””â”€â”€ "Paragraph text" (text node)
-        â”‚   â””â”€â”€ div
-        â”‚       â”œâ”€â”€ span
-        â”‚       â””â”€â”€ a
-        â””â”€â”€ footer
+│
+└── html
+    ├── head
+    │   ├── meta
+    │   ├── title
+    │   │   └── "Page Title" (text node)
+    │   └── link
+    └── body
+        ├── header
+        │   └── h1
+        │       └── "Welcome" (text node)
+        ├── main
+        │   ├── p
+        │   │   └── "Paragraph text" (text node)
+        │   └── div
+        │       ├── span
+        │       └── a
+        └── footer
 ```
 
 ### HTML to DOM Example
@@ -3458,18 +3456,18 @@ Document
 
 ```
 Document
-â””â”€â”€ html
-    â”œâ”€â”€ head
-    â”‚   â””â”€â”€ title
-    â”‚       â””â”€â”€ #text: "My Page"
-    â””â”€â”€ body
-        â”œâ”€â”€ h1
-        â”‚   â””â”€â”€ #text: "Hello"
-        â””â”€â”€ p
-            â”œâ”€â”€ #text: "Welcome to "
-            â”œâ”€â”€ strong
-            â”‚   â””â”€â”€ #text: "HTML"
-            â””â”€â”€ #text: "!"
+└── html
+    ├── head
+    │   └── title
+    │       └── #text: "My Page"
+    └── body
+        ├── h1
+        │   └── #text: "Hello"
+        └── p
+            ├── #text: "Welcome to "
+            ├── strong
+            │   └── #text: "HTML"
+            └── #text: "!"
 ```
 
 ### Types of DOM Nodes
@@ -3546,21 +3544,21 @@ element.querySelectorAll("*");
 ### DOM Building Process
 
 ```
-## 1. HTML Parsing
-   â†“
-## 2. Tokenization (breaking HTML into tokens)
-   â†“
-## 3. Tree Construction (building DOM tree)
-   â†“
-## 4. DOM Tree Complete
-   â†“
-## 5. CSSOM Tree Built (CSS)
-   â†“
-## 6. Render Tree (DOM + CSSOM)
-   â†“
-## 7. Layout (calculate positions)
-   â†“
-## 8. Paint (render to screen)
+## 35. HTML Parsing
+   ↓
+## 36. Tokenization (breaking HTML into tokens)
+   ↓
+## 37. Tree Construction (building DOM tree)
+   ↓
+## 38. DOM Tree Complete
+   ↓
+## 39. CSSOM Tree Built (CSS)
+   ↓
+## 40. Render Tree (DOM + CSSOM)
+   ↓
+## 41. Layout (calculate positions)
+   ↓
+## 42. Paint (render to screen)
 ```
 
 ### How Br owsers Build the DOM
@@ -3620,10 +3618,10 @@ element.querySelectorAll("*");
 
 ```javascript
 // 1. DOM Construction
-// Browser parses HTML â†’ builds DOM tree
+// Browser parses HTML → builds DOM tree
 
 // 2. CSSOM Construction
-// Browser parses CSS â†’ builds CSSOM tree
+// Browser parses CSS → builds CSSOM tree
 
 // 3. Render Tree
 // DOM + CSSOM = Render Tree (what to show)
@@ -3638,12 +3636,12 @@ element.querySelectorAll("*");
 ### Best Practices for DOM Performance
 
 ```html
-<!-- âœ… Good: Minimize DOM depth -->
+<!-- ✅ Good: Minimize DOM depth -->
 <div>
   <p>Content</p>
 </div>
 
-<!-- âŒ Bad: Excessive nesting -->
+<!-- ❌ Bad: Excessive nesting -->
 <div>
   <div>
     <div>
@@ -3656,7 +3654,7 @@ element.querySelectorAll("*");
   </div>
 </div>
 
-<!-- âœ… Good: Batch DOM updates -->
+<!-- ✅ Good: Batch DOM updates -->
 <script>
   const fragment = document.createDocumentFragment();
   for (let i = 0; i < 100; i++) {
@@ -3667,7 +3665,7 @@ element.querySelectorAll("*");
   ul.appendChild(fragment); // Single update
 </script>
 
-<!-- âŒ Bad: Multiple updates -->
+<!-- ❌ Bad: Multiple updates -->
 <script>
   for (let i = 0; i < 100; i++) {
     const li = document.createElement("li");
@@ -3681,7 +3679,7 @@ element.querySelectorAll("*");
 
 This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building comprehensively.
 
-## 20. Semantic Tags Deep Dive
+## 43. Semantic Tags Deep Dive
 
 ### Complete List of Semantic HTML5 Elements
 
@@ -3778,7 +3776,7 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 ### Semantic vs Non-Semantic Comparison
 
 ```html
-<!--  âŒ Non-Semantic (meaningless) -->
+<!--  ❌ Non-Semantic (meaningless) -->
 <div id="header">
   <div id="nav">
     <div class="link">Home</div>
@@ -3793,7 +3791,7 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 <div id="sidebar">Related</div>
 <div id="footer">Footer</div>
 
-<!-- âœ…  Semantic (meaningful) -->
+<!-- ✅  Semantic (meaningful) -->
 <header>
   <nav>
     <a href="#home">Home</a>
@@ -3913,13 +3911,13 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 21. Shadow DOM
+## 44. Shadow DOM
 
 ### Definition
 
@@ -3929,10 +3927,10 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 
 ```
 Regular DOM (Light DOM)
-â””â”€â”€ <div id="host">
-    â””â”€â”€ Shadow DOM (isolated)
-        â””â”€â”€ <style> (scoped styles)
-        â””â”€â”€ <p>Shadow content</p>
+└── <div id="host">
+    └── Shadow DOM (isolated)
+        └── <style> (scoped styles)
+        └── <p>Shadow content</p>
 ```
 
 ### Creating Shadow DOM
@@ -4126,13 +4124,13 @@ console.log(element.shadowRoot); // null
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 22. iframe vs Embedded Content
+## 45. iframe vs Embedded Content
 
 ### iframe
 
@@ -4209,40 +4207,40 @@ console.log(element.shadowRoot); // null
 | Feature        | `<iframe>`        | `<object>`    | `<embed>`      | `<video>`/`<audio>` |
 | -------------- | ----------------- | ------------- | -------------- | ------------------- |
 | **Purpose**    | Full webpage      | Generic files | Plugin content | Media only          |
-| **Fallback**   | Limited           | âœ… Yes       | âŒ No          | âœ… Yes             |
-| **SEO**        | âŒ Poor           | âŒ Poor       | âŒ Poor        | âœ… Good            |
-| **JS API**     | Limited           | Limited       | Limited        | âœ… Rich            |
+| **Fallback**   | Limited           | ✅ Yes       | ❌ No          | ✅ Yes             |
+| **SEO**        | ❌ Poor           | ❌ Poor       | ❌ Poor        | ✅ Good            |
+| **JS API**     | Limited           | Limited       | Limited        | ✅ Rich            |
 | **Security**   | Sandbox available | Less secure   | Less secure    | Secure              |
-| **Modern use** | Still common      | Rare          | Deprecated     | âœ… Preferred       |
+| **Modern use** | Still common      | Rare          | Deprecated     | ✅ Preferred       |
 
 ### When to Use Each
 
 ```html
-<!-- âœ… Use iframe for: External webpages, maps, embeds -->
+<!-- ✅ Use iframe for: External webpages, maps, embeds -->
 <iframe src="https://www.google.com/maps/embed..."></iframe>
 
-<!-- âœ… Use video/audio for: Media files -->
+<!-- ✅ Use video/audio for: Media files -->
 <video src="movie.mp4" controls></video>
 
-<!-- âœ… Use object for: PDFs with fallback -->
+<!-- ✅ Use object for: PDFs with fallback -->
 <object data="doc.pdf">
   <embed src="doc.pdf" />
 </object>
 
-<!-- âŒ Avoid embed: Deprecated, use video/audio instead -->
+<!-- ❌ Avoid embed: Deprecated, use video/audio instead -->
 <embed src="movie.mp4" />
 <!-- Use <video> instead -->
 ```
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 23. SVG vs Canvas
+## 46. SVG vs Canvas
 
 ### SVG (Scalable Vector Graphics)
 
@@ -4304,33 +4302,33 @@ console.log(element.shadowRoot); // null
 | Feature           | SVG                           | Canvas                    |
 | ----------------- | ----------------------------- | ------------------------- |
 | **Format**        | Vector (XML)                  | Bitmap (pixels)           |
-| **Scalability**   | âœ… Infinite, no quality loss | âŒ Pixelated when scaled  |
-| **DOM**           | âœ… Part of DOM               | âŒ Single element         |
-| **Events**        | âœ… Per element               | âŒ On canvas only         |
-| **Accessibility** | âœ… Good (text, alt)          | âŒ Limited                |
+| **Scalability**   | ✅ Infinite, no quality loss | ❌ Pixelated when scaled  |
+| **DOM**           | ✅ Part of DOM               | ❌ Single element         |
+| **Events**        | ✅ Per element               | ❌ On canvas only         |
+| **Accessibility** | ✅ Good (text, alt)          | ❌ Limited                |
 | **Best for**      | Icons, logos, simple graphics | Games, complex animations |
 | **Performance**   | Slow with many objects        | Fast with many objects    |
 | **File size**     | Smaller for simple graphics   | Larger                    |
-| **SEO**           | âœ… Searchable                | âŒ Not searchable         |
-| **Editing**       | âœ… Easy (CSS, JS, XML)       | âŒ Must redraw            |
+| **SEO**           | ✅ Searchable                | ❌ Not searchable         |
+| **Editing**       | ✅ Easy (CSS, JS, XML)       | ❌ Must redraw            |
 
 ### When to Use SVG
 
 ```html
-âœ… **Use SVG for:** - Icons and logos - Charts and graphs - Infographics - UI
+✅ **Use SVG for:** - Icons and logos - Charts and graphs - Infographics - UI
 elements - Responsive graphics - Interactive elements - Animations (simple) -
 Need scalability
 
 <svg viewBox="0 0 100 100">
   <circle cx="50" cy="50" r="40" fill="gold" />
-  <text x="50" y="55" text-anchor="middle" font-size="20">â˜…</text>
+  <text x="50" y="55" text-anchor="middle" font-size="20">★</text>
 </svg>
 ```
 
 ### When to Use Canvas
 
 ```javascript
-âœ… **Use Canvas for:**
+✅ **Use Canvas for:**
 - Games
 - Complex animations
 - Image manipulation
@@ -4403,13 +4401,13 @@ animate();
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 24. Name Attribute in Forms
+## 47. Name Attribute in Forms
 
 ### Definition
 
@@ -4562,9 +4560,9 @@ username=john
 
 ---
 
-?? [Back to Top](#table-of-contents)
+?? [Back to Top](#1--table-of-contents)
 
-## 25. Required vs Readonly vs Disabled
+## 48. Required vs Readonly vs Disabled
 
 ### Required
 
@@ -4592,10 +4590,10 @@ Makes a form field **mandatory** - form cannot be submitted without a value.
 
 **Characteristics:**
 
-- âœ… Can be edited
-- âœ… Value is submitted
-- âœ… Browser shows validation message
-- âœ… Can use `:required` CSS selector
+- ✅ Can be edited
+- ✅ Value is submitted
+- ✅ Browser shows validation message
+- ✅ Can use `:required` CSS selector
 
 ### Readonly
 
@@ -4618,11 +4616,11 @@ Field **cannot be edited** but value IS submitted.
 
 **Characteristics:**
 
-- âŒ Cannot be edited
-- âœ… Value IS submitted
-- âœ… Can be focused
-- âœ… Can select/copy text
-- âœ… Can use `:read-only` CSS selector
+- ❌ Cannot be edited
+- ✅ Value IS submitted
+- ✅ Can be focused
+- ✅ Can select/copy text
+- ✅ Can use `:read-only` CSS selector
 
 ### Disabled
 
@@ -4647,20 +4645,20 @@ Field is **completely disabled** - cannot edit, and value is NOT submitted.
 
 **Characteristics:**
 
-- âŒ Cannot be edited
-- âŒ Value is NOT submitted
-- âŒ Cannot be focused
-- âŒ Grayed out appearance
-- âœ… Can use `:disabled` CSS selector
+- ❌ Cannot be edited
+- ❌ Value is NOT submitted
+- ❌ Cannot be focused
+- ❌ Grayed out appearance
+- ✅ Can use `:disabled` CSS selector
 
 ### Comparison Table
 
 | Feature         | `required`      | `readonly`               | `disabled`             |
 | --------------- | --------------- | ------------------------ | ---------------------- |
-| **Can edit?**   | âœ… Yes         | âŒ No                    | âŒ No                  |
-| **Submitted?**  | âœ… Yes         | âœ… Yes                  | âŒ **No**              |
-| **Can focus?**  | âœ… Yes         | âœ… Yes                  | âŒ No                  |
-| **Validation?** | âœ… Yes         | âŒ No                    | âŒ No                  |
+| **Can edit?**   | ✅ Yes         | ❌ No                    | ❌ No                  |
+| **Submitted?**  | ✅ Yes         | ✅ Yes                  | ❌ **No**              |
+| **Can focus?**  | ✅ Yes         | ✅ Yes                  | ❌ No                  |
+| **Validation?** | ✅ Yes         | ❌ No                    | ❌ No                  |
 | **Appearance**  | Normal          | Normal                   | Grayed out             |
 | **Use case**    | Mandatory field | Display calculated value | Conditionally inactive |
 
@@ -4746,13 +4744,13 @@ Field is **completely disabled** - cannot edit, and value is NOT submitted.
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 26. Figure and Figcaption
+## 49. Figure and Figcaption
 
 ### Definition
 
@@ -4811,7 +4809,7 @@ function greet(name) {
   <blockquote>
     <p>The only way to do great work is to love what you do.</p>
   </blockquote>
-  <figcaption>â€” Steve Jobs</figcaption>
+  <figcaption>— Steve Jobs</figcaption>
 </figure>
 ```
 
@@ -4955,7 +4953,7 @@ function greet(name) {
           works.
         </p>
       </blockquote>
-      <figcaption>â€” Steve Jobs, Apple Inc.</figcaption>
+      <figcaption>— Steve Jobs, Apple Inc.</figcaption>
     </figure>
   </body>
 </html>
@@ -4963,13 +4961,13 @@ function greet(name) {
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 27. Custom Elements
+## 50. Custom Elements
 
 ### Definition
 
@@ -5242,13 +5240,13 @@ customElements.define("my-element", MyElement);
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 28. HTML Security
+## 51. HTML Security
 
 ### Common Security Threats
 
@@ -5257,7 +5255,7 @@ customElements.define("my-element", MyElement);
 **Injecting malicious scripts into web pages**
 
 ```html
-<!-- âŒ Vulnerable to XSS -->
+<!-- ❌ Vulnerable to XSS -->
 <div id="output"></div>
 <script>
   const userInput = new URLSearchParams(window.location.search).get('name');
@@ -5265,7 +5263,7 @@ customElements.define("my-element", MyElement);
   // URL: page.html?name=<script>alert('XSS')</script>
 </script>
 
-<!-- âœ… Safe: Escape user input -->
+<!-- ✅ Safe: Escape user input -->
 <script>
   const userInput = new URLSearchParams(window.location.search).get('name');
   document.getElementById('output').textContent = userInput;  // textContent is safe
@@ -5277,7 +5275,7 @@ customElements.define("my-element", MyElement);
 **Tricking users into clicking hidden elements**
 
 ```html
-<!-- âœ… Prevent iframe embedding -->
+<!-- ✅ Prevent iframe embedding -->
 <meta http-equiv="X-Frame-Options" content="DENY" />
 
 <!-- Or allow only same origin -->
@@ -5290,7 +5288,7 @@ customElements.define("my-element", MyElement);
 #### 3. SQL Injection (via forms)
 
 ```html
-<!-- âŒ Never trust user input directly -->
+<!-- ❌ Never trust user input directly -->
 <form action="/login" method="POST">
   <input type="text" name="username" />
   <input type="password" name="password" />
@@ -5325,7 +5323,7 @@ customElements.define("my-element", MyElement);
   <input type="url" required />
 </form>
 
-<!-- âœ… ALWAYS validate on server side too! -->
+<!-- ✅ ALWAYS validate on server side too! -->
 ```
 
 #### Content Security Policy (CSP)
@@ -5353,7 +5351,7 @@ customElements.define("my-element", MyElement);
 #### Safe External Links
 
 ```html
-<!-- âœ… Always use rel="noopener noreferrer" with target="_blank" -->
+<!-- ✅ Always use rel="noopener noreferrer" with target="_blank" -->
 <a href="https://external.com" target="_blank" rel="noopener noreferrer">
   External Link
 </a>
@@ -5367,17 +5365,17 @@ customElements.define("my-element", MyElement);
 #### Sanitize User Content
 
 ```html
-<!-- âŒ NEVER do this with user input -->
+<!-- ❌ NEVER do this with user input -->
 <script>
   element.innerHTML = userInput; // XSS risk!
 </script>
 
-<!-- âœ… Use textContent instead -->
+<!-- ✅ Use textContent instead -->
 <script>
   element.textContent = userInput; // Safe
 </script>
 
-<!-- âœ… Or use DOMPurify library -->
+<!-- ✅ Or use DOMPurify library -->
 <script src="https://cdn.jsdelivr.net/npm/dompurify@2/dist/purify.min.js"></script>
 <script>
   const clean = DOMPurify.sanitize(userInput);
@@ -5388,13 +5386,13 @@ customElements.define("my-element", MyElement);
 #### HTTPS Only
 
 ```html
-<!-- âœ… Force HTTPS -->
+<!-- ✅ Force HTTPS -->
 <meta
   http-equiv="Content-Security-Policy"
   content="upgrade-insecure-requests"
 />
 
-<!-- âœ… HTTP Strict Transport Security (HSTS) -->
+<!-- ✅ HTTP Strict Transport Security (HSTS) -->
 <!-- (Set via server headers, not HTML) -->
 ```
 
@@ -5416,7 +5414,7 @@ customElements.define("my-element", MyElement);
 #### Subresource Integrity (SRI)
 
 ```html
-<!-- âœ… Verify CDN resources haven't been tampered with -->
+<!-- ✅ Verify CDN resources haven't been tampered with -->
 <script
   src="https://cdn.example.com/library.js"
   integrity="sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC"
@@ -5439,40 +5437,40 @@ customElements.define("my-element", MyElement);
   <head>
     <meta charset="UTF-8" />
 
-    <!-- âœ… CSP -->
+    <!-- ✅ CSP -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self'; script-src 'self'"
     />
 
-    <!-- âœ… Prevent clickjacking -->
+    <!-- ✅ Prevent clickjacking -->
     <meta http-equiv="X-Frame-Options" content="DENY" />
 
-    <!-- âœ… Prevent MIME sniffing -->
+    <!-- ✅ Prevent MIME sniffing -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
-    <!-- âœ… XSS Protection (older browsers) -->
+    <!-- ✅ XSS Protection (older browsers) -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
 
-    <!-- âœ… Referrer policy -->
+    <!-- ✅ Referrer policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin" />
 
     <title>Secure Page</title>
   </head>
   <body>
-    <!-- âœ… Safe external links -->
+    <!-- ✅ Safe external links -->
     <a href="https://example.com" target="_blank" rel="noopener noreferrer">
       External Link
     </a>
 
-    <!-- âœ… Secure form -->
+    <!-- ✅ Secure form -->
     <form action="/submit" method="POST">
       <input type="hidden" name="csrf" value="token" />
       <input type="email" required />
       <button type="submit">Submit</button>
     </form>
 
-    <!-- âœ… CDN with SRI -->
+    <!-- ✅ CDN with SRI -->
     <script
       src="https://cdn.example.com/lib.js"
       integrity="sha384-..."
@@ -5484,13 +5482,13 @@ customElements.define("my-element", MyElement);
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-## 29. Setting Multiple Languages in HTML
+## 52. Setting Multiple Languages in HTML
 
 ### Lang Attribute
 
@@ -5541,7 +5539,7 @@ Specifies the language of content for accessibility and SEO.
 
     <!-- French section -->
     <section lang="fr">
-      <h2>Ã€ propos de nous</h2>
+      <h2>À propos de nous</h2>
       <p>Nous sommes une entreprise mondiale.</p>
     </section>
 
@@ -5558,7 +5556,7 @@ Specifies the language of content for accessibility and SEO.
 
     <!-- Quote in different language -->
     <blockquote lang="ja">
-      <p>ã“ã‚“ã«ã¡ã¯ä¸–ç•Œ</p>
+      <p>こんにちは世界</p>
       <footer>Translation: <span lang="en">Hello World</span></footer>
     </blockquote>
   </body>
@@ -5646,8 +5644,8 @@ Specifies the language of content for accessibility and SEO.
     <title>Arabic Page</title>
   </head>
   <body>
-    <h1>Ù…Ø±Ø­Ø¨Ø§ Ø¨Ø§Ù„Ø¹Ø§Ù„Ù…</h1>
-    <p>Ù‡Ø°Ø§ Ù†Øµ Ø¹Ø±Ø¨ÙŠ Ù…Ù† Ø§Ù„ÙŠÙ…ÙŠÙ† Ø¥Ù„Ù‰ Ø§Ù„ÙŠØ³Ø§Ø±</p>
+    <h1>مرحبا بالعالم</h1>
+    <p>هذا نص عربي من اليمين إلى اليسار</p>
 
     <!-- Embedded LTR content -->
     <p>
@@ -5712,7 +5710,7 @@ Specifies the language of content for accessibility and SEO.
     <section lang="es">
       <span class="lang-label">ES</span>
       <h2>Bienvenido</h2>
-      <p>Â¡Hola! Hablamos tu idioma.</p>
+      <p>¡Hola! Hablamos tu idioma.</p>
     </section>
 
     <!-- French -->
@@ -5732,15 +5730,15 @@ Specifies the language of content for accessibility and SEO.
     <!-- Japanese -->
     <section lang="ja">
       <span class="lang-label">JA</span>
-      <h2>ã‚ˆã†ã“ã</h2>
-      <p>ã“ã‚“ã«ã¡ã¯ï¼ç§ãŸã¡ã¯ã‚ãªãŸã®è¨€èªžã‚’è©±ã—ã¾ã™ã€‚</p>
+      <h2>ようこそ</h2>
+      <p>こんにちは！私たちはあなたの言語を話します。</p>
     </section>
 
     <!-- Arabic (RTL) -->
     <section lang="ar" dir="rtl">
       <span class="lang-label">AR</span>
-      <h2>Ù…Ø±Ø­Ø¨Ø§</h2>
-      <p>Ù…Ø±Ø­Ø¨Ù‹Ø§! Ù†Ø­Ù† Ù†ØªØ­Ø¯Ø« Ù„ØºØªÙƒ.</p>
+      <h2>مرحبا</h2>
+      <p>مرحبًا! نحن نتحدث لغتك.</p>
     </section>
 
     <!-- Mixed content -->
@@ -5759,17 +5757,17 @@ Specifies the language of content for accessibility and SEO.
 
 ### Benefits of Using Lang Attribute
 
-## 1. **Accessibility** - Screen readers pronounce text correctly
+## 53. **Accessibility** - Screen readers pronounce text correctly
 
-## 2. **SEO** - Search engines identify language
+## 54. **SEO** - Search engines identify language
 
-## 3. **Spellcheck** - Browsers use correct dictionary
+## 55. **Spellcheck** - Browsers use correct dictionary
 
-## 4. **Translation** - Browser translation tools work better
+## 56. **Translation** - Browser translation tools work better
 
-## 5. **CSS Styling** - Can style by language
+## 57. **CSS Styling** - Can style by language
 
-## 6. **Font Selection** - Browsers choose appropriate fonts
+## 58. **Font Selection** - Browsers choose appropriate fonts
 
 ```css
 /* CSS based on language */
@@ -5786,13 +5784,13 @@ Specifies the language of content for accessibility and SEO.
 }
 ```
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
 ---
 
-[Back to Top](#table-of-contents)
+[Back to Top](#1--table-of-contents)
 
-📝 [Back to Top](#table-of-contents)
+?? [Back to Top](#1--table-of-contents)
 
 ---
 
