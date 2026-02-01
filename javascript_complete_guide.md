@@ -709,13 +709,15 @@ Primitives (Stack):
 │ b = 10  │   10    │  ← Separate values
 └─────────┴─────────┘
 
-Non-Primitives (Heap + Stack):
+**Non-Primitives (Heap + Stack):**
+```
 Stack:                  Heap:
 ┌──────────┬──────────┐  ┌────────────────┐
 │ obj1     │  0x001   │─→│ { name: 'John' }│
 │ obj2     │  0x002   │─→│ { name: 'Jane' }│
 │ obj3     │  0x001   │─→│ (same as obj1)  │
 └──────────┴──────────┘  └────────────────┘
+```
 ```
 
 **Checking Types:**
@@ -1903,6 +1905,7 @@ class Button {
 **Currying** is a technique of transforming a function with multiple arguments into a sequence of functions, each taking a single argument.
 
 **Why Use Currying:**
+
 - **Reusability** - Create specialized functions from general ones
 - **Partial application** - Pre-configure function arguments
 - **Function composition** - Build complex functions from simple ones
@@ -1912,24 +1915,24 @@ class Button {
 ```javascript
 // Regular function
 function add(a, b, c) {
-    return a + b + c;
+  return a + b + c;
 }
 
 console.log(add(1, 2, 3)); // 6
 
 // Curried version
 function curriedAdd(a) {
-    return function(b) {
-        return function(c) {
-            return a + b + c;
-        };
+  return function (b) {
+    return function (c) {
+      return a + b + c;
     };
+  };
 }
 
 console.log(curriedAdd(1)(2)(3)); // 6
 
 // Arrow function version (concise)
-const curriedAddArrow = a => b => c => a + b + c;
+const curriedAddArrow = (a) => (b) => (c) => a + b + c;
 console.log(curriedAddArrow(1)(2)(3)); // 6
 ```
 
@@ -1937,28 +1940,30 @@ console.log(curriedAddArrow(1)(2)(3)); // 6
 
 ```javascript
 // 1. Event handling with fixed parameters
-const addEvent = element => event => handler => {
-    element.addEventListener(event, handler);
+const addEvent = (element) => (event) => (handler) => {
+  element.addEventListener(event, handler);
 };
 
-const addClickToButton = addEvent(document.querySelector('button'));
-const addClick = addClickToButton('click');
-addClick(() => console.log('Clicked!'));
+const addClickToButton = addEvent(document.querySelector("button"));
+const addClick = addClickToButton("click");
+addClick(() => console.log("Clicked!"));
 
 // 2. Logging with different levels
-const log = level => message => {
-    console.log(`[${level.toUpperCase()}] ${new Date().toISOString()}: ${message}`);
+const log = (level) => (message) => {
+  console.log(
+    `[${level.toUpperCase()}] ${new Date().toISOString()}: ${message}`,
+  );
 };
 
-const logError = log('error');
-const logInfo = log('info');
+const logError = log("error");
+const logInfo = log("info");
 
-logError('Something went wrong!'); // [ERROR] 2024-01-15T10:30:00.000Z: Something went wrong!
-logInfo('Operation successful'); // [INFO] 2024-01-15T10:30:01.000Z: Operation successful
+logError("Something went wrong!"); // [ERROR] 2024-01-15T10:30:00.000Z: Something went wrong!
+logInfo("Operation successful"); // [INFO] 2024-01-15T10:30:01.000Z: Operation successful
 
 // 3. Discount calculator
-const discount = discountPercent => price => {
-    return price - (price * discountPercent / 100);
+const discount = (discountPercent) => (price) => {
+  return price - (price * discountPercent) / 100;
 };
 
 const tenPercentOff = discount(10);
@@ -1972,20 +1977,20 @@ console.log(twentyPercentOff(100)); // 80
 
 ```javascript
 function curry(func) {
-    return function curried(...args) {
-        if (args.length >= func.length) {
-            return func.apply(this, args);
-        } else {
-            return function(...nextArgs) {
-                return curried.apply(this, args.concat(nextArgs));
-            };
-        }
-    };
+  return function curried(...args) {
+    if (args.length >= func.length) {
+      return func.apply(this, args);
+    } else {
+      return function (...nextArgs) {
+        return curried.apply(this, args.concat(nextArgs));
+      };
+    }
+  };
 }
 
 // Usage
 function sum(a, b, c) {
-    return a + b + c;
+  return a + b + c;
 }
 
 const curriedSum = curry(sum);
@@ -2003,11 +2008,13 @@ console.log(curriedSum(1, 2, 3)); // 6
 
 **Pure Function:**  
 A function is **pure** if:
+
 1. **Same input always produces same output** (deterministic)
 2. **No side effects** (doesn't modify external state)
 
 **Impure Function:**  
 A function that:
+
 1. Produces different outputs for same input
 2. Has side effects (modifies external state, makes API calls, etc.)
 
@@ -2018,19 +2025,19 @@ A function that:
 
 // 1. Always returns same output for same input
 function add(a, b) {
-    return a + b;
+  return a + b;
 }
 
 console.log(add(2, 3)); // Always 5
 
 // 2. No external dependencies
 function multiply(x, y) {
-    return x * y;
+  return x * y;
 }
 
 // 3. Doesn't modify input
 function addToArray(arr, item) {
-    return [...arr, item]; // Creates new array
+  return [...arr, item]; // Creates new array
 }
 
 const original = [1, 2, 3];
@@ -2043,35 +2050,35 @@ console.log(newArray); // [1, 2, 3, 4]
 // 1. Depends on external state
 let counter = 0;
 function increment() {
-    counter++; // Modifies external variable
-    return counter;
+  counter++; // Modifies external variable
+  return counter;
 }
 
 // 2. Modifies input
 function addItem(arr, item) {
-    arr.push(item); // Mutates input array
-    return arr;
+  arr.push(item); // Mutates input array
+  return arr;
 }
 
 // 3. Non-deterministic (different output each time)
 function getRandomNumber() {
-    return Math.random(); // Different every time
+  return Math.random(); // Different every time
 }
 
 function getCurrentTime() {
-    return new Date(); // Different every time
+  return new Date(); // Different every time
 }
 
 // 4. Has side effects
 function logAndReturn(value) {
-    console.log(value); // Side effect: console logging
-    return value;
+  console.log(value); // Side effect: console logging
+  return value;
 }
 
 function saveToDatabase(data) {
-    // Side effect: modifies database
-    database.save(data);
-    return true;
+  // Side effect: modifies database
+  database.save(data);
+  return true;
 }
 ```
 
@@ -2080,7 +2087,7 @@ function saveToDatabase(data) {
 ```javascript
 // 1. Testability - No mocking needed
 function calculateTax(amount, taxRate) {
-    return amount * taxRate;
+  return amount * taxRate;
 }
 
 // Easy to test
@@ -2088,19 +2095,19 @@ console.log(calculateTax(100, 0.1) === 10); // ?
 
 // 2. Cacheability (Memoization possible)
 const memoizedAdd = (() => {
-    const cache = {};
-    return (a, b) => {
-        const key = `${a},${b}`;
-        if (cache[key]) return cache[key];
-        const result = a + b;
-        cache[key] = result;
-        return result;
-    };
+  const cache = {};
+  return (a, b) => {
+    const key = `${a},${b}`;
+    if (cache[key]) return cache[key];
+    const result = a + b;
+    cache[key] = result;
+    return result;
+  };
 })();
 
 // 3. Parallelization - Safe to run concurrently
 const numbers = [1, 2, 3, 4, 5];
-const doubled = numbers.map(n => n * 2); // Pure, can be parallelized
+const doubled = numbers.map((n) => n * 2); // Pure, can be parallelized
 
 // 4. Easier debugging - No hidden dependencies
 ```
@@ -2110,26 +2117,26 @@ const doubled = numbers.map(n => n * 2); // Pure, can be parallelized
 ```javascript
 // ? Impure shopping cart
 class ImpureCart {
-    constructor() {
-        this.items = [];
-    }
-    
-    addItem(item) {
-        this.items.push(item); // Mutates internal state
-    }
-    
-    getTotal() {
-        return this.items.reduce((sum, item) => sum + item.price, 0);
-    }
+  constructor() {
+    this.items = [];
+  }
+
+  addItem(item) {
+    this.items.push(item); // Mutates internal state
+  }
+
+  getTotal() {
+    return this.items.reduce((sum, item) => sum + item.price, 0);
+  }
 }
 
 // ? Pure shopping cart
 const PureCart = {
-    add: (cart, item) => [...cart, item],
-    
-    remove: (cart, itemId) => cart.filter(item => item.id !== itemId),
-    
-    getTotal: (cart) => cart.reduce((sum, item) => sum + item.price, 0)
+  add: (cart, item) => [...cart, item],
+
+  remove: (cart, itemId) => cart.filter((item) => item.id !== itemId),
+
+  getTotal: (cart) => cart.reduce((sum, item) => sum + item.price, 0),
 };
 
 // Usage
@@ -2149,6 +2156,7 @@ console.log(PureCart.getTotal(cart)); // 300
 **Memoization** is an optimization technique that caches the results of expensive function calls and returns the cached result when the same inputs occur again.
 
 **Why Use Memoization:**
+
 - Improve performance of expensive calculations
 - Avoid redundant computations
 - Trade memory for speed
@@ -2158,68 +2166,68 @@ console.log(PureCart.getTotal(cart)); // 300
 ```javascript
 // Without memoization - slow for large numbers
 function slowFibonacci(n) {
-    if (n <= 1) return n;
-    return slowFibonacci(n - 1) + slowFibonacci(n - 2);
+  if (n <= 1) return n;
+  return slowFibonacci(n - 1) + slowFibonacci(n - 2);
 }
 
-console.time('slow');
+console.time("slow");
 console.log(slowFibonacci(40)); // Takes ~2-3 seconds
-console.timeEnd('slow');
+console.timeEnd("slow");
 
 // With memoization - much faster
 function memoizedFibonacci() {
-    const cache = {};
-    
-    return function fib(n) {
-        if (n in cache) {
-            return cache[n]; // Return cached result
-        }
-        
-        if (n <= 1) {
-            return n;
-        }
-        
-        const result = fib(n - 1) + fib(n - 2);
-        cache[n] = result; // Store in cache
-        return result;
-    };
+  const cache = {};
+
+  return function fib(n) {
+    if (n in cache) {
+      return cache[n]; // Return cached result
+    }
+
+    if (n <= 1) {
+      return n;
+    }
+
+    const result = fib(n - 1) + fib(n - 2);
+    cache[n] = result; // Store in cache
+    return result;
+  };
 }
 
 const fibonacci = memoizedFibonacci();
 
-console.time('fast');
+console.time("fast");
 console.log(fibonacci(40)); // Instant!
-console.timeEnd('fast');
+console.timeEnd("fast");
 ```
 
 **Generic Memoize Function:**
 
 ```javascript
 function memoize(fn) {
-    const cache = {};
-    
-    return function(...args) {
-        const key = JSON.stringify(args);
-        
-        if (key in cache) {
-            console.log('Returning from cache');
-            return cache[key];
-        }
-        
-        console.log('Calculating...');
-        const result = fn.apply(this, args);
-        cache[key] = result;
-        return result;
-    };
+  const cache = {};
+
+  return function (...args) {
+    const key = JSON.stringify(args);
+
+    if (key in cache) {
+      console.log("Returning from cache");
+      return cache[key];
+    }
+
+    console.log("Calculating...");
+    const result = fn.apply(this, args);
+    cache[key] = result;
+    return result;
+  };
 }
 
 // Usage
 const expensiveOperation = (n) => {
-    let sum = 0;
-    for (let i = 0; i < n * 1000000; i++) {
-        sum += i;
-    }
-    return sum;
+  let sum = 0;
+  for (let i = 0; i < n * 1000000; i++) {
+    sum += i;
+  }
+  return sum;
 };
 
 const memoized = memoize(expensiveOperation);
@@ -2235,25 +2243,25 @@ console.log(memoized(200)); // Returning from cache (instant!)
 ```javascript
 // 1. API call memoization
 const memoizeAsync = (fn) => {
-    const cache = new Map();
-    
-    return async (...args) => {
-        const key = JSON.stringify(args);
-        
-        if (cache.has(key)) {
-            console.log('Cache hit!');
-            return cache.get(key);
-        }
-        
-        const result = await fn(...args);
-        cache.set(key, result);
-        return result;
-    };
+  const cache = new Map();
+
+  return async (...args) => {
+    const key = JSON.stringify(args);
+
+    if (cache.has(key)) {
+      console.log("Cache hit!");
+      return cache.get(key);
+    }
+
+    const result = await fn(...args);
+    cache.set(key, result);
+    return result;
+  };
 };
 
 const fetchUser = memoizeAsync(async (userId) => {
-    const response = await fetch(`/api/users/${userId}`);
-    return response.json();
+  const response = await fetch(`/api/users/${userId}`);
+  return response.json();
 });
 
 // First call - hits API
@@ -2263,18 +2271,18 @@ await fetchUser(1);
 
 // 2. Complex calculations
 const calculatePrimes = memoize((max) => {
-    const primes = [];
-    for (let num = 2; num <= max; num++) {
-        let isPrime = true;
-        for (let i = 2; i <= Math.sqrt(num); i++) {
-            if (num % i === 0) {
-                isPrime = false;
-                break;
-            }
-        }
-        if (isPrime) primes.push(num);
+  const primes = [];
+  for (let num = 2; num <= max; num++) {
+    let isPrime = true;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
+        isPrime = false;
+        break;
+      }
     }
-    return primes;
+    if (isPrime) primes.push(num);
+  }
+  return primes;
 });
 
 console.log(calculatePrimes(1000)); // Slow first time
@@ -2285,28 +2293,28 @@ console.log(calculatePrimes(1000)); // Instant second time
 
 ```javascript
 function memoizeWithLimit(fn, limit = 100) {
-    const cache = new Map();
-    const keys = [];
-    
-    return function(...args) {
-        const key = JSON.stringify(args);
-        
-        if (cache.has(key)) {
-            return cache.get(key);
-        }
-        
-        const result = fn.apply(this, args);
-        
-        // Remove oldest entry if cache is full
-        if (keys.length >= limit) {
-            const oldestKey = keys.shift();
-            cache.delete(oldestKey);
-        }
-        
-        keys.push(key);
-        cache.set(key, result);
-        return result;
-    };
+  const cache = new Map();
+  const keys = [];
+
+  return function (...args) {
+    const key = JSON.stringify(args);
+
+    if (cache.has(key)) {
+      return cache.get(key);
+    }
+
+    const result = fn.apply(this, args);
+
+    // Remove oldest entry if cache is full
+    if (keys.length >= limit) {
+      const oldestKey = keys.shift();
+      cache.delete(oldestKey);
+    }
+
+    keys.push(key);
+    cache.set(key, result);
+    return result;
+  };
 }
 ```
 
@@ -2326,11 +2334,11 @@ In JavaScript, objects are collections of key-value pairs stored in **heap memor
 ```javascript
 // Object creation
 const person = {
-    name: 'John',
-    age: 30,
-    greet: function() {
-        console.log(`Hello, I'm ${this.name}`);
-    }
+  name: "John",
+  age: 30,
+  greet: function () {
+    console.log(`Hello, I'm ${this.name}`);
+  },
 };
 
 // Internally stored as:
@@ -2347,10 +2355,10 @@ const person = {
 **Property Descriptors:**
 
 ```javascript
-const obj = { name: 'Alice' };
+const obj = { name: "Alice" };
 
 // Get property descriptor
-const descriptor = Object.getOwnPropertyDescriptor(obj, 'name');
+const descriptor = Object.getOwnPropertyDescriptor(obj, "name");
 console.log(descriptor);
 // {
 //     value: 'Alice',
@@ -2360,11 +2368,11 @@ console.log(descriptor);
 // }
 
 // Define property with custom descriptor
-Object.defineProperty(obj, 'age', {
-    value: 30,
-    writable: false,     // Read-only
-    enumerable: true,
-    configurable: false  // Cannot be deleted
+Object.defineProperty(obj, "age", {
+  value: 30,
+  writable: false, // Read-only
+  enumerable: true,
+  configurable: false, // Cannot be deleted
 });
 
 obj.age = 40; // Silently fails (or throws in strict mode)
@@ -2381,8 +2389,8 @@ console.log(obj.age); // 30
 // Property access is O(1) average case
 
 const obj = {};
-obj.key1 = 'value1'; // Hash 'key1', store value at hash location
-obj.key2 = 'value2'; // Hash 'key2', store value at hash location
+obj.key1 = "value1"; // Hash 'key1', store value at hash location
+obj.key2 = "value2"; // Hash 'key2', store value at hash location
 
 console.log(obj.key1); // O(1) lookup
 ```
@@ -2392,10 +2400,10 @@ console.log(obj.key1); // O(1) lookup
 ```javascript
 // Stack vs Heap
 const a = 10; // Primitive - stored in stack
-const b = a;  // Copy value
+const b = a; // Copy value
 
 const obj1 = { value: 10 }; // Object - stored in heap, reference in stack
-const obj2 = obj1;          // Copy reference, not object
+const obj2 = obj1; // Copy reference, not object
 
 b = 20;
 console.log(a); // 10 (unchanged)
@@ -2406,10 +2414,10 @@ console.log(obj1.value); // 20 (both point to same object!)
 /*
 Stack:              Heap:
 +------------+     +-------------+
-�  a   � 10  �     �             �
-�  b   � 20  �     �   Object    �
-� obj1 � 0x1 �----?� {value: 20} �
-� obj2 � 0x1 �----?�  (same)     �
+�  a   � 10  �     �             �
+�  b   � 20  �     �   Object    �
+� obj1 � 0x1 �----?� {value: 20} �
+� obj2 � 0x1 �----?�  (same)     �
 +------------+     +-------------+
 */
 ```
@@ -2424,6 +2432,7 @@ Stack:              Heap:
 Every JavaScript object has an internal property called `[[Prototype]]` (accessible via `__proto__` or `Object.getPrototypeOf()`). This links to another object, forming the **prototype chain**.
 
 **Why Prototypes Exist:**
+
 - **Inheritance** - Objects can inherit properties/methods from other objects
 - **Memory efficiency** - Methods shared across instances instead of duplicated
 - **Extensibility** - Add methods to all instances dynamically
@@ -2433,18 +2442,18 @@ Every JavaScript object has an internal property called `[[Prototype]]` (accessi
 ```javascript
 // Constructor function
 function Person(name, age) {
-    this.name = name;
-    this.age = age;
+  this.name = name;
+  this.age = age;
 }
 
 // Add method to prototype
-Person.prototype.greet = function() {
-    return `Hi, I'm ${this.name}`;
+Person.prototype.greet = function () {
+  return `Hi, I'm ${this.name}`;
 };
 
 // Create instances
-const john = new Person('John', 30);
-const jane = new Person('Jane', 25);
+const john = new Person("John", 30);
+const jane = new Person("Jane", 25);
 
 console.log(john.greet()); // "Hi, I'm John"
 console.log(jane.greet()); // "Hi, I'm Jane"
@@ -2457,20 +2466,20 @@ console.log(john.greet === jane.greet); // true (memory efficient!)
 
 ```javascript
 function Car(model) {
-    // Instance property - unique per instance
-    this.model = model;
-    this.mileage = 0;
+  // Instance property - unique per instance
+  this.model = model;
+  this.mileage = 0;
 }
 
 // Prototype property - shared across all instances
-Car.prototype.brand = 'Toyota';
-Car.prototype.drive = function(miles) {
-    this.mileage += miles;
-    return `Driven ${miles} miles`;
+Car.prototype.brand = "Toyota";
+Car.prototype.drive = function (miles) {
+  this.mileage += miles;
+  return `Driven ${miles} miles`;
 };
 
-const car1 = new Car('Camry');
-const car2 = new Car('Corolla');
+const car1 = new Car("Camry");
+const car2 = new Car("Corolla");
 
 console.log(car1.brand); // 'Toyota' (from prototype)
 console.log(car2.brand); // 'Toyota' (from prototype)
@@ -2482,12 +2491,12 @@ console.log(car1.mileage); // 100 (instance property)
 console.log(car2.mileage); // 50 (instance property)
 
 // Modify prototype - affects all instances!
-Car.prototype.brand = 'Honda';
+Car.prototype.brand = "Honda";
 console.log(car1.brand); // 'Honda'
 console.log(car2.brand); // 'Honda'
 
 // Override prototype property on instance
-car1.brand = 'Mazda';
+car1.brand = "Mazda";
 console.log(car1.brand); // 'Mazda' (own property)
 console.log(car2.brand); // 'Honda' (prototype property)
 ```
@@ -2496,21 +2505,21 @@ console.log(car2.brand); // 'Honda' (prototype property)
 
 ```javascript
 function Animal(name) {
-    this.name = name;
+  this.name = name;
 }
 
-Animal.prototype.speak = function() {
-    console.log(`${this.name} makes a sound`);
+Animal.prototype.speak = function () {
+  console.log(`${this.name} makes a sound`);
 };
 
-const dog = new Animal('Dog');
+const dog = new Animal("Dog");
 
 // Check if property exists on instance vs prototype
-console.log(dog.hasOwnProperty('name')); // true (instance property)
-console.log(dog.hasOwnProperty('speak')); // false (prototype property)
+console.log(dog.hasOwnProperty("name")); // true (instance property)
+console.log(dog.hasOwnProperty("speak")); // false (prototype property)
 
-console.log('name' in dog); // true
-console.log('speak' in dog); // true
+console.log("name" in dog); // true
+console.log("speak" in dog); // true
 
 // Get prototype
 console.log(Object.getPrototypeOf(dog) === Animal.prototype); // true
@@ -2529,29 +2538,29 @@ The prototype chain is the mechanism JavaScript uses to look up props and method
 
 ```javascript
 function Animal() {}
-Animal.prototype.breathe = function() {
-    return 'breathing';
+Animal.prototype.breathe = function () {
+  return "breathing";
 };
 
 function Dog(name) {
-    this.name = name;
+  this.name = name;
 }
 
 // Set Dog's prototype to Animal instance
 Dog.prototype = Object.create(Animal.prototype);
 Dog.prototype.constructor = Dog;
 
-Dog.prototype.bark = function() {
-    return 'Woof!';
+Dog.prototype.bark = function () {
+  return "Woof!";
 };
 
-const myDog = new Dog('Buddy');
+const myDog = new Dog("Buddy");
 
 // Prototype chain lookup:
-console.log(myDog.name);    // 1. Found on myDog instance
-console.log(myDog.bark());  // 2. Found on Dog.prototype
-console.log(myDog.breathe());// 3. Found on Animal.prototype
-console.log(myDog.toString());// 4. Found on Object.prototype
+console.log(myDog.name); // 1. Found on myDog instance
+console.log(myDog.bark()); // 2. Found on Dog.prototype
+console.log(myDog.breathe()); // 3. Found on Animal.prototype
+console.log(myDog.toString()); // 4. Found on Object.prototype
 
 /*
 Prototype Chain:
@@ -2568,32 +2577,32 @@ Access myDog.breathe():
 
 ```javascript
 function Shape() {
-    this.type = 'shape';
+  this.type = "shape";
 }
 
-Shape.prototype.describe = function() {
-    return `This is a ${this.type}`;
+Shape.prototype.describe = function () {
+  return `This is a ${this.type}`;
 };
 
 function Rectangle(width, height) {
-    Shape.call(this); // Call parent constructor
-    this.width = width;
-    this.height = height;
-    this.type = 'rectangle';
+  Shape.call(this); // Call parent constructor
+  this.width = width;
+  this.height = height;
+  this.type = "rectangle";
 }
 
 // Establish inheritance
 Rectangle.prototype = Object.create(Shape.prototype);
 Rectangle.prototype.constructor = Rectangle;
 
-Rectangle.prototype.area = function() {
-    return this.width * this.height;
+Rectangle.prototype.area = function () {
+  return this.width * this.height;
 };
 
 const rect = new Rectangle(10, 5);
 
-console.log(rect.width);     // 10 (own property)
-console.log(rect.area());     // 50 (Rectangle.prototype)
+console.log(rect.width); // 10 (own property)
+console.log(rect.area()); // 50 (Rectangle.prototype)
 console.log(rect.describe()); // "This is a rectangle" (Shape.prototype)
 console.log(rect.toString()); // "[object Object]" (Object.prototype)
 
@@ -2610,15 +2619,9 @@ console.log(rect.__proto__.__proto__.__proto__.__proto__); // null
 // Deep prototype chains are slower
 // Property lookup traverses entire chain
 
-const obj = Object.create(
-    Object.create(
-        Object.create(
-            Object.create({})
-        )
-    )
-);
+const obj = Object.create(Object.create(Object.create(Object.create({}))));
 
-obj.deepProperty = 'value';
+obj.deepProperty = "value";
 
 // Accessing obj.deepProperty is fast (own property)
 // Accessing inherited property from 4 levels up is slower
@@ -2628,9 +2631,10 @@ obj.deepProperty = 'value';
 
 ?? [Back to Top](#-table-of-contents)
 
-### 30. __proto__ vs prototype
+### 30. **proto** vs prototype
 
-**Definition:**  
+**Definition:**
+
 - **`__proto__`**: Property on every object that points to its prototype
 - **`prototype`**: Property only on function objects, used as prototype for instances created with `new`
 
@@ -2638,10 +2642,10 @@ obj.deepProperty = 'value';
 
 ```javascript
 function Person(name) {
-    this.name = name;
+  this.name = name;
 }
 
-const john = new Person('John');
+const john = new Person("John");
 
 // __proto__ - exists on ALL objects
 console.log(john.__proto__ === Person.prototype); // true
@@ -2650,7 +2654,7 @@ console.log(Object.__proto__ === Function.prototype); // true
 
 // prototype - exists only on FUNCTIONS
 console.log(typeof Person.prototype); // 'object' ?
-console.log(typeof john.prototype);   // 'undefined' ?
+console.log(typeof john.prototype); // 'undefined' ?
 
 // Chain relationships
 console.log(john.__proto__ === Person.prototype); // true
@@ -2663,16 +2667,16 @@ console.log(Object.prototype.__proto__); // null (end of chain)
 ```
 Constructor Function (Person):
 +-------------------------+
-� Person (function)       �
-�  - prototype ----------+-----+
-�  - __proto__ ? Function.prototype
-+-------------------------+     �
-                                 �
+� Person (function)       �
+�  - prototype ----------+-----+
+�  - __proto__ ? Function.prototype
++-------------------------+     �
+                                 �
 Instance (john):                  ?
 +-------------------------+  +------------------+
-� john (object)           �  � Person.prototype �
-�  - name: 'John'         �  �  - constructor   �
-�  - __proto__ -----------+-?�  - methods...    �
+� john (object)           �  � Person.prototype �
+�  - name: 'John'         �  �  - constructor   �
+�  - __proto__ -----------+-?�  - methods...    �
 +-------------------------+  +------------------+
 ```
 
@@ -2692,14 +2696,14 @@ const obj = Object.create(somePrototype); // Best!
 
 // ? DO use prototype for constructors
 function MyClass() {}
-MyClass.prototype.method = function() {}; // Correct way
+MyClass.prototype.method = function () {}; // Correct way
 ```
 
 **Interview Example:**
 
 ```javascript
 function Animal() {}
-Animal.prototype.species = 'animal';
+Animal.prototype.species = "animal";
 
 function Dog() {}
 Dog.prototype = Object.create(Animal.prototype);
@@ -2726,15 +2730,15 @@ console.log(Animal.prototype.__proto__ === Object.prototype); // true
 
 ```javascript
 function Person(name, age) {
-    this.name = name;
-    this.age = age;
+  this.name = name;
+  this.age = age;
 }
 
-Person.prototype.greet = function() {
-    return `Hi, I'm ${this.name}`;
+Person.prototype.greet = function () {
+  return `Hi, I'm ${this.name}`;
 };
 
-const john = new Person('John', 30);
+const john = new Person("John", 30);
 console.log(john.greet()); // "Hi, I'm John"
 console.log(john instanceof Person); // true
 ```
@@ -2743,13 +2747,13 @@ console.log(john instanceof Person); // true
 
 ```javascript
 const personProto = {
-    greet() {
-        return `Hi, I'm ${this.name}`;
-    }
+  greet() {
+    return `Hi, I'm ${this.name}`;
+  },
 };
 
 const john = Object.create(personProto);
-john.name = 'John';
+john.name = "John";
 john.age = 30;
 
 console.log(john.greet()); // "Hi, I'm John"
@@ -2758,13 +2762,13 @@ console.log(Object.getPrototypeOf(john) === personProto); // true
 
 **Comparison:**
 
-| Feature | Constructor | Object.create |
-|---------|-------------|---------------|
-| Syntax | `new Constructor()` | `Object.create(proto)` |
-| Initialize properties | In constructor function | Manually after creation |
-| `instanceof` works | ? Yes | ? No (unless setup properly) |
-| Flexibility | Less flexible | More flexible |
-| Use case | Traditional OOP patterns | Modern prototypal inheritance |
+| Feature               | Constructor              | Object.create                 |
+| --------------------- | ------------------------ | ----------------------------- |
+| Syntax                | `new Constructor()`      | `Object.create(proto)`        |
+| Initialize properties | In constructor function  | Manually after creation       |
+| `instanceof` works    | ? Yes                    | ? No (unless setup properly)  |
+| Flexibility           | Less flexible            | More flexible                 |
+| Use case              | Traditional OOP patterns | Modern prototypal inheritance |
 
 **When to Use Each:**
 
@@ -2775,16 +2779,16 @@ console.log(Object.getPrototypeOf(john) === personProto); // true
 // - You need initialization logic
 
 function Car(model, year) {
-    this.model = model;
-    this.year = year;
-    this.mileage = 0; // Default initialization
+  this.model = model;
+  this.year = year;
+  this.mileage = 0; // Default initialization
 }
 
-Car.prototype.drive = function(miles) {
-    this.mileage += miles;
+Car.prototype.drive = function (miles) {
+  this.mileage += miles;
 };
 
-const myCar = new Car('Toyota', 2024);
+const myCar = new Car("Toyota", 2024);
 
 // ? Use Object.create when:
 // - You want more control over inheritance
@@ -2792,24 +2796,23 @@ const myCar = new Car('Toyota', 2024);
 // - You prefer composition over classes
 
 const driveable = {
-    drive(miles) {
-        this.mileage += miles;
-        return this.mileage;
-    }
+  drive(miles) {
+    this.mileage += miles;
+    return this.mileage;
+  },
 };
 
 const startable = {
-    start() {
-        this.isRunning = true;
-    }
+  start() {
+    this.isRunning = true;
+  },
 };
 
 // Compose multiple behaviors
-const vehicle= Object.assign(
-    Object.create(driveable),
-    startable,
-    { model: 'Honda', mileage: 0 }
-);
+const vehicle = Object.assign(Object.create(driveable), startable, {
+  model: "Honda",
+  mileage: 0,
+});
 ```
 
 ---
@@ -2828,12 +2831,12 @@ Creates completely independent copy, including all nested levels.
 
 ```javascript
 const original = {
-    name: 'John',
-    age: 30,
-    address: {
-        city: 'NYC',
-        zip: '10001'
-    }
+  name: "John",
+  age: 30,
+  address: {
+    city: "NYC",
+    zip: "10001",
+  },
 };
 
 // Method 1: Spread operator
@@ -2844,13 +2847,13 @@ const copy2 = Object.assign({}, original);
 
 // Method 3: Object.create (different - sets prototype)
 const copy3 = Object.create(
-    Object.getPrototypeOf(original),
-    Object.getOwnPropertyDescriptors(original)
+  Object.getPrototypeOf(original),
+  Object.getOwnPropertyDescriptors(original),
 );
 
 // Shallow copy problem
-copy1.name = 'Jane'; // OK - primitive copied
-copy1.address.city = 'LA'; // Problem! - object referenced
+copy1.name = "Jane"; // OK - primitive copied
+copy1.address.city = "LA"; // Problem! - object referenced
 
 console.log(original.name); // 'John' ?
 console.log(original.address.city); // 'LA' ? (modified!)
@@ -2860,16 +2863,16 @@ console.log(original.address.city); // 'LA' ? (modified!)
 
 ```javascript
 const original = {
-    name: 'John',
-    age: 30,
-    address: {
-        city: 'NYC',
-        coordinates: {
-            lat: 40.7128,
-            lng: -74.0060
-        }
+  name: "John",
+  age: 30,
+  address: {
+    city: "NYC",
+    coordinates: {
+      lat: 40.7128,
+      lng: -74.006,
     },
-    hobbies: ['reading', 'gaming']
+  },
+  hobbies: ["reading", "gaming"],
 };
 
 // Method 1: JSON (limitations: no functions, dates, undefined, circular refs)
@@ -2880,32 +2883,32 @@ const deepCopy2 = structuredClone(original);
 
 // Method 3: Custom recursive function
 function deepClone(obj) {
-    if (obj === null || typeof obj !== 'object') {
-        return obj;
+  if (obj === null || typeof obj !== "object") {
+    return obj;
+  }
+
+  if (obj instanceof Date) {
+    return new Date(obj.getTime());
+  }
+
+  if (obj instanceof Array) {
+    return obj.map((item) => deepClone(item));
+  }
+
+  const clonedObj = {};
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      clonedObj[key] = deepClone(obj[key]);
     }
-    
-    if (obj instanceof Date) {
-        return new Date(obj.getTime());
-    }
-    
-    if (obj instanceof Array) {
-        return obj.map(item => deepClone(item));
-    }
-    
-    const clonedObj = {};
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            clonedObj[key] = deepClone(obj[key]);
-        }
-    }
-    return clonedObj;
+  }
+  return clonedObj;
 }
 
 const deepCopy3 = deepClone(original);
 
 // Test deep copy
-deepCopy2.address.city = 'LA';
-deepCopy2.hobbies.push('cooking');
+deepCopy2.address.city = "LA";
+deepCopy2.hobbies.push("cooking");
 
 console.log(original.address.city); // 'NYC' ? (unchanged)
 console.log(original.hobbies); // ['reading', 'gaming'] ? (unchanged)
@@ -2921,9 +2924,9 @@ console.log(original.hobbies); // ['reading', 'gaming'] ? (unchanged)
 
 ```javascript
 const person = {
-    name: 'Alice',
-    age: 28,
-    skills: ['JS', 'React']
+  name: "Alice",
+  age: 28,
+  skills: ["JS", "React"],
 };
 
 // 1. Spread operator (shallow)
@@ -2940,35 +2943,35 @@ const clone4 = structuredClone(person);
 
 // 5. Custom recursive (deep, full control)
 function cloneObject(obj, map = new WeakMap()) {
-    // Handle primitives
-    if (obj === null || typeof obj !== 'object') return obj;
-    
-    // Handle circular references
-    if (map.has(obj)) return map.get(obj);
-    
-    // Handle Date
-    if (obj instanceof Date) return new Date(obj);
-    
-    // Handle Array
-    if (Array.isArray(obj)) {
-        const arrCopy = [];
-        map.set(obj, arrCopy);
-        obj.forEach((item, index) => {
-            arrCopy[index] = cloneObject(item, map);
-        });
-        return arrCopy;
-    }
-    
-    // Handle RegExp
-    if (obj instanceof RegExp) return new RegExp(obj);
-    
-    // Handle Objects
-    const objCopy = {};
-    map.set(obj, objCopy);
-    Object.keys(obj).forEach(key => {
-        objCopy[key] = cloneObject(obj[key], map);
+  // Handle primitives
+  if (obj === null || typeof obj !== "object") return obj;
+
+  // Handle circular references
+  if (map.has(obj)) return map.get(obj);
+
+  // Handle Date
+  if (obj instanceof Date) return new Date(obj);
+
+  // Handle Array
+  if (Array.isArray(obj)) {
+    const arrCopy = [];
+    map.set(obj, arrCopy);
+    obj.forEach((item, index) => {
+      arrCopy[index] = cloneObject(item, map);
     });
-    return objCopy;
+    return arrCopy;
+  }
+
+  // Handle RegExp
+  if (obj instanceof RegExp) return new RegExp(obj);
+
+  // Handle Objects
+  const objCopy = {};
+  map.set(obj, objCopy);
+  Object.keys(obj).forEach((key) => {
+    objCopy[key] = cloneObject(obj[key], map);
+  });
+  return objCopy;
 }
 ```
 
@@ -3004,12 +3007,12 @@ console.log(arr[3][0]); // 4 (unchanged!)
 **1. Object.freeze() - Completely immutable**
 
 ```javascript
-const obj = { name: 'John', age: 30 };
+const obj = { name: "John", age: 30 };
 Object.freeze(obj);
 
-obj.name = 'Jane'; // Silently fails (or throws in strict mode)
-obj.city = 'NYC';  // Cannot add
-delete obj.age;    // Cannot delete
+obj.name = "Jane"; // Silently fails (or throws in strict mode)
+obj.city = "NYC"; // Cannot add
+delete obj.age; // Cannot delete
 
 console.log(obj); // { name: 'John', age: 30 } (unchanged)
 
@@ -3018,35 +3021,35 @@ console.log(Object.isFrozen(obj)); // true
 
 // Shallow freeze - nested objects still mutable
 const person = {
-    name: 'Bob',
-    address: { city: 'LA' }
+  name: "Bob",
+  address: { city: "LA" },
 };
 
 Object.freeze(person);
-person.address.city = 'NYC'; // Works! (nested not frozen)
+person.address.city = "NYC"; // Works! (nested not frozen)
 console.log(person.address.city); // 'NYC'
 
 // Deep freeze solution
 function deepFreeze(obj) {
-    Object.freeze(obj);
-    Object.values(obj).forEach(value => {
-        if (typeof value === 'object' && value !== null) {
-            deepFreeze(value);
-        }
-    });
-    return obj;
+  Object.freeze(obj);
+  Object.values(obj).forEach((value) => {
+    if (typeof value === "object" && value !== null) {
+      deepFreeze(value);
+    }
+  });
+  return obj;
 }
 ```
 
 **2. Object.seal() - Can modify, can't add/delete**
 
 ```javascript
-const obj = { name: 'Alice', age: 25 };
+const obj = { name: "Alice", age: 25 };
 Object.seal(obj);
 
-obj.name = 'Bob';  // ? Can modify existing
-obj.city = 'NYC';  // ? Cannot add
-delete obj.age;    // ? Cannot delete
+obj.name = "Bob"; // ? Can modify existing
+obj.city = "NYC"; // ? Cannot add
+delete obj.age; // ? Cannot delete
 
 console.log(obj); // { name: 'Bob', age: 25 }
 console.log(Object.isSealed(obj)); // true
@@ -3055,12 +3058,12 @@ console.log(Object.isSealed(obj)); // true
 **3. Object.preventExtensions() - Can modify/delete, can't add**
 
 ```javascript
-const obj = { name: 'Charlie' };
+const obj = { name: "Charlie" };
 Object.preventExtensions(obj);
 
-obj.name = 'David'; // ? Can modify
-delete obj.name;    // ? Can delete
-obj.age = 30;       // ? Cannot add
+obj.name = "David"; // ? Can modify
+delete obj.name; // ? Can delete
+obj.age = 30; // ? Cannot add
 
 console.log(Object.isExtensible(obj)); // false
 ```
@@ -3068,23 +3071,23 @@ console.log(Object.isExtensible(obj)); // false
 **4. const - Only prevents reassignment**
 
 ```javascript
-const obj = { name: 'Eve' };
-obj.name = 'Frank'; // ? Can mutate properties
-obj = {};           // ? Cannot reassign
+const obj = { name: "Eve" };
+obj.name = "Frank"; // ? Can mutate properties
+obj = {}; // ? Cannot reassign
 
 const arr = [1, 2, 3];
-arr.push(4);  // ? Can mutate
-arr = [];     // ? Cannot reassign
+arr.push(4); // ? Can mutate
+arr = []; // ? Cannot reassign
 ```
 
 **Comparison Table:**
 
-| Method | Add Properties | Delete Properties | Modify Properties | Reassign Variable |
-|--------|---------------|-------------------|-------------------|-------------------|
-| `Object.freeze()` | ? | ? | ? | - |
-| `Object.seal()` | ? | ? | ? | - |
-| `Object.preventExtensions()` | ? | ? | ? | - |
-| `const` | ? | ? | ? | ? |
+| Method                       | Add Properties | Delete Properties | Modify Properties | Reassign Variable |
+| ---------------------------- | -------------- | ----------------- | ----------------- | ----------------- |
+| `Object.freeze()`            | ?              | ?                 | ?                 | -                 |
+| `Object.seal()`              | ?              | ?                 | ?                 | -                 |
+| `Object.preventExtensions()` | ?              | ?                 | ?                 | -                 |
+| `const`                      | ?              | ?                 | ?                 | ?                 |
 
 **Immutable Update Patterns:**
 
@@ -3092,11 +3095,11 @@ arr = [];     // ? Cannot reassign
 // Instead of mutating, create new objects
 
 // ? Mutation
-const user = { name: 'John', age: 30 };
+const user = { name: "John", age: 30 };
 user.age = 31;
 
 // ? Immutable update
-const user = { name: 'John', age: 30 };
+const user = { name: "John", age: 30 };
 const updatedUser = { ...user, age: 31 };
 
 // ? Array mutation
@@ -3109,26 +3112,26 @@ const newNumbers = [...numbers, 4];
 
 // Nested update
 const state = {
-    user: {
-        profile: {
-            name: 'Alice'
-        }
-    }
+  user: {
+    profile: {
+      name: "Alice",
+    },
+  },
 };
 
 // ? Mutation
-state.user.profile.name = 'Bob';
+state.user.profile.name = "Bob";
 
 // ? Immutable
 const newState = {
-    ...state,
-    user: {
-        ...state.user,
-        profile: {
-            ...state.user.profile,
-            name: 'Bob'
-        }
-    }
+  ...state,
+  user: {
+    ...state.user,
+    profile: {
+      ...state.user.profile,
+      name: "Bob",
+    },
+  },
 };
 ```
 
@@ -3147,23 +3150,23 @@ const newState = {
 ```javascript
 // Transform array elements
 const numbers = [1, 2, 3, 4, 5];
-const doubled = numbers.map(n => n * 2);
+const doubled = numbers.map((n) => n * 2);
 console.log(doubled); // [2, 4, 6, 8, 10]
 
 // Extract properties
 const users = [
-    { id: 1, name: 'Alice', age: 25 },
-    { id: 2, name: 'Bob', age: 30 },
-    { id: 3, name: 'Charlie', age: 35 }
+  { id: 1, name: "Alice", age: 25 },
+  { id: 2, name: "Bob", age: 30 },
+  { id: 3, name: "Charlie", age: 35 },
 ];
 
-const names = users.map(user => user.name);
+const names = users.map((user) => user.name);
 console.log(names); // ['Alice', 'Bob', 'Charlie']
 
 // Return objects
-const usersWithStatus = users.map(user => ({
-    ...user,
-    status: user.age >= 30 ? 'senior' : 'junior'
+const usersWithStatus = users.map((user) => ({
+  ...user,
+  status: user.age >= 30 ? "senior" : "junior",
 }));
 ```
 
@@ -3172,18 +3175,18 @@ const usersWithStatus = users.map(user => ({
 ```javascript
 // Filter numbers
 const numbers = [1, 2, 3, 4, 5, 6];
-const evens = numbers.filter(n => n % 2 === 0);
+const evens = numbers.filter((n) => n % 2 === 0);
 console.log(evens); // [2, 4, 6]
 
 // Filter objects
 const users = [
-    { name: 'Alice', age: 25, active: true },
-    { name: 'Bob', age: 30, active: false },
-    { name: 'Charlie', age: 35, active: true }
+  { name: "Alice", age: 25, active: true },
+  { name: "Bob", age: 30, active: false },
+  { name: "Charlie", age: 35, active: true },
 ];
 
-const activeUsers = users.filter(user => user.active);
-const adults = users.filter(user => user.age >= 30);
+const activeUsers = users.filter((user) => user.active);
+const adults = users.filter((user) => user.age >= 30);
 ```
 
 **reduce() - Reduce array to single value**
@@ -3200,17 +3203,17 @@ console.log(product); // 120
 
 // Group by property
 const users = [
-    { name: 'Alice', role: 'admin' },
-    { name: 'Bob', role: 'user' },
-    { name: 'Charlie', role: 'admin' }
+  { name: "Alice", role: "admin" },
+  { name: "Bob", role: "user" },
+  { name: "Charlie", role: "admin" },
 ];
 
 const grouped = users.reduce((acc, user) => {
-    if (!acc[user.role]) {
-        acc[user.role] = [];
-    }
-    acc[user.role].push(user);
-    return acc;
+  if (!acc[user.role]) {
+    acc[user.role] = [];
+  }
+  acc[user.role].push(user);
+  return acc;
 }, {});
 
 console.log(grouped);
@@ -3220,10 +3223,10 @@ console.log(grouped);
 // }
 
 //Count occurrences
-const fruits = ['apple', 'banana', 'apple', 'orange', 'banana', 'apple'];
+const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
 const count = fruits.reduce((acc, fruit) => {
-    acc[fruit] = (acc[fruit] || 0) + 1;
-    return acc;
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
 }, {});
 
 console.log(count); // { apple: 3, banana: 2, orange: 1 }
@@ -3233,16 +3236,16 @@ console.log(count); // { apple: 3, banana: 2, orange: 1 }
 
 ```javascript
 const users = [
-    { name: 'Alice', age: 25, score: 85 },
-    { name: 'Bob', age: 30, score: 92 },
-    { name: 'Charlie', age: 35, score: 78 },
-    { name: 'David', age: 28, score: 95 }
+  { name: "Alice", age: 25, score: 85 },
+  { name: "Bob", age: 30, score: 92 },
+  { name: "Charlie", age: 35, score: 78 },
+  { name: "David", age: 28, score: 95 },
 ];
 
 const result = users
-    .filter(user => user.age < 35)           // Filter by age
-    .map(user => ({ ...user, grade: user.score >= 90 ? 'A' : 'B' })) // Add grade
-    .reduce((acc, user) => acc + user.score, 0); // Sum scores
+  .filter((user) => user.age < 35) // Filter by age
+  .map((user) => ({ ...user, grade: user.score >= 90 ? "A" : "B" })) // Add grade
+  .reduce((acc, user) => acc + user.score, 0); // Sum scores
 
 console.log(result); // 272 (85 + 92 + 95)
 ```
@@ -3262,6 +3265,7 @@ console.log(result); // 272 (85 + 92 + 95)
 5. **Flattening arrays**
 
 **Don't use `reduce` when:**
+
 1. Simple `map` or `filter` would work (reduce is harder to read)
 2. You're just iterating (use `forEach`)
 3. Returning an array of same length (use `map`)
@@ -3276,29 +3280,33 @@ const numbers = [5, 123, 99, 1, 70];
 const max = numbers.reduce((max, num) => Math.max(max, num), -Infinity);
 
 // 2. Flatten array
-const nested = [[1, 2], [3, 4], [5, 6]];
+const nested = [
+  [1, 2],
+  [3, 4],
+  [5, 6],
+];
 const flat = nested.reduce((acc, arr) => acc.concat(arr), []);
 // [1, 2, 3, 4, 5, 6]
 
 // 3. Create lookup map
 const users = [
-    { id: 1, name: 'Alice' },
-    { id: 2, name: 'Bob' }
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
 ];
 
 const userMap = users.reduce((acc, user) => {
-    acc[user.id] = user;
-    return acc;
+  acc[user.id] = user;
+  return acc;
 }, {});
 // { 1: { id: 1, name: 'Alice' }, 2: { id: 2, name: 'Bob' } }
 
 // 4. Unique values
 const nums = [1, 2, 2, 3, 3, 3, 4];
 const unique = nums.reduce((acc, num) => {
-    if (!acc.includes(num)) {
-        acc.push(num);
-    }
-    return acc;
+  if (!acc.includes(num)) {
+    acc.push(num);
+  }
+  return acc;
 }, []);
 // [1, 2, 3, 4]
 
@@ -3306,19 +3314,19 @@ const unique = nums.reduce((acc, num) => {
 
 // Don't use reduce for simple map
 const doubled = numbers.reduce((acc, n) => {
-    acc.push(n * 2);
-    return acc;
+  acc.push(n * 2);
+  return acc;
 }, []); // ❌
 
-const doubled = numbers.map(n => n * 2); // ✅ Better!
+const doubled = numbers.map((n) => n * 2); // ✅ Better!
 
 // Don't use reduce for simple filter
 const evens = numbers.reduce((acc, n) => {
-    if (n % 2 === 0) acc.push(n);
-    return acc;
+  if (n % 2 === 0) acc.push(n);
+  return acc;
 }, []); // ❌
 
-const evens = numbers.filter(n => n % 2 === 0); // ✅ Better!
+const evens = numbers.filter((n) => n % 2 === 0); // ✅ Better!
 ```
 
 ---
@@ -3341,18 +3349,18 @@ const unique2 = numbers.filter((num, index) => numbers.indexOf(num) === index);
 
 // Method 3: reduce
 const unique3 = numbers.reduce((acc, num) => {
-    if (!acc.includes(num)) {
-        acc.push(num);
-    }
-    return acc;
+  if (!acc.includes(num)) {
+    acc.push(num);
+  }
+  return acc;
 }, []);
 
 // Method 4: forEach + includes
 const unique4 = [];
-numbers.forEach(num => {
-    if (!unique4.includes(num)) {
-        unique4.push(num);
-    }
+numbers.forEach((num) => {
+  if (!unique4.includes(num)) {
+    unique4.push(num);
+  }
 });
 ```
 
@@ -3360,29 +3368,31 @@ numbers.forEach(num => {
 
 ```javascript
 const users = [
-    { id: 1, name: 'Alice' },
-    { id: 2, name: 'Bob' },
-    { id: 1, name: 'Alice' }, // duplicate
-    { id: 3, name: 'Charlie' }
+  { id: 1, name: "Alice" },
+  { id: 2, name: "Bob" },
+  { id: 1, name: "Alice" }, // duplicate
+  { id: 3, name: "Charlie" },
 ];
 
 // Based on property
-const uniqueUsers = users.filter((user, index, self) =>
-    index === self.findIndex(u => u.id === user.id)
+const uniqueUsers = users.filter(
+  (user, index, self) => index === self.findIndex((u) => u.id === user.id),
 );
 
 console.log(uniqueUsers);
 // [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }, { id: 3, name: 'Charlie' }]
 
 // Using Map
-const uniqueUsersMap = [...new Map(users.map(user => [user.id, user])).values()];
+const uniqueUsersMap = [
+  ...new Map(users.map((user) => [user.id, user])).values(),
+];
 
 // Using reduce
 const uniqueUsersReduce = users.reduce((acc, user) => {
-    if (!acc.find(u => u.id === user.id)) {
-        acc.push(user);
-    }
-    return acc;
+  if (!acc.find((u) => u.id === user.id)) {
+    acc.push(user);
+  }
+  return acc;
 }, []);
 ```
 
@@ -3417,16 +3427,17 @@ console.log(deepFlat1); // [1, 2, 3, 4, 5]
 
 // Method 2: Recursive function
 function flattenDeep(arr) {
-    return arr.reduce((acc, val) =>
-        Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
-        []
-    );
+  return arr.reduce(
+    (acc, val) =>
+      Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val),
+    [],
+  );
 }
 
 const deepFlat2 = flattenDeep(deepArr);
 
 // Method 3: toString + split (only for numbers)
-const deepFlat3 = deepArr.toString().split(',').map(Number);
+const deepFlat3 = deepArr.toString().split(",").map(Number);
 
 // Flatten with specific depth
 const arr = [1, [2, [3, [4]]]];
@@ -3449,7 +3460,7 @@ const arr = [1, 2, 3, 4, 5];
 // Get elements from index 1 to 3 (not including 3)
 const sliced = arr.slice(1, 3);
 console.log(sliced); // [2, 3]
-console.log(arr);    // [1, 2, 3, 4, 5] - UNCHANGED!
+console.log(arr); // [1, 2, 3, 4, 5] - UNCHANGED!
 
 // Get last 2 elements
 const last2 = arr.slice(-2);
@@ -3467,7 +3478,7 @@ const arr = [1, 2, 3, 4, 5];
 // Remove 2 elements starting from index 1
 const removed = arr.splice(1, 2);
 console.log(removed); // [2, 3]
-console.log(arr);     // [1, 4, 5] - MODIFIED!
+console.log(arr); // [1, 4, 5] - MODIFIED!
 
 // Insert elements
 const arr2 = [1, 2, 5];
@@ -3476,18 +3487,18 @@ console.log(arr2); // [1, 2, 3, 4, 5]
 
 // Replace elements
 const arr3 = [1, 2, 3, 4, 5];
-arr3.splice(1, 2, 'a', 'b'); // Remove 2 items, insert 'a', 'b'
+arr3.splice(1, 2, "a", "b"); // Remove 2 items, insert 'a', 'b'
 console.log(arr3); // [1, 'a', 'b', 4, 5]
 ```
 
 **Comparison:**
 
-| Feature | slice() | splice() |
-|---------|---------|----------|
-| Mutates original | ❌ No | ✅ Yes |
-| Parameters | (start, end) | (start, deleteCount, ...items) |
-| Return value | New array with extracted elements | Array of removed elements |
-| Use case | Get copy or portion | Add/remove/replace elements |
+| Feature          | slice()                           | splice()                       |
+| ---------------- | --------------------------------- | ------------------------------ |
+| Mutates original | ❌ No                             | ✅ Yes                         |
+| Parameters       | (start, end)                      | (start, deleteCount, ...items) |
+| Return value     | New array with extracted elements | Array of removed elements      |
+| Use case         | Get copy or portion               | Add/remove/replace elements    |
 
 ---
 
@@ -3499,23 +3510,23 @@ console.log(arr3); // [1, 'a', 'b', 4, 5]
 
 ```javascript
 const users = [
-    { id: 1, name: 'Alice', age: 25 },
-    { id: 2, name: 'Bob', age: 30 },
-    { id: 3, name: 'Charlie', age: 30 }
+  { id: 1, name: "Alice", age: 25 },
+  { id: 2, name: "Bob", age: 30 },
+  { id: 3, name: "Charlie", age: 30 },
 ];
 
-const user = users.find(u => u.age === 30);
+const user = users.find((u) => u.age === 30);
 console.log(user); // { id: 2, name: 'Bob', age: 30 } - FIRST match only
 
 // Returns undefined if not found
-const notFound = users.find(u => u.age === 50);
+const notFound = users.find((u) => u.age === 50);
 console.log(notFound); // undefined
 ```
 
 **filter() - Returns ALL matching elements**
 
 ```javascript
-const allAge30 = users.filter(u => u.age === 30);
+const allAge30 = users.filter((u) => u.age === 30);
 console.log(allAge30);
 // [
 //     { id: 2, name: 'Bob',age: 30 },
@@ -3523,32 +3534,32 @@ console.log(allAge30);
 // ]
 
 // Returns empty array if none match
-const none = users.filter(u => u.age === 50);
+const none = users.filter((u) => u.age === 50);
 console.log(none); // []
 ```
 
 **Comparison:**
 
-| Feature | find() | filter() |
-|---------|--------|----------|
-| Returns | Single element or undefined | Array (can be empty) |
-| Stops at | First match | Checks all elements |
-| Performance | Faster (stops early) | Slower (checks all) |
-| Use when | Need one item | Need all matching items |
+| Feature     | find()                      | filter()                |
+| ----------- | --------------------------- | ----------------------- |
+| Returns     | Single element or undefined | Array (can be empty)    |
+| Stops at    | First match                 | Checks all elements     |
+| Performance | Faster (stops early)        | Slower (checks all)     |
+| Use when    | Need one item               | Need all matching items |
 
 **Related methods:**
 
 ```javascript
 // findIndex() - returns index of first match
-const index = users.findIndex(u => u.age === 30);
+const index = users.findIndex((u) => u.age === 30);
 console.log(index); // 1
 
 // findLast() - returns last matching element (ES2023)
-const lastUser = users.findLast(u => u.age === 30);
+const lastUser = users.findLast((u) => u.age === 30);
 console.log(lastUser); // { id: 3, name: 'Charlie', age: 30 }
 
 // findLastIndex() - returns index of last match (ES2023)
-const lastIndex = users.findLastIndex(u => u.age === 30);
+const lastIndex = users.findLastIndex((u) => u.age === 30);
 console.log(lastIndex); // 2
 ```
 
@@ -3564,21 +3575,21 @@ console.log(lastIndex); // 2
 const numbers = [1, 2, 3, 4, 5];
 
 // Check if at least one is even
-const hasEven = numbers.some(n => n % 2 === 0);
+const hasEven = numbers.some((n) => n % 2 === 0);
 console.log(hasEven); // true
 
 // Check if at least one is > 10
-const hasLarge = numbers.some(n => n > 10);
+const hasLarge = numbers.some((n) => n > 10);
 console.log(hasLarge); // false
 
 // With objects
 const users = [
-    { name: 'Alice', active: false },
-    { name: 'Bob', active: true },
-    { name: 'Charlie', active: false }
+  { name: "Alice", active: false },
+  { name: "Bob", active: true },
+  { name: "Charlie", active: false },
 ];
 
-const hasActiveUser = users.some(u => u.active);
+const hasActiveUser = users.some((u) => u.active);
 console.log(hasActiveUser); // true
 ```
 
@@ -3588,58 +3599,58 @@ console.log(hasActiveUser); // true
 const numbers = [2, 4, 6, 8];
 
 // Check if all are even
-const allEven = numbers.every(n => n % 2 === 0);
+const allEven = numbers.every((n) => n % 2 === 0);
 console.log(allEven); // true
 
 // Check if all are > 5
-const allLarge = numbers.every(n => n > 5);
+const allLarge = numbers.every((n) => n > 5);
 console.log(allLarge); // false
 
 // With objects
 const users = [
-    { name: 'Alice', age: 25 },
-    { name: 'Bob', age: 30 },
-    { name: 'Charlie', age: 35 }
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 },
+  { name: "Charlie", age: 35 },
 ];
 
-const allAdults = users.every(u => u.age >= 18);
+const allAdults = users.every((u) => u.age >= 18);
 console.log(allAdults); // true
 
-const allSenior = users.every(u => u.age >= 30);
+const allSenior = users.every((u) => u.age >= 30);
 console.log(allSenior); // false
 ```
 
-Comparison:**
+**Comparison:**
 
-| Method | Returns true if | Short-circuits | Use case |
-|--------|----------------|----------------|----------|
-| `some()` | AT LEAST ONE passes | Yes (on first true) | "Does ANY item..." |
-| `every()` | ALL pass | Yes (on first false) | "Do ALL items..." |
+| Method    | Returns true if     | Short-circuits       | Use case           |
+| --------- | ------------------- | -------------------- | ------------------ |
+| `some()`  | AT LEAST ONE passes | Yes (on first true)  | "Does ANY item..." |
+| `every()` | ALL pass            | Yes (on first false) | "Do ALL items..."  |
 
 **Practical examples:**
 
 ```javascript
 // Form validation
 const formFields = [
-    { name: 'email', valid: true },
-    { name: 'password', valid: true },
-    { name: 'age', valid: false }
+  { name: "email", valid: true },
+  { name: "password", valid: true },
+  { name: "age", valid: false },
 ];
 
-const formIsValid = formFields.every(field => field.valid);
+const formIsValid = formFields.every((field) => field.valid);
 console.log(formIsValid); // false
 
-const hasInvalidField = formFields.some(field => !field.valid);
+const hasInvalidField = formFields.some((field) => !field.valid);
 console.log(hasInvalidField); // true
 
 // Permissions check
-const permissions = ['read', 'write'];
+const permissions = ["read", "write"];
 
-const canEdit = permissions.some(p => p === 'write');
+const canEdit = permissions.some((p) => p === "write");
 console.log(canEdit); // true
 
-const hasAllPermissions = ['read', 'write', 'delete'].every(p => 
-    permissions.includes(p)
+const hasAllPermissions = ["read", "write", "delete"].every((p) =>
+  permissions.includes(p),
 );
 console.log(hasAllPermissions); // false
 ```
@@ -3650,7 +3661,26 @@ console.log(hasAllPermissions); // false
 
 ### 42. Array Immutability
 
+**Visual Memory Representation:**
+
+**Primitives (Stack):**
+
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚ a = 10 â”‚ 10 â”‚
+â”‚ b = 10 â”‚ 10 â”‚ â†� Separate values
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+Non-Primitives (Heap + Stack):
+Stack: Heap:
+â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”� â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”�
+â”‚ obj1 â”‚ 0x001 â”‚â”€â†’â”‚ { name: 'John' }â”‚
+â”‚ obj2 â”‚ 0x002 â”‚â”€â†’â”‚ { name: 'Jane' }â”‚
+â”‚ obj3 â”‚ 0x001 â”‚â”€â†’â”‚ (same as obj1) â”‚
+â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”´â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜ â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
+
+
 **Why immutability matters:**
+
 - Predictable state changes
 - Easier debugging
 - Enables time-travel debugging
@@ -3661,14 +3691,14 @@ console.log(hasAllPermissions); // false
 ```javascript
 const arr = [1, 2, 3];
 
-arr.push(4);        // [1, 2, 3, 4]
-arr.pop();          // [1, 2, 3]
-arr.shift();        // [2, 3]
-arr.unshift(0);     // [0, 2, 3]
-arr.splice(1, 1);   // [0, 3]
-arr.reverse();      // [3, 0]
-arr.sort();         // [0, 3]
-arr[0] = 99;        // [99, 3]
+arr.push(4); // [1, 2, 3, 4]
+arr.pop(); // [1, 2, 3]
+arr.shift(); // [2, 3]
+arr.unshift(0); // [0, 2, 3]
+arr.splice(1, 1); // [0, 3]
+arr.reverse(); // [3, 0]
+arr.sort(); // [0, 3]
+arr[0] = 99; // [99, 3]
 ```
 
 **Immutable alternatives:**
@@ -3677,29 +3707,29 @@ arr[0] = 99;        // [99, 3]
 const arr = [1, 2, 3];
 
 // Instead of push - use spread or concat
-const newArr1 = [...arr, 4];          // [1, 2, 3, 4]
-const newArr2 = arr.concat(4);        // [1, 2, 3, 4]
+const newArr1 = [...arr, 4]; // [1, 2, 3, 4]
+const newArr2 = arr.concat(4); // [1, 2, 3, 4]
 
 // Instead of pop - use slice
-const newArr3 = arr.slice(0, -1);     // [1, 2]
+const newArr3 = arr.slice(0, -1); // [1, 2]
 
 // Instead of shift - use slice
-const newArr4 = arr.slice(1);         // [2, 3]
+const newArr4 = arr.slice(1); // [2, 3]
 
 // Instead of unshift - use spread
-const newArr5 = [0, ...arr];          // [0, 1, 2, 3]
+const newArr5 = [0, ...arr]; // [0, 1, 2, 3]
 
 // Instead of splice - use slice + spread
-const removed = arr.slice(0, 1).concat(arr.slice(2));  // [1, 3]
+const removed = arr.slice(0, 1).concat(arr.slice(2)); // [1, 3]
 
 // Instead of reverse - spread + reverse
-const newArr6 = [...arr].reverse();   // [3, 2, 1]
+const newArr6 = [...arr].reverse(); // [3, 2, 1]
 
 // Instead of sort - spread + sort
 const newArr7 = [...arr].sort((a, b) => b - a); // [3, 2, 1]
 
 // Instead of arr[i] = value - use map or spread
-const newArr8 = arr.map((val, i) => i === 0 ? 99 : val); // [99, 2, 3]
+const newArr8 = arr.map((val, i) => (i === 0 ? 99 : val)); // [99, 2, 3]
 const newArr9 = [...arr.slice(0, 0), 99, ...arr.slice(1)]; // [99, 2, 3]
 ```
 
@@ -3707,31 +3737,30 @@ const newArr9 = [...arr.slice(0, 0), 99, ...arr.slice(1)]; // [99, 2, 3]
 
 ```javascript
 const todos = [
-    { id: 1, text: 'Learn JS', done: false },
-    { id: 2, text: 'Learn React', done: false }
+  { id: 1, text: "Learn JS", done: false },
+  { id: 2, text: "Learn React", done: false },
 ];
 
 // Add item
-const addTodo = [...todos, { id: 3, text: 'Learn Node', done: false }];
+const addTodo = [...todos, { id: 3, text: "Learn Node", done: false }];
 
 // Update item
-const toggleTodo = todos.map(todo =>
-    todo.id === 1 ? { ...todo, done: true } : todo
+const toggleTodo = todos.map((todo) =>
+  todo.id === 1 ? { ...todo, done: true } : todo,
 );
 
 // Delete item
-const deleteTodo = todos.filter(todo => todo.id !== 1);
+const deleteTodo = todos.filter((todo) => todo.id !== 1);
 
 // Replace item
-const replaceTodo = todos.map(todo =>
-    todo.id === 1 ? { id: 1, text: 'Learn TypeScript', done: false } : todo
+const replaceTodo = todos.map((todo) =>
+  todo.id === 1 ? { id: 1, text: "Learn TypeScript", done: false } : todo,
 );
 ```
 
 ---
 
 📝 [Back to Top](#-table-of-contents)
-
 
 ## Part 6: Asynchronous JavaScript
 
@@ -3742,9 +3771,9 @@ Code executes line by line. Each operation must complete before the next one sta
 
 ```javascript
 // Synchronous example
-console.log('Start');
-console.log('Middle');
-console.log('End');
+console.log("Start");
+console.log("Middle");
+console.log("End");
 
 // Output (in order):
 // Start
@@ -3753,15 +3782,15 @@ console.log('End');
 
 // Blocking operation
 function slowTask() {
-    const start = Date.now();
-    while (Date.now() - start < 3000) {} // Block for 3 seconds
-    return 'Done';
+  const start = Date.now();
+  while (Date.now() - start < 3000) {} // Block for 3 seconds
+  return "Done";
 }
 
-console.log('Before');
+console.log("Before");
 const result = slowTask(); // Blocks everything for 3 seconds!
 console.log(result);
-console.log('After');
+console.log("After");
 ```
 
 **Asynchronous (Non-blocking):**  
@@ -3769,13 +3798,13 @@ Operations can start without waiting for previous ones to complete.
 
 ```javascript
 // Asynchronous example
-console.log('Start');
+console.log("Start");
 
 setTimeout(() => {
-    console.log('Async operation');
+  console.log("Async operation");
 }, 2000);
 
-console.log('End');
+console.log("End");
 
 // Output:
 // Start
@@ -3783,11 +3812,11 @@ console.log('End');
 // Async operation (after 2 seconds)
 
 // Non-blocking operation
-console.log('Before');
-fetch('https://api.example.com/data')
-    .then(response => response.json())
-    .then(data => console.log(data));
-console.log('After'); // Doesn't wait for fetch!
+console.log("Before");
+fetch("https://api.example.com/data")
+  .then((response) => response.json())
+  .then((data) => console.log(data));
+console.log("After"); // Doesn't wait for fetch!
 ```
 
 **Why Async Matters:**
@@ -3795,24 +3824,24 @@ console.log('After'); // Doesn't wait for fetch!
 ```javascript
 // ❌ Synchronous - UI freezes
 function fetchDataSync() {
-    const data = slowNetworkRequest(); // Blocks for 5 seconds
-    return data;
+  const data = slowNetworkRequest(); // Blocks for 5 seconds
+  return data;
 }
 
 button.onclick = () => {
-    const data = fetchDataSync(); // UI frozen for 5 seconds!
-    display(data);
+  const data = fetchDataSync(); // UI frozen for 5 seconds!
+  display(data);
 };
 
 // ✅ Asynchronous - UI responsive
 async function fetchDataAsync() {
-    const data = await fetch('/api/data');
-    return data.json();
+  const data = await fetch("/api/data");
+  return data.json();
 }
 
 button.onclick = async () => {
-    const data = await fetchDataAsync(); // UI remains responsive!
-    display(data);
+  const data = await fetchDataAsync(); // UI remains responsive!
+  display(data);
 };
 ```
 
@@ -3836,17 +3865,17 @@ The event loop is JavaScript's mechanism for handling asynchronous operations. I
 **How It Works:**
 
 ```javascript
-console.log('1: Sync');
+console.log("1: Sync");
 
 setTimeout(() => {
-    console.log('2: Timeout');
+  console.log("2: Timeout");
 }, 0);
 
 Promise.resolve().then(() => {
-    console.log('3: Promise');
+  console.log("3: Promise");
 });
 
-console.log('4: Sync');
+console.log("4: Sync");
 
 // Output:
 // 1: Sync
@@ -3873,23 +3902,23 @@ Call Stack → Microtasks → Render → One Macrotask → Repeat
 **Visual Example:**
 
 ```javascript
-console.log('Start');
+console.log("Start");
 
 setTimeout(() => {
-    console.log('Timeout 1');
-    Promise.resolve().then(() => console.log('Promise in Timeout'));
+  console.log("Timeout 1");
+  Promise.resolve().then(() => console.log("Promise in Timeout"));
 }, 0);
 
 Promise.resolve()
-    .then(() => {
-        console.log('Promise 1');
-        setTimeout(() => console.log('Timeout in Promise'), 0);
-    })
-    .then(() => console.log('Promise 2'));
+  .then(() => {
+    console.log("Promise 1");
+    setTimeout(() => console.log("Timeout in Promise"), 0);
+  })
+  .then(() => console.log("Promise 2"));
 
-setTimeout(() => console.log('Timeout 2'), 0);
+setTimeout(() => console.log("Timeout 2"), 0);
 
-console.log('End');
+console.log("End");
 
 // Output:
 // Start
@@ -3909,12 +3938,14 @@ console.log('End');
 ### 45. Microtask Queue vs Macrotask Queue
 
 **Microtasks (Priority Queue):**
+
 - Promise callbacks (.then, .catch, .finally)
 - queueMicrotask()
 - MutationObserver
 - Process.nextTick (Node.js)
 
 **Macrotasks (Callback Queue):**
+
 - setTimeout, setInterval
 - setImmediate (Node.js)
 - I/O operations
@@ -3924,14 +3955,14 @@ console.log('End');
 **Key Difference: Microtasks have priority!**
 
 ```javascript
-setTimeout(() => console.log('Timeout'), 0);
+setTimeout(() => console.log("Timeout"), 0);
 
 Promise.resolve()
-    .then(() => console.log('Promise 1'))
-    .then(() => console.log('Promise 2'))
-    .then(() => console.log('Promise 3'));
+  .then(() => console.log("Promise 1"))
+  .then(() => console.log("Promise 2"))
+  .then(() => console.log("Promise 3"));
 
-setTimeout(() => console.log('Timeout 2'), 0);
+setTimeout(() => console.log("Timeout 2"), 0);
 
 // Output:
 // Promise 1
@@ -3946,26 +3977,26 @@ setTimeout(() => console.log('Timeout 2'), 0);
 **Complex Example:**
 
 ```javascript
-console.log('Script start');
+console.log("Script start");
 
 setTimeout(() => {
-    console.log('setTimeout');
+  console.log("setTimeout");
 }, 0);
 
 Promise.resolve()
-    .then(() => {
-        console.log('Promise 1');
-        setTimeout(() => console.log('setTimeout in Promise'), 0);
-    })
-    .then(() => {
-        console.log('Promise 2');
-    });
+  .then(() => {
+    console.log("Promise 1");
+    setTimeout(() => console.log("setTimeout in Promise"), 0);
+  })
+  .then(() => {
+    console.log("Promise 2");
+  });
 
 queueMicrotask(() => {
-    console.log('queueMicrotask');
+  console.log("queueMicrotask");
 });
 
-console.log('Script end');
+console.log("Script end");
 
 // Output:
 // Script start
@@ -3982,16 +4013,16 @@ console.log('Script end');
 ```javascript
 // ⚠️ Infinite microtasks block macrotasks!
 function recursiveMicrotask() {
-    Promise.resolve().then(() => {
-        console.log('Microtask');
-        recursiveMicrotask(); // Creates another microtask
-    });
+  Promise.resolve().then(() => {
+    console.log("Microtask");
+    recursiveMicrotask(); // Creates another microtask
+  });
 }
 
 recursiveMicrotask();
 
 setTimeout(() => {
-    console.log('This will NEVER run!'); // Starved by microtasks
+  console.log("This will NEVER run!"); // Starved by microtasks
 }, 0);
 ```
 
@@ -4010,15 +4041,15 @@ setTimeout(() => {
 ```javascript
 // Creating a Promise
 const promise = new Promise((resolve, reject) => {
-    // Pending state here
-    
-    const success = Math.random() > 0.5;
-    
-    if (success) {
-        resolve('Success!'); // → Fulfilled
-    } else {
-        reject('Failed!'); // → Rejected
-    }
+  // Pending state here
+
+  const success = Math.random() > 0.5;
+
+  if (success) {
+    resolve("Success!"); // → Fulfilled
+  } else {
+    reject("Failed!"); // → Rejected
+  }
 });
 
 // Once settled (fulfilled or rejected), state cannot change!
@@ -4039,51 +4070,51 @@ Once fulfilled/rejected, promise is "settled" (immutable)
 const pendingPromise = new Promise(() => {}); // Never resolves
 console.log(pendingPromise); // Promise { <pending> }
 
-const fulfilledPromise = Promise.resolve('Success');
+const fulfilledPromise = Promise.resolve("Success");
 console.log(fulfilledPromise); // Promise { 'Success' }
 
-const rejectedPromise = Promise.reject('Error');
+const rejectedPromise = Promise.reject("Error");
 console.log(rejectedPromise); // Promise { <rejected> 'Error' }
 
 // Handling states
 promise
-    .then(result => {
-        // Fulfilled state
-        console.log('Success:', result);
-    })
-    .catch(error => {
-        // Rejected state
-        console.log('Error:', error);
-    })
-    .finally(() => {
-        // Runs regardless of state
-        console.log('Cleanup');
-    });
+  .then((result) => {
+    // Fulfilled state
+    console.log("Success:", result);
+  })
+  .catch((error) => {
+    // Rejected state
+    console.log("Error:", error);
+  })
+  .finally(() => {
+    // Runs regardless of state
+    console.log("Cleanup");
+  });
 ```
 
 **Real-World Example:**
 
 ```javascript
 function fetchUser(id) {
-    return new Promise((resolve, reject) => {
-        // Pending...
-        
-        fetch(`/api/users/${id}`)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('User not found');
-            })
-            .then(data => resolve(data)) // → Fulfilled
-            .catch(error => reject(error)); // → Rejected
-    });
+  return new Promise((resolve, reject) => {
+    // Pending...
+
+    fetch(`/api/users/${id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("User not found");
+      })
+      .then((data) => resolve(data)) // → Fulfilled
+      .catch((error) => reject(error)); // → Rejected
+  });
 }
 
 // Usage
 fetchUser(123)
-    .then(user => console.log('Got user:', user))
-    .catch(error => console.error('Failed:', error));
+  .then((user) => console.log("Got user:", user))
+  .catch((error) => console.error("Failed:", error));
 ```
 
 ---
@@ -4096,74 +4127,74 @@ fetchUser(123)
 
 ```javascript
 // Without chaining (callback hell)
-fetch('/api/user')
-    .then(response => response.json())
-    .then(user => {
-        fetch(`/api/posts?userId=${user.id}`)
-            .then(response => response.json())
-            .then(posts => {
-                console.log(posts);
-            });
-    });
+fetch("/api/user")
+  .then((response) => response.json())
+  .then((user) => {
+    fetch(`/api/posts?userId=${user.id}`)
+      .then((response) => response.json())
+      .then((posts) => {
+        console.log(posts);
+      });
+  });
 
 // ✅ With chaining (clean!)
-fetch('/api/user')
-    .then(response => response.json())
-    .then(user => fetch(`/api/posts?userId=${user.id}`))
-    .then(response => response.json())
-    .then(posts => console.log(posts))
-    .catch(error => console.error(error));
+fetch("/api/user")
+  .then((response) => response.json())
+  .then((user) => fetch(`/api/posts?userId=${user.id}`))
+  .then((response) => response.json())
+  .then((posts) => console.log(posts))
+  .catch((error) => console.error(error));
 ```
 
 **Returning Values:**
 
 ```javascript
 Promise.resolve(1)
-    .then(x => x + 1)  // return 2
-    .then(x => x * 2)  // return 4
-    .then(x => x ** 2) // return 16
-    .then(result => console.log(result)); // 16
+  .then((x) => x + 1) // return 2
+  .then((x) => x * 2) // return 4
+  .then((x) => x ** 2) // return 16
+  .then((result) => console.log(result)); // 16
 
 // Return promise to chain
 Promise.resolve(1)
-    .then(x => {
-        return new Promise(resolve => {
-            setTimeout(() => resolve(x * 2), 1000);
-        });
-    })
-    .then(result => console.log(result)); // 2 (after 1 second)
+  .then((x) => {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(x * 2), 1000);
+    });
+  })
+  .then((result) => console.log(result)); // 2 (after 1 second)
 ```
 
 **Error Handling in Chains:**
 
 ```javascript
 Promise.resolve(1)
-    .then(x => {
-        if (x < 2) throw new Error('Too small');
-        return x;
-    })
-    .then(x => x * 2) // Skipped due to error
-    .then(x => x + 1) // Skipped
-    .catch(error => {
-        console.error('Caught:', error.message);
-        return 10; // Recover from error
-    })
-    .then(x => console.log('Recovered:', x)); // 10
+  .then((x) => {
+    if (x < 2) throw new Error("Too small");
+    return x;
+  })
+  .then((x) => x * 2) // Skipped due to error
+  .then((x) => x + 1) // Skipped
+  .catch((error) => {
+    console.error("Caught:", error.message);
+    return 10; // Recover from error
+  })
+  .then((x) => console.log("Recovered:", x)); // 10
 
 // Multiple catches
-fetch('/api/data')
-    .then(response => {
-        if (!response.ok) throw new Error('Network error');
-        return response.json();
-    })
-    .catch(error => {
-        console.error('Fetch failed:', error);
-        return { fallback: true };
-    })
-    .then(data => process(data))
-    .catch(error => {
-        console.error('Processing failed:', error);
-    });
+fetch("/api/data")
+  .then((response) => {
+    if (!response.ok) throw new Error("Network error");
+    return response.json();
+  })
+  .catch((error) => {
+    console.error("Fetch failed:", error);
+    return { fallback: true };
+  })
+  .then((data) => process(data))
+  .catch((error) => {
+    console.error("Processing failed:", error);
+  });
 ```
 
 **Best Practices:**
@@ -4171,18 +4202,18 @@ fetch('/api/data')
 ```javascript
 // ✅ Return promises in then()
 function goodChain() {
-    return fetch('/api/data')
-        .then(response => response.json()) // Return promise
-        .then(data => processData(data));  // Return value or promise
+  return fetch("/api/data")
+    .then((response) => response.json()) // Return promise
+    .then((data) => processData(data)); // Return value or promise
 }
 
 // ❌ Forgetting to return
 function badChain() {
-    return fetch('/api/data')
-        .then(response => {
-            response.json(); // Forgot return! Returns undefined
-        })
-        .then(data => console.log(data)); // data is undefined!
+  return fetch("/api/data")
+    .then((response) => {
+      response.json(); // Forgot return! Returns undefined
+    })
+    .then((data) => console.log(data)); // data is undefined!
 }
 ```
 
@@ -4200,20 +4231,20 @@ function badChain() {
 ```javascript
 // Promise version
 function fetchData() {
-    return fetch('/api/data')
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            return data;
-        });
+  return fetch("/api/data")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
 }
 
 // async/await version (cleaner!)
 async function fetchData() {
-    const response = await fetch('/api/data');
-    const data = await response.json();
-    console.log(data);
-    return data; // Automatically wrapped in Promise
+  const response = await fetch("/api/data");
+  const data = await response.json();
+  console.log(data);
+  return data; // Automatically wrapped in Promise
 }
 ```
 
@@ -4226,14 +4257,14 @@ async function fetchData() {
 ```javascript
 // async always returns a Promise
 async function example() {
-    return 42;
+  return 42;
 }
 
-example().then(result => console.log(result)); // 42
+example().then((result) => console.log(result)); // 42
 
 // Equivalent to:
 function example() {
-    return Promise.resolve(42);
+  return Promise.resolve(42);
 }
 ```
 
@@ -4242,32 +4273,28 @@ function example() {
 ```javascript
 // Sequential (slow - 3 seconds total)
 async function sequential() {
-    const result1 = await delay(1000); // Wait 1s
-    const result2 = await delay(1000); // Wait 1s
-    const result3 = await delay(1000); // Wait 1s
-    return [result1, result2, result3];
+  const result1 = await delay(1000); // Wait 1s
+  const result2 = await delay(1000); // Wait 1s
+  const result3 = await delay(1000); // Wait 1s
+  return [result1, result2, result3];
 }
 
 // Parallel (fast - 1 second total!)
 async function parallel() {
-    const promise1 = delay(1000); // Start immediately
-    const promise2 = delay(1000); // Start immediately
-    const promise3 = delay(1000); // Start immediately
-    
-    const result1 = await promise1; // Wait for all
-    const result2 = await promise2;
-    const result3 = await promise3;
-    
-    return [result1, result2, result3];
+  const promise1 = delay(1000); // Start immediately
+  const promise2 = delay(1000); // Start immediately
+  const promise3 = delay(1000); // Start immediately
+
+  const result1 = await promise1; // Wait for all
+  const result2 = await promise2;
+  const result3 = await promise3;
+
+  return [result1, result2, result3];
 }
 
 // Or use Promise.all
 async function parallelBetter() {
-    return Promise.all([
-        delay(1000),
-        delay(1000),
-        delay(1000)
-    ]);
+  return Promise.all([delay(1000), delay(1000), delay(1000)]);
 }
 ```
 
@@ -4275,26 +4302,26 @@ async function parallelBetter() {
 
 ```javascript
 async function getUserWithPosts(userId) {
-    try {
-        // Fetch user
-        const userResponse = await fetch(`/api/users/${userId}`);
-        const user = await userResponse.json();
-        
-        // Fetch user's posts
-        const postsResponse = await fetch(`/api/posts?userId=${userId}`);
-        const posts = await postsResponse.json();
-        
-        return { user, posts };
-    } catch (error) {
-        console.error('Error:', error);
-        throw error;
-    }
+  try {
+    // Fetch user
+    const userResponse = await fetch(`/api/users/${userId}`);
+    const user = await userResponse.json();
+
+    // Fetch user's posts
+    const postsResponse = await fetch(`/api/posts?userId=${userId}`);
+    const posts = await postsResponse.json();
+
+    return { user, posts };
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 }
 
 // Usage
 getUserWithPosts(123)
-    .then(result => console.log(result))
-    .catch(error => console.error(error));
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
 ```
 
 ---
@@ -4307,21 +4334,21 @@ getUserWithPosts(123)
 
 ```javascript
 async function fetchData() {
-    try {
-        const response = await fetch('/api/data');
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; // Re-throw or handle
-    } finally {
-        console.log('Cleanup happens here');
+  try {
+    const response = await fetch("/api/data");
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw error; // Re-throw or handle
+  } finally {
+    console.log("Cleanup happens here");
+  }
 }
 ```
 
@@ -4329,17 +4356,17 @@ async function fetchData() {
 
 ```javascript
 async function multipleOperations() {
-    try {
-       const user = await fetchUser();
-        const posts = await fetchPosts(user.id);
-        const comments = await fetchComments(posts[0].id);
-        
-        return { user, posts, comments };
-    } catch (error) {
-        // Catches error from ANY await
-        console.error('Operation failed:', error);
-        return null;
-    }
+  try {
+    const user = await fetchUser();
+    const posts = await fetchPosts(user.id);
+    const comments = await fetchComments(posts[0].id);
+
+    return { user, posts, comments };
+  } catch (error) {
+    // Catches error from ANY await
+    console.error("Operation failed:", error);
+    return null;
+  }
 }
 ```
 
@@ -4347,33 +4374,33 @@ async function multipleOperations() {
 
 ```javascript
 async function smartFetch(url) {
-    try {
-        const response = await fetch(url);
-        
-        if (response.status === 404) {
-            throw new Error('Not Found');
-        }
-        
-        if (response.status === 401) {
-            throw new Error('Unauthorized');
-        }
-        
-        if (!response.ok) {
-            throw new Error('Network error');
-        }
-        
-        return await response.json();
-    } catch (error) {
-        if (error.message === 'Not Found') {
-            return { fallback: true };
-        }
-        
-        if (error.message === 'Unauthorized') {
-            redirectToLogin();
-        }
-        
-        throw error; // Re-throw other errors
+  try {
+    const response = await fetch(url);
+
+    if (response.status === 404) {
+      throw new Error("Not Found");
     }
+
+    if (response.status === 401) {
+      throw new Error("Unauthorized");
+    }
+
+    if (!response.ok) {
+      throw new Error("Network error");
+    }
+
+    return await response.json();
+  } catch (error) {
+    if (error.message === "Not Found") {
+      return { fallback: true };
+    }
+
+    if (error.message === "Unauthorized") {
+      redirectToLogin();
+    }
+
+    throw error; // Re-throw other errors
+  }
 }
 ```
 
@@ -4381,18 +4408,18 @@ async function smartFetch(url) {
 
 ```javascript
 async function fetchAllData() {
-    try {
-        const [users, posts, comments] = await Promise.all([
-            fetchUsers(),
-            fetchPosts(),
-            fetchComments()
-        ]);
-        
-        return { users, posts, comments };
-    } catch (error) {
-        // If ANY promise rejects, comes here
-        console.error('One or more requests failed:', error);
-    }
+  try {
+    const [users, posts, comments] = await Promise.all([
+      fetchUsers(),
+      fetchPosts(),
+      fetchComments(),
+    ]);
+
+    return { users, posts, comments };
+  } catch (error) {
+    // If ANY promise rejects, comes here
+    console.error("One or more requests failed:", error);
+  }
 }
 ```
 
@@ -4410,25 +4437,25 @@ const promise1 = Promise.resolve(1);
 const promise2 = Promise.resolve(2);
 const promise3 = Promise.resolve(3);
 
-Promise.all([promise1, promise2, promise3])
-    .then(results => console.log(results)); // [1, 2, 3]
+Promise.all([promise1, promise2, promise3]).then((results) =>
+  console.log(results),
+); // [1, 2, 3]
 
 // If ANY fails, entire thing fails
-const failing = Promise.reject('Error');
+const failing = Promise.reject("Error");
 Promise.all([promise1, promise2, failing])
-    .then(results => console.log('Success'))
-    .catch(error => console.error(error)); // 'Error'
+  .then((results) => console.log("Success"))
+  .catch((error) => console.error(error)); // 'Error'
 ```
 
 **Promise.allSettled() - Wait for all, regardless of outcome**
 
 ```javascript
 const p1 = Promise.resolve(1);
-const p2 = Promise.reject('Error');
+const p2 = Promise.reject("Error");
 const p3 = Promise.resolve(3);
 
-Promise.allSettled([p1, p2, p3])
-    .then(results => console.log(results));
+Promise.allSettled([p1, p2, p3]).then((results) => console.log(results));
 
 // Output:
 // [
@@ -4441,46 +4468,45 @@ Promise.allSettled([p1, p2, p3])
 **Promise.race() - First to finish wins**
 
 ```javascript
-const slow = new Promise(resolve => setTimeout(() => resolve('slow'), 2000));
-const fast = new Promise(resolve => setTimeout(() => resolve('fast'), 100));
+const slow = new Promise((resolve) => setTimeout(() => resolve("slow"), 2000));
+const fast = new Promise((resolve) => setTimeout(() => resolve("fast"), 100));
 
-Promise.race([slow, fast])
-    .then(result => console.log(result)); // 'fast'
+Promise.race([slow, fast]).then((result) => console.log(result)); // 'fast'
 
 // Timeout pattern
 function fetchWithTimeout(url, timeout = 5000) {
-    return Promise.race([
-        fetch(url),
-        new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Timeout')), timeout)
-        )
-    ]);
+  return Promise.race([
+    fetch(url),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error("Timeout")), timeout),
+    ),
+  ]);
 }
 ```
 
 **Promise.any() - First fulfilled wins (ES2021)**
 
 ```javascript
-const p1 = Promise.reject('Error 1');
-const p2 = new Promise(resolve => setTimeout(() => resolve('Success'), 100));
-const p3 = Promise.reject('Error 2');
+const p1 = Promise.reject("Error 1");
+const p2 = new Promise((resolve) => setTimeout(() => resolve("Success"), 100));
+const p3 = Promise.reject("Error 2");
 
-Promise.any([p1, p2, p3])
-    .then(result => console.log(result)); // 'Success'
+Promise.any([p1, p2, p3]).then((result) => console.log(result)); // 'Success'
 
 // If ALL reject
-Promise.any([Promise.reject(1), Promise.reject(2)])
-    .catch(error => console.log(error)); // AggregateError
+Promise.any([Promise.reject(1), Promise.reject(2)]).catch((error) =>
+  console.log(error),
+); // AggregateError
 ```
 
 **Comparison Table:**
 
-| Method | Resolves when | Rejects when | Use case |
-|--------|---------------|--------------|----------|
-| `Promise.all()` | ALL fulfill | ANY rejects | Parallel deps, all must succeed |
-| `Promise.allSettled()` | ALL settle | Never | Want all results regardless |
-| `Promise.race()` | FIRST settles | FIRST rejects (if first) | Timeout, fastest response |
-| `Promise.any()` | FIRST fulfills | ALL reject | Fallback URLs, redundancy |
+| Method                 | Resolves when  | Rejects when             | Use case                        |
+| ---------------------- | -------------- | ------------------------ | ------------------------------- |
+| `Promise.all()`        | ALL fulfill    | ANY rejects              | Parallel deps, all must succeed |
+| `Promise.allSettled()` | ALL settle     | Never                    | Want all results regardless     |
+| `Promise.race()`       | FIRST settles  | FIRST rejects (if first) | Timeout, fastest response       |
+| `Promise.any()`        | FIRST fulfills | ALL reject               | Fallback URLs, redundancy       |
 
 ---
 
@@ -4495,31 +4521,31 @@ Nested callbacks that make code hard to read and maintain (also called "Pyramid 
 
 ```javascript
 // ❌ Callback Hell
-getData(function(a) {
-    getMoreData(a, function(b) {
-        getMoreData(b, function(c) {
-            getMoreData(c, function(d) {
-                getMoreData(d, function(e) {
-                    console.log(e);
-                });
-            });
+getData(function (a) {
+  getMoreData(a, function (b) {
+    getMoreData(b, function (c) {
+      getMoreData(c, function (d) {
+        getMoreData(d, function (e) {
+          console.log(e);
         });
+      });
     });
+  });
 });
 
 // Real example
-fs.readFile('file1.txt', 'utf8', (err, data1) => {
+fs.readFile("file1.txt", "utf8", (err, data1) => {
+  if (err) return console.error(err);
+
+  fs.readFile("file2.txt", "utf8", (err, data2) => {
     if (err) return console.error(err);
-    
-    fs.readFile('file2.txt', 'utf8', (err, data2) => {
-        if (err) return console.error(err);
-        
-        fs.writeFile('output.txt', data1 + data2, (err) => {
-            if (err) return console.error(err);
-            
-            console.log('Success');
-        });
+
+    fs.writeFile("output.txt", data1 + data2, (err) => {
+      if (err) return console.error(err);
+
+      console.log("Success");
     });
+  });
 });
 ```
 
@@ -4529,28 +4555,28 @@ fs.readFile('file1.txt', 'utf8', (err, data1) => {
 
 ```javascript
 function readFile1(callback) {
-    fs.readFile('file1.txt', 'utf8', (err, data) => {
-        if (err) return console.error(err);
-        callback(data);
-    });
+  fs.readFile("file1.txt", "utf8", (err, data) => {
+    if (err) return console.error(err);
+    callback(data);
+  });
 }
 
 function readFile2(data1, callback) {
-    fs.readFile('file2.txt', 'utf8', (err, data2) => {
-        if (err) return console.error(err);
-        callback(data1, data2);
-    });
+  fs.readFile("file2.txt", "utf8", (err, data2) => {
+    if (err) return console.error(err);
+    callback(data1, data2);
+  });
 }
 
 function writeFile(data1, data2) {
-    fs.writeFile('output.txt', data1 + data2, (err) => {
-        if (err) return console.error(err);
-        console.log('Success');
-    });
+  fs.writeFile("output.txt", data1 + data2, (err) => {
+    if (err) return console.error(err);
+    console.log("Success");
+  });
 }
 
-readFile1(data1 => {
-    readFile2(data1, writeFile);
+readFile1((data1) => {
+  readFile2(data1, writeFile);
 });
 ```
 
@@ -4558,13 +4584,13 @@ readFile1(data1 => {
 
 ```javascript
 // ✅ Much cleaner!
-readFilePromise('file1.txt')
-    .then(data1 => readFilePromise('file2.txt')
-        .then(data2 => ({ data1, data2 }))
-    )
-    .then(({ data1, data2 }) => writeFilePromise('output.txt', data1 + data2))
-    .then(() => console.log('Success'))
-    .catch(error => console.error(error));
+readFilePromise("file1.txt")
+  .then((data1) =>
+    readFilePromise("file2.txt").then((data2) => ({ data1, data2 })),
+  )
+  .then(({ data1, data2 }) => writeFilePromise("output.txt", data1 + data2))
+  .then(() => console.log("Success"))
+  .catch((error) => console.error(error));
 ```
 
 **3. async/await (Best!):**
@@ -4572,14 +4598,14 @@ readFilePromise('file1.txt')
 ```javascript
 // ✅ Cleanest!
 async function processFiles() {
-    try {
-        const data1 = await readFilePromise('file1.txt');
-        const data2 = await readFilePromise('file2.txt');
-        await writeFilePromise('output.txt', data1 + data2);
-        console.log('Success');
-    } catch (error) {
-        console.error(error);
-    }
+  try {
+    const data1 = await readFilePromise("file1.txt");
+    const data2 = await readFilePromise("file2.txt");
+    await writeFilePromise("output.txt", data1 + data2);
+    console.log("Success");
+  } catch (error) {
+    console.error(error);
+  }
 }
 ```
 
@@ -4600,19 +4626,19 @@ A callback is a function passed as an argument to another function, to be execut
 // Array methods
 const numbers = [1, 2, 3, 4, 5];
 
-numbers.forEach(num => {
-    console.log(num); // Callback executed immediately
+numbers.forEach((num) => {
+  console.log(num); // Callback executed immediately
 });
 
-const doubled = numbers.map(num => num * 2); // Callback for each element
+const doubled = numbers.map((num) => num * 2); // Callback for each element
 
 // Custom callback
 function greet(name, callback) {
-    console.log(`Hello, ${name}!`);
-    callback(); // Execute immediately
+  console.log(`Hello, ${name}!`);
+  callback(); // Execute immediately
 }
 
-greet('Alice', () => console.log('Nice to meet you'));
+greet("Alice", () => console.log("Nice to meet you"));
 ```
 
 **2. Asynchronous Callbacks:**
@@ -4620,48 +4646,48 @@ greet('Alice', () => console.log('Nice to meet you'));
 ```javascript
 // setTimeout
 setTimeout(() => {
-    console.log('Executed after 1 second');
+  console.log("Executed after 1 second");
 }, 1000);
 
 // Event handlers
-button.addEventListener('click', () => {
-    console.log('Button clicked');
+button.addEventListener("click", () => {
+  console.log("Button clicked");
 });
 
 // Fetch
-fetch('/api/data')
-    .then(response => response.json()) // Callback
-    .then(data => console.log(data));   // Another callback
+fetch("/api/data")
+  .then((response) => response.json()) // Callback
+  .then((data) => console.log(data)); // Another callback
 ```
 
 **Callback Patterns:**
 
 ```javascript
 // Node.js error-first callback
-fs.readFile('file.txt', (error, data) => {
-    if (error) {
-        console.error('Error:', error);
-        return;
-    }
-    console.log('Data:', data);
+fs.readFile("file.txt", (error, data) => {
+  if (error) {
+    console.error("Error:", error);
+    return;
+  }
+  console.log("Data:", data);
 });
 
 // Success/error callbacks
 function loadData(successCallback, errorCallback) {
-    fetch('/api/data')
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Failed');
-        })
-        .then(data => successCallback(data))
-        .catch(error => errorCallback(error));
+  fetch("/api/data")
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Failed");
+    })
+    .then((data) => successCallback(data))
+    .catch((error) => errorCallback(error));
 }
 
 loadData(
-    data => console.log('Success:', data),
-    error => console.error('Error:', error)
+  (data) => console.log("Success:", data),
+  (error) => console.error("Error:", error),
 );
 ```
 
@@ -4670,19 +4696,19 @@ loadData(
 ```javascript
 // Custom callback function
 function fetchUserData(userId, callback) {
-    setTimeout(() => {
-        const user = { id: userId, name: 'John' };
-        callback(null, user); // Error-first pattern
-    }, 1000);
+  setTimeout(() => {
+    const user = { id: userId, name: "John" };
+    callback(null, user); // Error-first pattern
+  }, 1000);
 }
 
 // Usage
 fetchUserData(123, (error, user) => {
-    if (error) {
-        console.error(error);
-        return;
-    }
-    console.log('User:', user);
+  if (error) {
+    console.error(error);
+    return;
+  }
+  console.log("User:", user);
 });
 ```
 
@@ -4697,93 +4723,91 @@ fetchUserData(123, (error, user) => {
 ```javascript
 // User authentication and data loading flow
 function loginUser(credentials) {
-    return fetch('/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(credentials)
+  return fetch("/api/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(credentials),
+  })
+    .then((response) => {
+      if (!response.ok) throw new Error("Login failed");
+      return response.json();
     })
-        .then(response => {
-            if (!response.ok) throw new Error('Login failed');
-            return response.json();
-        })
-        .then(data => {
-            localStorage.setItem('token', data.token);
-            return data.user;
-        });
+    .then((data) => {
+      localStorage.setItem("token", data.token);
+      return data.user;
+    });
 }
 
 function fetchUserProfile(userId) {
-    return fetch(`/api/users/${userId}`, {
-        headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-    })
-        .then(response => {
-            if (!response.ok) throw new Error('Profile fetch failed');
-            return response.json();
-        });
+  return fetch(`/api/users/${userId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  }).then((response) => {
+    if (!response.ok) throw new Error("Profile fetch failed");
+    return response.json();
+  });
 }
 
 function fetchUserPosts(userId) {
-    return fetch(`/api/posts?userId=${userId}`)
-        .then(response => response.json());
+  return fetch(`/api/posts?userId=${userId}`).then((response) =>
+    response.json(),
+  );
 }
 
 // Complete chain
-loginUser({ email: 'user@example.com', password: 'pass123' })
-    .then(user => {
-        console.log('Logged in:', user);
-        return fetchUserProfile(user.id);
-    })
-    .then(profile => {
-        console.log('Profile loaded:', profile);
-        return fetchUserPosts(profile.id);
-    })
-    .then(posts => {
-        console.log('Posts loaded:', posts);
-        return posts.length;
-    })
-    .then(count => {
-        console.log(`User has ${count} posts`);
-    })
-    .catch(error => {
-        console.error('Error in chain:', error);
-        // Redirect to login page or show error
-    })
-    .finally(() => {
-        console.log('Loading complete');
-        hideLoadingSpinner();
-    });
+loginUser({ email: "user@example.com", password: "pass123" })
+  .then((user) => {
+    console.log("Logged in:", user);
+    return fetchUserProfile(user.id);
+  })
+  .then((profile) => {
+    console.log("Profile loaded:", profile);
+    return fetchUserPosts(profile.id);
+  })
+  .then((posts) => {
+    console.log("Posts loaded:", posts);
+    return posts.length;
+  })
+  .then((count) => {
+    console.log(`User has ${count} posts`);
+  })
+  .catch((error) => {
+    console.error("Error in chain:", error);
+    // Redirect to login page or show error
+  })
+  .finally(() => {
+    console.log("Loading complete");
+    hideLoadingSpinner();
+  });
 ```
 
 **With Error Recovery:**
 
 ```javascript
-fetch('/api/primary-data')
-    .then(response => {
-        if (!response.ok) throw new Error('Primary failed');
-        return response.json();
-    })
-    .catch(error => {
-        console.warn('Primary failed, trying backup');
-        return fetch('/api/backup-data')
-            .then(response => response.json());
-    })
-    .then(data => {
-        // Works with either primary or backup data
-        processData(data);
-    })
-    .catch(error => {
-        // Both failed
-        console.error('All sources failed:', error);
-        showErrorMessage();
-    });
+fetch("/api/primary-data")
+  .then((response) => {
+    if (!response.ok) throw new Error("Primary failed");
+    return response.json();
+  })
+  .catch((error) => {
+    console.warn("Primary failed, trying backup");
+    return fetch("/api/backup-data").then((response) => response.json());
+  })
+  .then((data) => {
+    // Works with either primary or backup data
+    processData(data);
+  })
+  .catch((error) => {
+    // Both failed
+    console.error("All sources failed:", error);
+    showErrorMessage();
+  });
 ```
 
 ---
 
 📝 [Back to Top](#-table-of-contents)
-
 
 ## Part 7: Browser & Web APIs
 
@@ -4793,24 +4817,24 @@ fetch('/api/primary-data')
 
 ```javascript
 // Selecting elements
-const element = document.getElementById('myId');
-const elements = document.querySelectorAll('.myClass');
-const div = document.querySelector('div');
+const element = document.getElementById("myId");
+const elements = document.querySelectorAll(".myClass");
+const div = document.querySelector("div");
 
 // Creating/modifying elements
-const newDiv = document.createElement('div');
-newDiv.textContent = 'Hello';
-newDiv.className = 'container';
+const newDiv = document.createElement("div");
+newDiv.textContent = "Hello";
+newDiv.className = "container";
 document.body.appendChild(newDiv);
 
 // Modifying attributes
-element.setAttribute('data-value', '123');
-element.classList.add('active');
-element.style.color = 'red';
+element.setAttribute("data-value", "123");
+element.classList.add("active");
+element.style.color = "red";
 
 // Event handling
-element.addEventListener('click', (e) => {
-    console.log('Clicked!', e.target);
+element.addEventListener("click", (e) => {
+  console.log("Clicked!", e.target);
 });
 ```
 
@@ -4821,24 +4845,27 @@ element.addEventListener('click', (e) => {
 ### 55. localStorage vs sessionStorage vs cookies
 
 **localStorage:**
+
 - Persists until explicitly cleared
 - 5-10MB storage
 - Same-origin only
 - Synchronous API
 
 ```javascript
-localStorage.setItem('user', JSON.stringify({ name: 'John' }));
-const user = JSON.parse(localStorage.getItem('user'));
-localStorage.removeItem('user');
+localStorage.setItem("user", JSON.stringify({ name: "John" }));
+const user = JSON.parse(localStorage.getItem("user"));
+localStorage.removeItem("user");
 localStorage.clear();
 ```
 
 **sessionStorage:**
+
 - Cleared when tab closes
 - 5-10MB storage
 - Same-origin, same tab only
 
 **cookies:**
+
 - Can set expiration
 - 4KB limit per cookie
 - Sent with every HTTP request
@@ -4889,14 +4916,14 @@ document.cookie = "user=John; max-age=3600; path=/";
 // var - function scoped, hoisted
 var x = 1;
 if (true) {
-    var x = 2; // Same variable!
+  var x = 2; // Same variable!
 }
 console.log(x); // 2
 
 // let - block scoped
 let y = 1;
 if (true) {
-    let y = 2; // Different variable
+  let y = 2; // Different variable
 }
 console.log(y); // 1
 
@@ -4954,16 +4981,16 @@ import MyClass, { myFunc } from './module.js';
 
 ```javascript
 function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func.apply(this, args), delay);
-    };
+  let timeoutId;
+  return function (...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
 }
 
 // Usage
 const handleSearch = debounce((query) => {
-    console.log('Searching:', query);
+  console.log("Searching:", query);
 }, 300);
 ```
 
@@ -4975,19 +5002,19 @@ const handleSearch = debounce((query) => {
 
 ```javascript
 function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
+  let inThrottle;
+  return function (...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
 }
 
 // Usage
 const handleScroll = throttle(() => {
-    console.log('Scroll event');
+  console.log("Scroll event");
 }, 100);
 ```
 
@@ -5000,6 +5027,7 @@ const handleScroll = throttle(() => {
 **Memory Leaks:** Unintentional memory retention (forgotten timers, closures, DOM references)
 
 **Prevention:**
+
 - Clear timers/intervals
 - Remove event listeners
 - Null out references
@@ -5008,8 +5036,8 @@ const handleScroll = throttle(() => {
 **Web Workers:** Run JavaScript in background threads
 
 ```javascript
-const worker = new Worker('worker.js');
-worker.postMessage({ data: 'process this' });
+const worker = new Worker("worker.js");
+worker.postMessage({ data: "process this" });
 worker.onmessage = (e) => console.log(e.data);
 ```
 
@@ -5024,30 +5052,30 @@ worker.onmessage = (e) => console.log(e.data);
 ```javascript
 // try/catch
 try {
-    riskyOperation();
+  riskyOperation();
 } catch (error) {
-    console.error(error);
+  console.error(error);
 } finally {
-    cleanup();
+  cleanup();
 }
 
 // Custom errors
 class ValidationError extends Error {
-    constructor(message) {
-        super(message);
-        this.name = 'ValidationError';
-    }
+  constructor(message) {
+    super(message);
+    this.name = "ValidationError";
+  }
 }
 
-throw new ValidationError('Invalid input');
+throw new ValidationError("Invalid input");
 
 // Global error handling
-window.addEventListener('error', (event) => {
-    console.error('Global error:', event.error);
+window.addEventListener("error", (event) => {
+  console.error("Global error:", event.error);
 });
 
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled promise rejection:', event.reason);
+window.addEventListener("unhandledrejection", (event) => {
+  console.error("Unhandled promise rejection:", event.reason);
 });
 
 // XSS Prevention
@@ -5078,9 +5106,9 @@ window.addEventListener('unhandledrejection', (event) => {
 ```javascript
 // Array.includes polyfill
 if (!Array.prototype.includes) {
-    Array.prototype.includes = function(searchElement) {
-        return this.indexOf(searchElement) !== -1;
-    };
+  Array.prototype.includes = function (searchElement) {
+    return this.indexOf(searchElement) !== -1;
+  };
 }
 
 // Promise polyfill (use libraries like core-js)
@@ -5095,8 +5123,8 @@ if (!Array.prototype.includes) {
 ```javascript
 // WeakMap - keys must be objects, allows garbage collection
 const wm = new WeakMap();
-let obj = { data: 'value' };
-wm.set(obj, 'metadata');
+let obj = { data: "value" };
+wm.set(obj, "metadata");
 obj = null; // Object can be garbage collected
 
 // WeakSet - similar but only stores objects
@@ -5113,27 +5141,27 @@ item = null; // Can be garbage collected
 ### 88. String Methods
 
 ```javascript
-const str = 'Hello World';
+const str = "Hello World";
 
 // Common methods
-str.length // 11
-str.toLowerCase() // 'hello world'
-str.toUpperCase() // 'HELLO WORLD'
-str.trim() // Remove whitespace
-str.slice(0, 5) // 'Hello'
-str.substring(0, 5) // 'Hello'
-str.indexOf('World') // 6
-str.includes('World') // true
-str.startsWith('Hello') // true
-str.endsWith('World') // true
-str.repeat(2) // 'Hello WorldHello World'
-str.replace('World', 'JS') // 'Hello JS'
-str.replaceAll('l', 'L') // 'HeLLo WorLd'
-str.split(' ') // ['Hello', 'World']
-str.charAt(0) // 'H'
-str.charCodeAt(0) // 72
-str.padStart(15, '*') // '****Hello World'
-str.padEnd(15, '*') // 'Hello World****'
+str.length; // 11
+str.toLowerCase(); // 'hello world'
+str.toUpperCase(); // 'HELLO WORLD'
+str.trim(); // Remove whitespace
+str.slice(0, 5); // 'Hello'
+str.substring(0, 5); // 'Hello'
+str.indexOf("World"); // 6
+str.includes("World"); // true
+str.startsWith("Hello"); // true
+str.endsWith("World"); // true
+str.repeat(2); // 'Hello WorldHello World'
+str.replace("World", "JS"); // 'Hello JS'
+str.replaceAll("l", "L"); // 'HeLLo WorLd'
+str.split(" "); // ['Hello', 'World']
+str.charAt(0); // 'H'
+str.charCodeAt(0); // 72
+str.padStart(15, "*"); // '****Hello World'
+str.padEnd(15, "*"); // 'Hello World****'
 ```
 
 ---
@@ -5146,30 +5174,30 @@ str.padEnd(15, '*') // 'Hello World****'
 const arr = [1, 2, 3, 4, 5];
 
 // Mutating methods
-arr.push(6) // Add to end
-arr.pop() // Remove from end
-arr.unshift(0) // Add to start
-arr.shift() // Remove from start
-arr.splice(1, 2, 'a', 'b') // Remove/add at index
-arr.reverse() // Reverse in place
-arr.sort((a, b) => a - b) // Sort
+arr.push(6); // Add to end
+arr.pop(); // Remove from end
+arr.unshift(0); // Add to start
+arr.shift(); // Remove from start
+arr.splice(1, 2, "a", "b"); // Remove/add at index
+arr.reverse(); // Reverse in place
+arr.sort((a, b) => a - b); // Sort
 
 // Non-mutating methods
-arr.concat([6, 7]) // Merge arrays
-arr.slice(1, 3) // Extract portion
-arr.map(x => x * 2) // Transform
-arr.filter(x => x > 2) // Select
-arr.reduce((sum, x) => sum + x, 0) // Reduce to value
-arr.forEach(x => console.log(x)) // Iterate
-arr.find(x => x > 3) // First match
-arr.findIndex(x => x > 3) // Index of first match
-arr.some(x => x > 3) // At least one
-arr.every(x => x > 0) // All
-arr.includes(3) // Contains value
-arr.indexOf(3) // Index of value
-arr.join(', ') // Array to string
-arr.flat() // Flatten nested arrays
-arr.flatMap(x => [x, x * 2]) // Map + flatten
+arr.concat([6, 7]); // Merge arrays
+arr.slice(1, 3); // Extract portion
+arr.map((x) => x * 2); // Transform
+arr.filter((x) => x > 2); // Select
+arr.reduce((sum, x) => sum + x, 0); // Reduce to value
+arr.forEach((x) => console.log(x)); // Iterate
+arr.find((x) => x > 3); // First match
+arr.findIndex((x) => x > 3); // Index of first match
+arr.some((x) => x > 3); // At least one
+arr.every((x) => x > 0); // All
+arr.includes(3); // Contains value
+arr.indexOf(3); // Index of value
+arr.join(", "); // Array to string
+arr.flat(); // Flatten nested arrays
+arr.flatMap((x) => [x, x * 2]); // Map + flatten
 ```
 
 ---
