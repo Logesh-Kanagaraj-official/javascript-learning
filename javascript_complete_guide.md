@@ -137,7 +137,9 @@
 ### 1. What is JavaScript?
 
 **Definition:**  
-JavaScript is a **high-level, interpreted, dynamically-typed programming language** primarily used to create interactive web pages. It runs in the browser and on servers (Node.js).
+- JavaScript is a **high-level, interpreted, dynamically-typed scripting language** primarily used to create interactive and dynamic content web pages. It runs in the browser and on runtime environment servers (Node.js).
+
+- JavaScript is **synchronous and single-threaded** by nature, but supports asynchronous operations through callbacks, promises, and async/await.
 
 **Key Characteristics:**
 
@@ -379,7 +381,9 @@ a();
 ### 4. Hoisting
 
 **Definition:**  
-**Hoisting** is JavaScript's behavior of moving variable and function declarations to the top of their scope during the creation phase, before code execution.
+
+- **Hoisting**  is a javascript behaviour able to move function declarations, variable to the top of their scope during the compilation time
+
 
 **Key Points:**
 
@@ -1122,7 +1126,10 @@ Already covered in [#12](#12-scope) and [#13](#13-function-scope-vs-block-scope)
 ### 15. Closures
 
 **Definition:**  
-A **closure** is a function that has access to variables from its outer (enclosing) function's scope, even after the outer function has returned.
+
+- **closure** is a combination of function and lexical scoping (Environment) , In This, An inner
+function can able access the outer function variable during the runtime is known as closure , It
+"remembers" its lexical environment
 
 **Key Point:** Inner function "remembers" variables from outer function.
 
@@ -1130,28 +1137,37 @@ A **closure** is a function that has access to variables from its outer (enclosi
 
 ```javascript
 function outer() {
-  const name = "JavaScript";
-
+  let a = 0;
   function inner() {
-    console.log(name); // Accesses 'name' from outer scope
+    a = a + 1;
+    console.log(a);
   }
-
   return inner;
 }
 
-const myFunc = outer();
-myFunc(); // "JavaScript" ✅ - Closure in action!
+const result = outer();
+
+result(); // 1
+result(); // 2
+result(); // 3
 ```
 
 **Visual:**
 
 ```
 outer() {
-    const name = 'JavaScript'
+    let a = 0;                       ← `a` lives in outer's scope
     └─→ inner() {
-            console.log(name) ← Has access to 'name'
+            a = a + 1;              ← updates the closed-over `a`
+            console.log(a);         ← reads `a` from outer scope
         }
 }
+
+Calls:
+- const result = outer();   // creates closure: `inner` with access to `a`
+- result(); // prints 1  (a: 0 → 1)
+- result(); // prints 2  (a: 1 → 2)
+- result(); // prints 3  (a: 2 → 3)
 ```
 
 **Practical Example - Counter:**
@@ -1341,7 +1357,8 @@ for (var i = 0; i < 5; i++) {
 ### 18. Lexical Scope
 
 **Definition:**  
-**Lexical Scope** means that a function's scope is determined by where it is **written** in the code, not where it is **called**.
+**Lexical Scope,** also known as static scope, dictates the accessibility of variables and functions
+based on where they are defined in the source code
 
 **Example:**
 
