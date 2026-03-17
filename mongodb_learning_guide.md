@@ -1,4 +1,4 @@
-# 📙 MongoDB Complete Learning Guide
+  # 📙 MongoDB Complete Learning Guide
 
 ## Table of Contents
 
@@ -12,6 +12,9 @@
 8. [Relationships](#8-relationships)
 9. [Queries & Filters](#9-queries)
 10. [Connecting with Express](#10-express-integration)
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -38,6 +41,9 @@ MongoDB is a **NoSQL database** that stores data in flexible, JSON-like document
 ✅ **JSON-like** - Easy to work with JavaScript  
 ✅ **Fast** - High performance for read/write  
 ✅ **Rich Queries** - Powerful query language
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -76,6 +82,9 @@ mongod --version
 
 Download [MongoDB Compass](https://www.mongodb.com/try/download/compass) - Visual tool for MongoDB
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 3. MongoDB Basics {#3-basics}
@@ -103,6 +112,9 @@ Download [MongoDB Compass](https://www.mongodb.com/try/download/compass) - Visua
   "createdAt": "2024-02-15T10:30:00Z"
 }
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -195,6 +207,9 @@ db.users.deleteOne({ name: "John" });
 db.users.deleteMany({ age: { $lt: 20 } });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 5. Mongoose ODM {#5-mongoose}
@@ -249,6 +264,9 @@ app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -317,6 +335,9 @@ module.exports = mongoose.model("User", userSchema);
 - `Mixed`
 - `Buffer`
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 7. Data Validation {#7-validation}
@@ -379,6 +400,9 @@ const userSchema = new mongoose.Schema({
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 8. Relationships {#8-relationships}
@@ -438,6 +462,9 @@ const userSchema = new mongoose.Schema({
   ],
 });
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -511,6 +538,9 @@ const users = await User.find()
 // Select specific fields
 const users = await User.find().select("name email -_id");
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -612,6 +642,9 @@ app.listen(5000, () => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 🎯 Practice Projects
@@ -620,6 +653,9 @@ app.listen(5000, () => {
 2. **Blog API** - Posts, comments, categories with relationships
 3. **E-commerce Product Catalog** - Products, categories, reviews
 4. **Task Manager** - Todo lists with user authentication
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -630,6 +666,9 @@ After mastering MongoDB, move to:
 1. **[React Learning Guide](react_learning_guide.md)** - Build frontend
 2. **Authentication** - Password hashing, JWT tokens
 3. **Advanced MongoDB** - Aggregation, indexing, transactions
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 

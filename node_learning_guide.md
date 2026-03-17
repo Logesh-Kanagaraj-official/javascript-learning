@@ -13,6 +13,9 @@
 9. [Working with JSON](#9-json)
 10. [Environment Variables](#10-env)
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 1. Introduction to Node.js {#1-introduction}
@@ -36,6 +39,9 @@ Node.js is a **JavaScript runtime** built on Chrome's V8 JavaScript engine. It a
 - Microservices
 - Command-line tools
 - Web servers
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -77,6 +83,9 @@ npm -v
 mkdir node-basics
 cd node-basics
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -121,6 +130,9 @@ console.log("Division:", num1 / num2);
 ```bash
 node calculator.js
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -230,6 +242,9 @@ const user = getUser();
 console.log(user);
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 5. File System Operations {#5-file-system}
@@ -331,6 +346,9 @@ fs.rmdirSync("myFolder");
 console.log("Folder deleted!");
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 6. NPM - Node Package Manager {#6-npm}
@@ -428,6 +446,9 @@ npm install nodemon --save-dev
 npm run dev
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 7. Asynchronous JavaScript {#7-async}
@@ -499,6 +520,9 @@ async function getData() {
 getData();
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 8. Creating HTTP Server {#8-http-server}
@@ -556,6 +580,9 @@ server.listen(3000, () => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 9. Working with JSON {#9-json}
@@ -600,6 +627,9 @@ fs.writeFileSync("users.json", jsonData);
 console.log("JSON file created!");
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 10. Environment Variables {#10-env}
@@ -634,6 +664,9 @@ console.log("Port:", PORT);
 console.log("API Key:", API_KEY);
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 🎯 Practice Projects
@@ -642,6 +675,9 @@ console.log("API Key:", API_KEY);
 2. **Todo App (JSON)** - Store todos in a JSON file
 3. **Simple Web Server** - Serve HTML pages
 4. **Weather App CLI** - Fetch weather data from an API
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -652,6 +688,9 @@ After mastering Node.js basics, move to:
 1. **[Express.js Learning Guide](express_learning_guide.md)** - Build REST APIs
 2. **[MongoDB Learning Guide](mongodb_learning_guide.md)** - Database operations
 3. **[React Learning Guide](react_learning_guide.md)** - Frontend development
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 

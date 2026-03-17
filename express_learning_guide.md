@@ -13,6 +13,9 @@
 9. [CORS Configuration](#9-cors)
 10. [Building a Complete API](#10-complete-api)
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 1. Introduction to Express.js {#1-introduction}
@@ -28,6 +31,9 @@ Express.js is a **minimal and flexible web application framework** for Node.js t
 ✅ **Middleware Support** - Powerful middleware system  
 ✅ **REST API Ready** - Perfect for building APIs  
 ✅ **Large Ecosystem** - Many plugins & extensions
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -69,6 +75,9 @@ npm install nodemon --save-dev
 }
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 3. Creating Your First Server {#3-first-server}
@@ -100,6 +109,9 @@ npm run dev
 ```
 
 **Visit:** http://localhost:5000
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -156,6 +168,9 @@ app.get("/search", (req, res) => {
   res.send(`Name: ${name}, Age: ${age}`);
 });
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -222,6 +237,9 @@ app.get("/dashboard", checkAuth, (req, res) => {
   res.send("Welcome to Dashboard");
 });
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -311,6 +329,9 @@ app.listen(5000, () => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 7. Request & Response {#7-req-res}
@@ -355,6 +376,9 @@ app.get("/api/demo", (req, res) => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 8. Error Handling {#8-error-handling}
@@ -395,6 +419,9 @@ app.use((req, res) => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 9. CORS Configuration {#9-cors}
@@ -427,6 +454,9 @@ app.use(
   }),
 );
 ```
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -582,6 +612,9 @@ app.listen(PORT, () => {
 });
 ```
 
+
+[⬆️ Back to Top](#table-of-contents)
+
 ---
 
 ## 🎯 Practice Projects
@@ -590,6 +623,9 @@ app.listen(PORT, () => {
 2. **Blog API** - Posts, comments, categories
 3. **Product API** - Products with categories and pricing
 4. **User Management API** - User registration, authentication
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 
@@ -600,6 +636,9 @@ After mastering Express.js, move to:
 1. **[MongoDB Learning Guide](mongodb_learning_guide.md)** - Connect database
 2. **[React Learning Guide](react_learning_guide.md)** - Build frontend
 3. **Authentication** - JWT, bcrypt, Passport.js
+
+
+[⬆️ Back to Top](#table-of-contents)
 
 ---
 

@@ -1,6 +1,9 @@
 # CSS Complete Learning Guide
 **From Basics to Advanced**
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## 📌 Table of Contents
@@ -21,7 +24,10 @@
 15. [Reflow and Repaint](#reflow-and-repaint)
 16. [Tailwind vs Traditional CSS](#tailwind-vs-traditional-css)
 17. [min() and max()](#min-and-max)
-18. [inherit, initial, and unset](#inherit-initial-unset)
+18. [inherit, initial, and unset](#inherit-initial-and-unset)
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -81,6 +87,9 @@ selector {
 </body>
 </html>
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -247,6 +256,9 @@ When multiple CSS rules target the same element:
 </body>
 </html>
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -502,6 +514,9 @@ h1, h2, h3 {
 </body>
 </html>
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -774,6 +789,9 @@ button:hover { background: red; }
 /* Pseudo-Element: Part/Addition */
 button::before { content: "→ "; }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1144,6 +1162,9 @@ main {
     flex: 1 1 300px; /* Grow, shrink, min 300px */
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1532,6 +1553,1527 @@ Define named grid areas
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
-*Due to length constraints, I'll continue with the remaining CSS topics in the guide. The file is being created with all content...*
+## Position: Absolute vs Relative
+
+### Definition
+The CSS `position` property controls how an element is placed in the document. It determines the **positioning context** and how `top`, `right`, `bottom`, `left` offsets are applied.
+
+### All 5 Position Values
+
+| Value | Description |
+|-------|-------------|
+| `static` | Default — normal document flow, offsets have no effect |
+| `relative` | Offset **from its own normal position**, stays in flow |
+| `absolute` | Removed from flow, offset relative to **nearest positioned ancestor** |
+| `fixed` | Removed from flow, offset relative to **viewport** (stays on screen) |
+| `sticky` | Acts like `relative` until scroll threshold, then like `fixed` |
+
+### static (Default)
+```css
+.box {
+    position: static; /* default — no effect from top/left/etc */
+}
+```
+
+### relative
+Moves the element **from where it normally sits**, but reserves its original space.
+
+```css
+.box {
+    position: relative;
+    top: 20px;   /* Move 20px DOWN from its normal position */
+    left: 30px;  /* Move 30px RIGHT from its normal position */
+}
+```
+
+```html
+<div style="border: 2px solid blue;">Normal div</div>
+<div style="position: relative; top: 20px; left: 30px; border: 2px solid red;">
+    Moved 20px down, 30px right (space still reserved above)
+</div>
+<div style="border: 2px solid green;">Normal div (gap appears above)</div>
+```
+
+### absolute
+Removed from document flow, positioned relative to **nearest ancestor with position set** (not static).
+
+```css
+.parent {
+    position: relative; /* Creates positioning context */
+    width: 300px;
+    height: 200px;
+    background: lightblue;
+}
+
+.child {
+    position: absolute;
+    top: 10px;
+    right: 10px; /* 10px from parent's top-right corner */
+    background: red;
+    padding: 10px;
+}
+```
+
+```html
+<div class="parent">
+    Parent (relative)
+    <div class="child">Absolute child</div>
+</div>
+```
+
+> ⚠️ If no ancestor has `position` set, it positions relative to `<html>`.
+
+### fixed
+Always stays in the same viewport position — even when scrolling.
+
+```css
+.fixed-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #333;
+    color: white;
+    padding: 15px;
+    z-index: 1000;
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: blue;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+```
+
+### sticky
+Scrolls normally until it hits the offset threshold, then "sticks".
+
+```css
+.sticky-header {
+    position: sticky;
+    top: 0; /* Sticks when it reaches 0px from the top of viewport */
+    background: white;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    z-index: 100;
+}
+
+/* Table headers that stick while scrolling */
+th {
+    position: sticky;
+    top: 0;
+    background: #f2f2f2;
+}
+```
+
+### Key Interview Comparison
+
+```css
+/* relative: still in document flow */
+.relative-box {
+    position: relative;
+    top: 50px; /* Moves DOWN but leaves gap */
+}
+
+/* absolute: out of flow, placed inside .parent */
+.parent { position: relative; }
+.absolute-box {
+    position: absolute;
+    bottom: 0;
+    right: 0; /* Anchored to parent's bottom-right */
+}
+
+/* fixed: always visible in viewport */
+.fixed-box {
+    position: fixed;
+    top: 20px;
+    right: 20px; /* Always top-right of screen */
+}
+```
+
+### Complete Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { margin: 0; font-family: Arial; }
+
+        /* Fixed navbar */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background: #2c3e50;
+            color: white;
+            padding: 15px 30px;
+            z-index: 1000;
+        }
+
+        .content {
+            margin-top: 60px; /* Account for fixed navbar */
+            padding: 20px;
+        }
+
+        /* Relative parent + absolute child */
+        .card {
+            position: relative;
+            width: 250px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .card img { width: 100%; display: block; }
+
+        .badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        /* Sticky section heading */
+        h2 {
+            position: sticky;
+            top: 50px; /* Below the fixed navbar */
+            background: white;
+            padding: 10px 0;
+            border-bottom: 2px solid #3498db;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">Fixed Navbar</nav>
+    <div class="content">
+        <h2>Sticky Heading (sticks below navbar)</h2>
+        <div class="card">
+            <img src="image.jpg" alt="Card">
+            <div class="badge">NEW</div>
+            <p style="padding: 10px;">Card content here</p>
+        </div>
+    </div>
+</body>
+</html>
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Z-Index
+
+### Definition
+`z-index` controls the **stacking order** of elements on the z-axis (depth). Higher values appear in front of lower values.
+
+> Only works on elements with `position` set to anything **other than** `static`.
+
+### Basic Usage
+
+```css
+.box-red {
+    position: absolute;
+    z-index: 1;  /* Behind */
+}
+
+.box-blue {
+    position: absolute;
+    z-index: 2;  /* In front */
+}
+
+.box-green {
+    position: absolute;
+    z-index: 3;  /* Frontmost */
+}
+```
+
+### Stacking Context
+
+A **stacking context** is a 3D conceptual space. New stacking contexts are created by:
+- `position` + `z-index` (not `auto`)
+- `opacity` < 1
+- `transform`, `filter`, `perspective`
+- `will-change`
+
+```css
+/* Creates new stacking context */
+.modal-overlay {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.modal {
+    position: fixed;
+    z-index: 1001; /* Must be > overlay */
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+/* Navbar always on top */
+.navbar {
+    position: fixed;
+    z-index: 9999;
+}
+
+/* Tooltip above everything */
+.tooltip {
+    position: absolute;
+    z-index: 100;
+}
+```
+
+### Common Z-Index Scale (Best Practice)
+
+```css
+/* Use a defined scale to avoid chaos */
+:root {
+    --z-below:   -1;
+    --z-normal:   0;
+    --z-dropdown: 100;
+    --z-sticky:   200;
+    --z-overlay:  300;
+    --z-modal:    400;
+    --z-toast:    500;
+    --z-tooltip:  600;
+}
+
+.sticky-header { z-index: var(--z-sticky); }
+.modal         { z-index: var(--z-modal); }
+.toast         { z-index: var(--z-toast); }
+```
+
+### Z-Index Gotcha
+
+```css
+/* Even z-index: 9999 won't help if parent has lower z-index! */
+.parent {
+    position: relative;
+    z-index: 1; /* Parent creates a stacking context */
+}
+
+.child {
+    position: absolute;
+    z-index: 9999; /* Still BELOW another parent with z-index: 2 */
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## CSS Box Model
+
+### Definition
+The **CSS Box Model** describes how every HTML element is rendered as a rectangular box with four areas: **content**, **padding**, **border**, and **margin**.
+
+```
+┌───────────────────────────────┐ ← margin
+│  ┌─────────────────────────┐  │ ← border
+│  │  ┌───────────────────┐  │  │ ← padding
+│  │  │     CONTENT       │  │  │
+│  │  │  (width × height) │  │  │
+│  │  └───────────────────┘  │  │
+│  └─────────────────────────┘  │
+└───────────────────────────────┘
+```
+
+### The Four Box Areas
+
+```css
+.box {
+    /* 1. Content */
+    width: 200px;
+    height: 100px;
+
+    /* 2. Padding — inside the border */
+    padding: 20px;          /* all sides */
+    padding: 10px 20px;     /* top/bottom   left/right */
+    padding: 5px 10px 15px 20px; /* top right bottom left */
+
+    /* 3. Border */
+    border: 2px solid #333;
+    border-width: 2px;
+    border-style: solid; /* solid, dashed, dotted, double, none */
+    border-color: #333;
+    border-radius: 8px;  /* rounded corners */
+
+    /* 4. Margin — outside the border */
+    margin: 20px;
+    margin: 0 auto;   /* center horizontally */
+}
+```
+
+### box-sizing (Critical!)
+
+```css
+/* Default (content-box): width = content only */
+.default {
+    box-sizing: content-box;
+    width: 200px;
+    padding: 20px;
+    border: 2px solid;
+    /* Total rendered width = 200 + 40 + 4 = 244px */
+}
+
+/* border-box: width INCLUDES padding + border */
+.better {
+    box-sizing: border-box;
+    width: 200px;
+    padding: 20px;
+    border: 2px solid;
+    /* Total rendered width = 200px exactly ✅ */
+}
+
+/* Best practice: apply globally */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+```
+
+### Margin Collapse
+
+Vertical margins between adjacent elements **collapse** — only the larger margin wins.
+
+```css
+.box-1 { margin-bottom: 30px; }
+.box-2 { margin-top: 20px; }
+/* Gap between them = 30px (NOT 50px!) */
+```
+
+```css
+/* Prevent margin collapse with: */
+.parent {
+    overflow: hidden;  /* or */
+    display: flex;     /* or */
+    padding-top: 1px;
+}
+```
+
+### Shorthand Reference
+
+```css
+/* padding & margin shorthand */
+padding: 10px;                  /* all 4 sides */
+padding: 10px 20px;             /* top-bottom | left-right */
+padding: 10px 20px 15px;        /* top | left-right | bottom */
+padding: 10px 20px 15px 5px;    /* top | right | bottom | left (clockwise) */
+
+/* border shorthand */
+border: 2px dashed red;         /* width | style | color */
+border-top: 1px solid #ccc;     /* individual sides */
+
+/* outline — like border but OUTSIDE the box, doesn't affect layout */
+outline: 2px solid blue;
+outline-offset: 4px;
+```
+
+### Complete Box Model Example
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+
+        .card {
+            width: 300px;
+            padding: 24px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin: 0 0 12px 0;
+            font-size: 20px;
+            color: #2c3e50;
+        }
+
+        .card p {
+            margin: 0;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .card .btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 10px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .card .btn:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>Box Model Example</h2>
+        <p>Width = 300px (includes padding & border because of border-box)</p>
+        <button class="btn">Learn More</button>
+    </div>
+</body>
+</html>
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Media Queries
+
+### Definition
+**Media queries** allow you to apply CSS rules based on device characteristics (screen width, orientation, resolution). The foundation of **responsive design**.
+
+### Basic Syntax
+
+```css
+@media media-type and (condition) {
+    /* CSS rules here */
+}
+```
+
+### Breakpoints (Mobile-First Approach ✅)
+
+```css
+/* Mobile first — base styles for small screens */
+.container {
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* Tablet: 768px and up */
+@media (min-width: 768px) {
+    .container {
+        padding: 20px;
+        font-size: 16px;
+    }
+}
+
+/* Desktop: 1024px and up */
+@media (min-width: 1024px) {
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px;
+    }
+}
+
+/* Large screen: 1440px and up */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1400px;
+    }
+}
+```
+
+### Common Breakpoints Reference
+
+```css
+/* Small phones */
+@media (max-width: 480px) { }
+
+/* Phones (portrait) */
+@media (max-width: 600px) { }
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) { }
+
+/* Desktop */
+@media (min-width: 1025px) { }
+
+/* 4K / Large screens */
+@media (min-width: 1920px) { }
+```
+
+### Other Media Features
+
+```css
+/* Orientation */
+@media (orientation: landscape) {
+    .sidebar { width: 30%; }
+}
+
+@media (orientation: portrait) {
+    .sidebar { width: 100%; }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #1a1a1a;
+        color: #fff;
+    }
+}
+
+/* Print */
+@media print {
+    .navbar, .ads, .footer { display: none; }
+    body { font-size: 12pt; color: black; }
+}
+
+/* High resolution / Retina */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) {
+    .logo {
+        background-image: url('logo@2x.png');
+    }
+}
+
+/* Reduced motion (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+```
+
+### Responsive Navigation Example
+
+```css
+/* Mobile: hamburger menu */
+.nav-menu {
+    display: none;
+    flex-direction: column;
+}
+
+.hamburger { display: block; }
+
+/* Desktop: horizontal menu */
+@media (min-width: 768px) {
+    .nav-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
+    }
+
+    .hamburger { display: none; }
+}
+```
+
+### Responsive Grid Example
+
+```css
+.grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr; /* 1 column on mobile */
+}
+
+@media (min-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); } /* 2 columns */
+}
+
+@media (min-width: 900px) {
+    .grid { grid-template-columns: repeat(3, 1fr); } /* 3 columns */
+}
+
+@media (min-width: 1200px) {
+    .grid { grid-template-columns: repeat(4, 1fr); } /* 4 columns */
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## CSS Frameworks
+
+### Definition
+CSS frameworks are **pre-written CSS libraries** that provide ready-made classes, components, and grid systems to speed up development.
+
+### Major CSS Frameworks Comparison
+
+| Framework | Approach | File Size | Learning Curve | Best For |
+|-----------|----------|-----------|---------------|----------|
+| **Bootstrap** | Component-based | ~160KB | Low | Traditional apps, quick prototypes |
+| **Tailwind CSS** | Utility-first | ~3KB (purged) | Medium | Custom designs, modern apps |
+| **Bulma** | Flexbox-based | ~190KB | Low | Clean, modern UI |
+| **Foundation** | Mobile-first | ~200KB | Medium | Enterprise apps |
+| **Materialize** | Material Design | ~150KB | Low | Google-style UI |
+
+### Bootstrap (Component-Based)
+
+Pre-built components with classes.
+
+```html
+<!-- Bootstrap CDN -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Grid System -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">Left column</div>
+        <div class="col-md-6">Right column</div>
+    </div>
+</div>
+
+<!-- Button components -->
+<button class="btn btn-primary">Primary</button>
+<button class="btn btn-danger btn-lg">Large Danger</button>
+
+<!-- Alert component -->
+<div class="alert alert-success" role="alert">
+    Operation successful!
+</div>
+
+<!-- Card component -->
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some content here.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+</div>
+```
+
+### Tailwind CSS (Utility-First)
+
+Apply utility classes directly in HTML — no pre-built components.
+
+```html
+<!-- Tailwind CDN (for quick testing) -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Button -->
+<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    Button
+</button>
+
+<!-- Card -->
+<div class="max-w-sm rounded overflow-hidden shadow-lg bg-white p-6">
+    <img class="w-full rounded-t" src="image.jpg" alt="Card">
+    <div class="mt-4">
+        <h2 class="text-xl font-bold text-gray-800">Card Title</h2>
+        <p class="text-gray-600 mt-2">Card description goes here.</p>
+    </div>
+</div>
+
+<!-- Responsive grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="bg-white p-4 rounded shadow">Item 1</div>
+    <div class="bg-white p-4 rounded shadow">Item 2</div>
+    <div class="bg-white p-4 rounded shadow">Item 3</div>
+</div>
+```
+
+### When to Use Which
+
+```
+Bootstrap    → Rapid prototyping, teams already using it, admin dashboards
+Tailwind CSS → Custom designs, performance-critical apps, React/Vue/Next.js
+Bulma        → Simple projects needing clean UI without JS overhead
+Vanilla CSS  → When you need full control, no extra dependencies
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Rem and Em
+
+### Definition
+`rem` and `em` are **relative CSS units** used for font sizes, spacing, and layout — enabling scalable, accessible design.
+
+### em — Relative to Parent
+
+`1em` = the font-size of the **current element's parent**.
+
+```css
+/* If body has font-size: 16px */
+body { font-size: 16px; }
+
+.parent {
+    font-size: 20px;
+}
+
+.parent .child {
+    font-size: 1.5em; /* 1.5 × 20px = 30px */
+    padding: 1em;     /* 1 × 30px = 30px */
+}
+
+/* Problem: em values COMPOUND (nested scaling) */
+.level-1 { font-size: 1.5em; } /* 24px */
+.level-2 { font-size: 1.5em; } /* 36px (1.5 × 24) */
+.level-3 { font-size: 1.5em; } /* 54px (compounding!) */
+```
+
+### rem — Relative to Root
+
+`1rem` = the font-size of the **root element `<html>`**. Always consistent.
+
+```css
+/* Root font size */
+html { font-size: 16px; } /* 1rem = 16px always */
+
+h1 { font-size: 2rem; }    /* 32px */
+h2 { font-size: 1.5rem; }  /* 24px */
+p  { font-size: 1rem; }    /* 16px */
+
+.container {
+    max-width: 75rem;    /* 1200px */
+    padding: 1.25rem;    /* 20px */
+}
+
+/* No compounding — always relative to root */
+.level-1 { font-size: 1.5rem; } /* 24px */
+.level-2 { font-size: 1.5rem; } /* 24px (same!) */
+.level-3 { font-size: 1.5rem; } /* 24px (same!) */
+```
+
+### Accessibility Trick
+
+```css
+/* DO NOT set root font-size in px — it overrides user browser settings */
+/* Instead, use 62.5% so 1rem = 10px (easy math) */
+html {
+    font-size: 62.5%; /* 62.5% of 16px = 10px */
+}
+
+body {
+    font-size: 1.6rem; /* 16px — restore body */
+}
+
+h1   { font-size: 3.2rem; }  /* 32px */
+h2   { font-size: 2.4rem; }  /* 24px */
+p    { font-size: 1.6rem; }  /* 16px */
+.sm  { font-size: 1.2rem; }  /* 12px */
+```
+
+### When to Use Each
+
+| Unit | Use For | Why |
+|------|---------|-----|
+| `rem` | Font sizes, global spacing | Consistent, respects user settings |
+| `em` | Component-local spacing | Scales proportionally with component's font |
+| `px` | Borders, box-shadows, small fixed values | Precise, doesn't scale |
+| `%` | Widths, responsive layouts | Relative to parent width |
+| `vw/vh` | Full-screen sections | Relative to viewport |
+
+```css
+/* ✅ Best practice pattern */
+html { font-size: 100%; } /* Respect browser settings */
+
+h1 { font-size: 2rem; }   /* Global — use rem */
+p  { font-size: 1rem; }
+
+.button {
+    font-size: 1rem;
+    padding: 0.75em 1.5em; /* Scale with button's font — use em */
+}
+
+.container {
+    max-width: 80rem;      /* Global sizing — rem */
+    padding: 0 1.5rem;
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## CSS Variables
+
+### Definition
+**CSS Custom Properties (Variables)** let you store values in reusable named variables, making your stylesheets more maintainable and themeable.
+
+### Syntax
+
+```css
+/* Define: -- prefix, on :root for global scope */
+:root {
+    --primary-color: #3498db;
+    --font-size-base: 16px;
+    --border-radius: 8px;
+    --spacing-md: 20px;
+}
+
+/* Use: var() function */
+.button {
+    background: var(--primary-color);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+}
+
+/* With fallback value */
+.element {
+    color: var(--text-color, #333); /* Uses #333 if --text-color not defined */
+}
+```
+
+### Design System with Variables
+
+```css
+:root {
+    /* Colors */
+    --color-primary:   #3498db;
+    --color-secondary: #2ecc71;
+    --color-danger:    #e74c3c;
+    --color-warning:   #f39c12;
+    --color-text:      #2c3e50;
+    --color-bg:        #ffffff;
+    --color-border:    #ddd;
+
+    /* Typography */
+    --font-family: 'Inter', sans-serif;
+    --font-size-sm:   0.875rem;  /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-lg:   1.125rem;  /* 18px */
+    --font-size-xl:   1.5rem;    /* 24px */
+    --font-size-2xl:  2rem;      /* 32px */
+
+    /* Spacing (8px grid) */
+    --space-1: 0.25rem;  /* 4px  */
+    --space-2: 0.5rem;   /* 8px  */
+    --space-3: 0.75rem;  /* 12px */
+    --space-4: 1rem;     /* 16px */
+    --space-6: 1.5rem;   /* 24px */
+    --space-8: 2rem;     /* 32px */
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+
+    /* Border radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --radius-full: 9999px;
+
+    /* Transitions */
+    --transition-fast:   150ms ease;
+    --transition-normal: 300ms ease;
+}
+```
+
+### Dark Mode with CSS Variables
+
+```css
+:root {
+    --bg-color:   #ffffff;
+    --text-color: #333333;
+    --card-bg:    #f5f5f5;
+}
+
+/* Dark mode — just override the variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color:   #1a1a1a;
+        --text-color: #f0f0f0;
+        --card-bg:    #2a2a2a;
+    }
+}
+
+/* Or with a class toggle via JavaScript */
+.dark-theme {
+    --bg-color:   #1a1a1a;
+    --text-color: #f0f0f0;
+    --card-bg:    #2a2a2a;
+}
+
+body   { background: var(--bg-color); color: var(--text-color); }
+.card  { background: var(--card-bg); }
+```
+
+### Dynamic Variables with JavaScript
+
+```javascript
+// Read a CSS variable
+const root = document.documentElement;
+const primary = getComputedStyle(root).getPropertyValue('--primary-color');
+
+// Update a CSS variable (changes all elements using it instantly!)
+root.style.setProperty('--primary-color', '#e74c3c');
+
+// Theme switcher
+function switchTheme(theme) {
+    if (theme === 'dark') {
+        root.style.setProperty('--bg-color', '#1a1a1a');
+        root.style.setProperty('--text-color', '#f0f0f0');
+    } else {
+        root.style.setProperty('--bg-color', '#ffffff');
+        root.style.setProperty('--text-color', '#333333');
+    }
+}
+```
+
+### Scoped Variables (Component-Level)
+
+```css
+/* Global */
+:root { --btn-color: #3498db; }
+
+/* Override for a specific component */
+.danger-section {
+    --btn-color: #e74c3c; /* Only affects buttons inside this section */
+}
+
+.button {
+    background: var(--btn-color); /* Picks up the nearest scoped variable */
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## currentColor
+
+### Definition
+`currentColor` is a CSS keyword that represents the **current value of the `color` property** of an element. It lets other properties inherit the text color automatically.
+
+### Basic Usage
+
+```css
+.icon {
+    color: #e74c3c;          /* Set text color */
+    border: 2px solid currentColor; /* Border matches text color */
+    fill: currentColor;      /* SVG fill matches text color */
+    box-shadow: 0 0 0 3px currentColor; /* Shadow matches too */
+}
+```
+
+### Practical Examples
+
+```css
+/* Link with matching underline and arrow */
+.link {
+    color: #3498db;
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+}
+
+.link::after {
+    content: " →";
+    color: currentColor; /* Arrow matches link color */
+}
+
+.link:hover {
+    color: #2980b9; /* Both text AND arrow change together */
+}
+
+/* Button with matching border & icon */
+.btn {
+    color: #2ecc71;
+    border: 2px solid currentColor;
+    background: transparent;
+    padding: 10px 20px;
+}
+
+.btn:hover {
+    background: currentColor; /* Fill with same color on hover */
+    color: white;
+}
+
+/* SVG icon that inherits parent color */
+.icon-wrapper {
+    color: #e74c3c;
+}
+
+.icon-wrapper svg {
+    fill: currentColor;  /* SVG inherits the parent's color */
+    width: 24px;
+    height: 24px;
+}
+
+/* Rating stars */
+.stars {
+    color: gold;
+}
+
+.stars::before {
+    content: "★★★★★";
+    color: currentColor; /* Stars inherit gold */
+}
+```
+
+### When to Use currentColor
+
+```css
+/* ✅ Use currentColor when you want automatic color inheritance */
+.alert {
+    padding: 16px;
+    border-left: 4px solid currentColor; /* Border always matches text color */
+    border-radius: 4px;
+}
+
+.alert-info    { color: #3498db; background: #ebf5fb; }
+.alert-success { color: #27ae60; background: #eafaf1; }
+.alert-error   { color: #e74c3c; background: #fdedec; }
+/* The left border automatically matches without extra rules! */
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Reflow and Repaint
+
+### Definition
+These are browser rendering operations triggered by CSS changes:
+
+- **Reflow (Layout):** The browser recalculates element positions and dimensions. **Expensive.**
+- **Repaint:** The browser redraws pixels. Happens when visuals change but layout stays the same. **Less expensive.**
+- **Composite:** GPU handles the change (transform, opacity). **Cheapest.** ✅
+
+### What Triggers Each
+
+| Change | Operation | Cost |
+|--------|-----------|------|
+| `width`, `height`, `margin`, `padding` | Reflow + Repaint | 🔴 Expensive |
+| `top`, `left` (on positioned elements) | Reflow + Repaint | 🔴 Expensive |
+| `color`, `background-color`, `border-color` | Repaint only | 🟡 Moderate |
+| `box-shadow`, `border-radius` | Repaint only | 🟡 Moderate |
+| `transform`, `opacity` | Composite only | 🟢 Cheap |
+| `visibility: hidden` | Repaint only | 🟡 Moderate |
+| `display: none` | Reflow + Repaint | 🔴 Expensive |
+
+### Performance Best Practices
+
+```css
+/* ❌ Triggers reflow (slow animations) */
+.bad-animation {
+    transition: width 0.3s, height 0.3s, left 0.3s;
+}
+
+/* ✅ Use transform instead (GPU-accelerated, no reflow) */
+.good-animation {
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Slide in — bad */
+.slide-bad {
+    left: -100%;
+    transition: left 0.3s; /* Causes reflow */
+}
+.slide-bad.active { left: 0; }
+
+/* Slide in — good */
+.slide-good {
+    transform: translateX(-100%);
+    transition: transform 0.3s; /* Composite only! */
+}
+.slide-good.active { transform: translateX(0); }
+```
+
+### will-change
+
+Hints the browser to promote elements to their own compositor layer:
+
+```css
+/* Use sparingly — only for elements you KNOW will animate */
+.animated-element {
+    will-change: transform, opacity;
+}
+
+/* After animation, remove it */
+/* element.style.willChange = 'auto'; */
+```
+
+### JavaScript Batching to Avoid Reflow
+
+```javascript
+// ❌ Forces multiple reflows (reading layout, then writing)
+element.style.width = '100px';
+const height = element.offsetHeight; // REFLOW triggered
+element.style.height = '100px';
+const width = element.offsetWidth;   // REFLOW triggered
+
+// ✅ Batch reads, then writes
+const height = element.offsetHeight; // Read all layout first
+const width = element.offsetWidth;   // Read
+element.style.width = '100px';       // Then write
+element.style.height = '100px';      // No extra reflow
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Tailwind vs Traditional CSS
+
+### Traditional CSS (Semantic)
+
+Write descriptive class names and define styles separately.
+
+```html
+<!-- HTML -->
+<button class="btn btn-primary">Click Me</button>
+
+<div class="card">
+    <img class="card-image" src="image.jpg" alt="">
+    <div class="card-body">
+        <h2 class="card-title">Title</h2>
+        <p class="card-text">Description</p>
+    </div>
+</div>
+```
+
+```css
+/* CSS */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary {
+    background: #3498db;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2980b9;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    overflow: hidden;
+    background: white;
+}
+
+.card-image { width: 100%; display: block; }
+.card-body  { padding: 20px; }
+.card-title { font-size: 1.25rem; margin: 0 0 8px; }
+.card-text  { color: #666; margin: 0; }
+```
+
+### Tailwind CSS (Utility-First)
+
+Apply small, single-purpose utility classes directly in HTML — no custom CSS file needed.
+
+```html
+<!-- Button -->
+<button class="inline-flex items-center px-6 py-3 bg-blue-500 hover:bg-blue-600
+               text-white rounded-md text-base cursor-pointer transition-colors duration-200">
+    Click Me
+</button>
+
+<!-- Card -->
+<div class="rounded-xl shadow-md overflow-hidden bg-white">
+    <img class="w-full block" src="image.jpg" alt="">
+    <div class="p-5">
+        <h2 class="text-xl font-semibold mb-2">Title</h2>
+        <p class="text-gray-500">Description</p>
+    </div>
+</div>
+```
+
+### Pros & Cons Comparison
+
+| Aspect | Traditional CSS | Tailwind CSS |
+|--------|-----------------|--------------|
+| **Readability** | Clean HTML, descriptive classes | Long class strings in HTML |
+| **CSS file size** | Grows with every component | Tiny (purges unused classes) |
+| **Customization** | Full control | Config-based design tokens |
+| **Speed** | Need to write CSS | Very fast — no CSS switching |
+| **Reusability** | Classes are reusable | Extract components in framework |
+| **Learning** | CSS knowledge required | Learn utility class names |
+| **Best for** | Large teams, content sites | Rapid dev, design systems |
+
+### When to Choose
+
+```
+Traditional CSS → When you need clear semantic classnames, working with a
+                  design system or existing codebase, or in plain HTML projects.
+
+Tailwind CSS    → When using React/Vue/Next.js, rapid prototyping, want
+                  built-in design constraints, or small bundle size matters.
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## min() and max()
+
+### Definition
+`min()`, `max()`, and `clamp()` are **CSS comparison functions** that let you set responsive values without media queries.
+
+### min() — Use the Smallest Value
+
+```css
+/* Width is the smaller of 500px OR 100% of parent */
+.box {
+    width: min(500px, 100%);
+    /* On phone (320px wide): width = 100% = 320px */
+    /* On desktop (1000px wide): width = 500px */
+}
+
+/* Prevent font from going too large */
+h1 {
+    font-size: min(5vw, 48px); /* 5% of viewport OR 48px, whichever is smaller */
+}
+
+/* Padding that never overflows */
+.container {
+    padding: min(5%, 40px);
+}
+```
+
+### max() — Use the Largest Value
+
+```css
+/* Width is at least 300px, or 50% if larger */
+.sidebar {
+    width: max(300px, 50%);
+    /* Ensures sidebar is never smaller than 300px */
+}
+
+/* Minimum font size */
+p {
+    font-size: max(16px, 1.2vw); /* Never smaller than 16px */
+}
+```
+
+### clamp() — Constrain Between min and max
+
+`clamp(MIN, PREFERRED, MAX)` — keeps value between min and max.
+
+```css
+/* Font size: min 16px, preferred 4vw, max 32px */
+h1 {
+    font-size: clamp(1rem, 4vw, 2rem);
+}
+
+/* Fluid container width */
+.container {
+    width: clamp(320px, 90%, 1200px);
+    /* Min: 320px, Preferred: 90% of parent, Max: 1200px */
+    margin: 0 auto;
+}
+
+/* Fluid spacing */
+.section {
+    padding: clamp(1rem, 5vw, 4rem);
+}
+
+/* Fluid typography scale without media queries */
+h1 { font-size: clamp(1.75rem, 3vw + 1rem, 3.5rem); }
+h2 { font-size: clamp(1.5rem,  2.5vw + 1rem, 2.75rem); }
+h3 { font-size: clamp(1.25rem, 2vw + 1rem,   2rem); }
+p  { font-size: clamp(1rem,    1.5vw + 0.5rem, 1.25rem); }
+```
+
+### Replacing Media Queries
+
+```css
+/* Old way — needs media queries */
+.card { width: 100%; }
+@media (min-width: 600px)  { .card { width: 50%; } }
+@media (min-width: 900px)  { .card { width: 33%; } }
+
+/* New way — fluid with clamp + minmax */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 30%, 350px), 1fr));
+    gap: 20px;
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## inherit, initial, and unset
+
+### Definition
+These are CSS **keyword values** that control how property values are resolved.
+
+### inherit — Force Inheritance
+
+Makes a property inherit from its **parent element**, even when it normally wouldn't.
+
+```css
+/* By default, border does NOT inherit */
+div { border: 2px solid red; }
+p { border: inherit; } /* Force p to inherit parent's border */
+
+/* Common use: buttons and inputs reset to inherit fonts */
+button, input, textarea {
+    font-family: inherit; /* Inherits from body */
+    font-size:   inherit;
+    color:       inherit;
+}
+```
+
+### initial — Reset to Browser Default
+
+Resets a property to its **CSS specification default** (browser's original value, not user-agent stylesheet).
+
+```css
+/* Reset color to initial = black (spec default for color) */
+.reset {
+    color: initial;  /* black */
+}
+
+/* Reset display to initial = inline (spec default) */
+.reset-display {
+    display: initial; /* inline */
+}
+
+/* Reset width to initial = auto */
+.reset-width {
+    width: initial; /* auto */
+}
+```
+
+### unset — Smart Reset (inherit or initial)
+
+Behaves like `inherit` for **inheritable properties** (color, font, etc.) and like `initial` for **non-inheritable properties** (border, padding, display, etc.).
+
+```css
+.reset {
+    color: unset;   /* Acts like inherit (color is inheritable) */
+    border: unset;  /* Acts like initial (border is NOT inheritable) */
+    padding: unset; /* Acts like initial → 0 */
+}
+```
+
+### revert — Reset to Browser Stylesheet
+
+Reverts to the **user-agent (browser) stylesheet** value — more useful than `initial` in practice.
+
+```css
+/* Undo your custom styles completely */
+.article h2 {
+    font-size: revert;   /* Goes back to browser's h2 default (usually ~1.5em) */
+    font-weight: revert; /* Browser default = bold */
+}
+```
+
+### Comparison Table
+
+| Keyword | What it does | Best Use Case |
+|---------|-------------|---------------|
+| `inherit` | Copies from parent | Force non-inheritable props to inherit |
+| `initial` | CSS spec default | Full property reset to spec value |
+| `unset` | inherit or initial (smart) | Reset all properties cleanly |
+| `revert` | Browser stylesheet default | Undo custom styles to browser defaults |
+
+### All Property Reset
+
+```css
+/* Reset ALL properties on an element */
+.full-reset {
+    all: initial; /* Reset every property to spec default */
+}
+
+.smart-reset {
+    all: unset;   /* Reset using inherit for inheritable, initial for rest */
+}
+
+/* Undo all custom styles, keep browser defaults */
+.browser-default {
+    all: revert;
+}
+```
+
+### Practical Examples
+
+```css
+/* Form elements: inherit body styles */
+input, button, textarea, select {
+    font: inherit;       /* font is shorthand: font-family + font-size + etc */
+    color: inherit;
+}
+
+/* Remove button default styles */
+.clean-button {
+    all: unset;
+    cursor: pointer;
+    /* Now add your own styles completely fresh */
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 6px;
+}
+
+/* Link that looks like its parent text */
+.plain-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.plain-link:hover {
+    text-decoration: underline;
+}
+```
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+## Quick Reference Summary
+
+| Topic | Key Points |
+|-------|------------|
+| **Position** | `static` (default) → `relative` (own flow) → `absolute` (nearest positioned parent) → `fixed` (viewport) → `sticky` (both) |
+| **Z-Index** | Only works on positioned elements; higher = in front; stacking contexts matter |
+| **Box Model** | content + padding + border + margin; use `box-sizing: border-box` globally |
+| **Media Queries** | `@media (min-width: 768px)` — mobile-first with `min-width` |
+| **CSS Frameworks** | Bootstrap = components; Tailwind = utilities; choose based on project needs |
+| **rem vs em** | `rem` = relative to root (consistent); `em` = relative to parent (compounds) |
+| **CSS Variables** | `--name: value` in `:root`, use with `var(--name)`; great for theming |
+| **currentColor** | Inherits the `color` property; keeps borders/SVGs/shadows in sync |
+| **Reflow/Repaint** | Prefer `transform`/`opacity` for animations (GPU); avoid layout-triggering properties |
+| **Tailwind vs CSS** | Tailwind = utility classes in HTML; Traditional = semantic classnames + CSS file |
+| **min/max/clamp** | `clamp(min, preferred, max)` = fluid sizing without media queries |
+| **inherit/initial/unset** | `inherit` = copy parent; `initial` = spec default; `unset` = smart combo |
+
+
+[⬆️ Back to Top](#-table-of-contents)
+
+---
+
+*CSS Complete Guide — All 18 Topics Covered* ✅

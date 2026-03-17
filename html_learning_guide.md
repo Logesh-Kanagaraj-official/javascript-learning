@@ -4,44 +4,44 @@
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 1. 📌 Table of Contents
+## 📌 Table of Contents
 
-2. [What is HTML?](#2-what-is-html)
-3. [Semantic Tags](#3-semantic-tags)
-4. [Void Tags](#4-void-tags)
-5. [HTML vs HTML5](#5-html-vs-html5)
-6. [DOCTYPE in HTML](#6-doctype-in-html)
-7. [CDN (Content Delivery Network)](#7-cdn)
-8. [Links vs Anchor Tags](#8-links-vs-anchor-tags)
-9. [Lists in HTML](#9-lists-in-html)
-10. [Elements and Attributes](#10-elements-and-attributes)
-11. [Inline vs Block Elements](#11-inline-vs-block-elements)
-12. [Alt Attribute in Images](#12-alt-attribute-in-images)
-13. [iframe Tag](#13-iframe-tag)
-14. [HTML Entities](#14-html-entities)
-15. [Meta Tags](#15-meta-tags)
-16. [HTML Formatting Elements](#16-html-formatting-elements)
-17. [ID vs Class](#17-id-vs-class)
-18. [DOM Tree Building](#18-dom-tree-building)
-19. [HTML Parsing](#19-html-parsing)
-20. [Semantic Tags Deep Dive](#20-semantic-tags-deep-dive)
-21. [Shadow DOM](#21-shadow-dom)
-22. [iframe vs Embedded Content](#22-iframe-vs-embedded-content)
-23. [SVG vs Canvas](#23-svg-vs-canvas)
-24. [Name Attribute in Forms](#24-name-attribute-in-forms)
-25. [Required vs Readonly vs Disabled](#25-required-vs-readonly-vs-disabled)
-26. [Figure and Figcaption](#26-figure-and-figcaption)
-27. [Custom Elements](#27-custom-elements)
-28. [HTML Security](#28-html-security)
-29. [Setting Multiple Languages in HTML](#29-setting-multiple-languages-in-html)
+1. [What is HTML?](#1-what-is-html)
+2. [Semantic Tags](#2-semantic-tags)
+3. [Void Tags](#3-void-tags)
+4. [HTML vs HTML5](#4-html-vs-html5)
+5. [DOCTYPE in HTML](#5-doctype-in-html)
+6. [CDN (Content Delivery Network)](#6-cdn)
+7. [Links vs Anchor Tags](#7-links-vs-anchor-tags)
+8. [Lists in HTML](#8-lists-in-html)
+9. [Elements and Attributes](#9-elements-and-attributes)
+10. [Inline vs Block Elements](#10-inline-vs-block-elements)
+11. [Alt Attribute in Images](#11-alt-attribute-in-images)
+12. [iframe Tag](#12-iframe-tag)
+13. [HTML Entities](#13-html-entities)
+14. [Meta Tags](#14-meta-tags)
+15. [HTML Formatting Elements](#15-html-formatting-elements)
+16. [ID vs Class](#16-id-vs-class)
+17. [DOM Tree Building](#17-dom-tree-building)
+18. [HTML Parsing](#18-html-parsing)
+19. [Semantic Tags Deep Dive](#19-semantic-tags-deep-dive)
+20. [Shadow DOM](#20-shadow-dom)
+21. [iframe vs Embedded Content](#21-iframe-vs-embedded-content)
+22. [SVG vs Canvas](#22-svg-vs-canvas)
+23. [Name Attribute in Forms](#23-name-attribute-in-forms)
+24. [Required vs Readonly vs Disabled](#24-required-vs-readonly-vs-disabled)
+25. [Figure and Figcaption](#25-figure-and-figcaption)
+26. [Custom Elements](#26-custom-elements)
+27. [HTML Security](#27-html-security)
+28. [Setting Multiple Languages in HTML](#28-setting-multiple-languages-in-html)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 2. What is HTML?
+## 1. What is HTML?
 
 ### Definition
 
@@ -72,9 +72,9 @@
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 3. Semantic Tags
+## 2. Semantic Tags
 
 ### Definition
 
@@ -205,9 +205,9 @@
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 4. Void Tags
+## 3. Void Tags
 
 ### Definition
 
@@ -295,9 +295,9 @@
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 5. HTML vs HTML5
+## 4. HTML vs HTML5
 
 ### Definition
 
@@ -481,9 +481,9 @@ These elements were deprecated in HTML5:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 6. DOCTYPE in HTML
+## 5. DOCTYPE in HTML
 
 ### Definition
 
@@ -627,9 +627,9 @@ These elements were deprecated in HTML5:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 7. CDN
+## 6. CDN
 
 ### Definition
 
@@ -877,9 +877,9 @@ These elements were deprecated in HTML5:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 8. Links vs Anchor Tags
+## 7. Links vs Anchor Tags
 
 ### Definition
 
@@ -1180,9 +1180,9 @@ The `<a>` tag creates **hyperlinks** that allow users to:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 9. Lists in HTML
+## 8. Lists in HTML
 
 ### Definition
 
@@ -1731,9 +1731,9 @@ Lists can be nested inside each other for hierarchical structure.
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 10. Elements and Attributes
+## 9. Elements and Attributes
 
 ### Definition
 
@@ -1917,9 +1917,9 @@ Use `data-*` to store custom information:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 11. Inline vs Block Elements
+## 10. Inline vs Block Elements
 
 ### Definition
 
@@ -2109,9 +2109,9 @@ CSS can create hybrid behavior:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 12. Alt Attribute in Images
+## 11. Alt Attribute in Images
 
 ### Definition
 
@@ -2296,9 +2296,9 @@ The `alt` attribute provides **alternative text** for an image if it cannot be d
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 13. iframe Tag
+## 12. iframe Tag
 
 ### Definition
 
@@ -2481,13 +2481,13 @@ The `<iframe>` (inline frame) tag embeds another HTML document within the curren
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 14. HTML Entities
+## 13. HTML Entities
 
 ### Definition
 
@@ -2735,13 +2735,13 @@ You can also use numeric codes:
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 15. Meta Tags
+## 14. Meta Tags
 
 ### Definition
 
@@ -2925,9 +2925,9 @@ You can also use numeric codes:
 
 ---
 
-?? [Back to Top](#1--table-of-contents)
+?? [⬆️ Back to Top](#-table-of-contents)
 
-## 16. HTML Formatting Elements
+## 15. HTML Formatting Elements
 
 ### Text Formatting Tags
 
@@ -3111,13 +3111,13 @@ function hello() {
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 17. ID vs Class
+## 16. ID vs Class
 
 ### Definition
 
@@ -3395,13 +3395,13 @@ Both `id` and `class` are HTML attributes used to identify elements, but they ha
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 18. DOM Tree Building
+## 17. DOM Tree Building
 
 ### Definition
 
@@ -3538,7 +3538,7 @@ element.querySelectorAll("*");
 ### DOM Building Process
 
 ```
-## 19. HTML Parsing
+## 18. HTML Parsing
    ↓
 2. Tokenization (breaking HTML into tokens)
    ↓
@@ -3673,7 +3673,7 @@ element.querySelectorAll("*");
 
 This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building comprehensively.
 
-## 20. Semantic Tags Deep Dive
+## 19. Semantic Tags Deep Dive
 
 ### Complete List of Semantic HTML5 Elements
 
@@ -3905,13 +3905,13 @@ This covers HTML Formatting Elements, ID vs Class, and DOM Tree Building compreh
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 21. Shadow DOM
+## 20. Shadow DOM
 
 ### Definition
 
@@ -4118,13 +4118,13 @@ console.log(element.shadowRoot); // null
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 22. iframe vs Embedded Content
+## 21. iframe vs Embedded Content
 
 ### iframe
 
@@ -4228,13 +4228,13 @@ console.log(element.shadowRoot); // null
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 23. SVG vs Canvas
+## 22. SVG vs Canvas
 
 ### SVG (Scalable Vector Graphics)
 
@@ -4395,13 +4395,13 @@ animate();
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 24. Name Attribute in Forms
+## 23. Name Attribute in Forms
 
 ### Definition
 
@@ -4554,9 +4554,9 @@ username=john
 
 ---
 
-?? [Back to Top](#1--table-of-contents)
+?? [⬆️ Back to Top](#-table-of-contents)
 
-## 25. Required vs Readonly vs Disabled
+## 24. Required vs Readonly vs Disabled
 
 ### Required
 
@@ -4738,13 +4738,13 @@ Field is **completely disabled** - cannot edit, and value is NOT submitted.
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 26. Figure and Figcaption
+## 25. Figure and Figcaption
 
 ### Definition
 
@@ -4955,13 +4955,13 @@ function greet(name) {
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 27. Custom Elements
+## 26. Custom Elements
 
 ### Definition
 
@@ -5234,13 +5234,13 @@ customElements.define("my-element", MyElement);
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 28. HTML Security
+## 27. HTML Security
 
 ### Common Security Threats
 
@@ -5476,13 +5476,13 @@ customElements.define("my-element", MyElement);
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-## 29. Setting Multiple Languages in HTML
+## 28. Setting Multiple Languages in HTML
 
 ### Lang Attribute
 
@@ -5773,13 +5773,13 @@ Specifies the language of content for accessibility and SEO.
 }
 ```
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
-[Back to Top](#1--table-of-contents)
+[⬆️ Back to Top](#-table-of-contents)
 
-?? [Back to Top](#1--table-of-contents)
+?? [⬆️ Back to Top](#-table-of-contents)
 
 ---
 

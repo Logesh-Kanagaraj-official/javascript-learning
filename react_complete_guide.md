@@ -4,6 +4,9 @@
 
 > **Focus**: Complete React interview preparation covering 60+ topics with examples and real-world patterns
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## 📌 Table of Contents
@@ -89,6 +92,9 @@
 59. [Context vs Props](#59-context-vs-props)
 60. [StrictMode](#60-strictmode)
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 1: React Fundamentals
@@ -118,6 +124,9 @@ function Welcome() {
 export default Welcome;
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 2. React Features
@@ -132,6 +141,9 @@ export default Welcome;
 6. **Server-Side Rendering (SSR)** - SEO-friendly
 7. **High Performance** - Efficient diffing algorithm
 8. **Strong Ecosystem** - Router, state management, etc.
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -188,6 +200,9 @@ function Counter() {
 | **Manipulation**    | Direct, expensive        | Indirect, cheap  |
 | **Memory**          | Heavier                  | Lighter          |
 | **Update Strategy** | Re-render entire subtree | Diff and patch   |
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -287,6 +302,9 @@ function UserCard({ user }) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 5. Components
@@ -353,6 +371,9 @@ function App() {
 - **Composition** - Build complex UIs from simple components
 - **Props** - Pass data down
 - **Naming** - PascalCase for component names
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -434,6 +455,9 @@ function Card({ children }) {
   <p>Content goes here</p>
 </Card>;
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -534,6 +558,9 @@ function UserMenu() {
   return <div>Welcome, {user.name}!</div>;
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -637,6 +664,9 @@ function Counter() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 9. One-Way Data Flow
@@ -696,6 +726,9 @@ function Child({ onIncrement }) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 2: Hooks
@@ -724,6 +757,9 @@ function Child({ onIncrement }) {
 - `useDebugValue` - Custom hook labels
 - `useTransition` - Concurrent features
 - `useDeferredValue` - Defer expensive updates
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -789,6 +825,9 @@ function ExpensiveComponent() {
     return <div>{data}</div>;
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -857,6 +896,9 @@ useEffect(() => {
 }, []);
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 13. useEffect Dependency Array
@@ -894,6 +936,9 @@ useEffect(() => {
   console.log("When name OR age changes");
 }, [name, age]);
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -959,6 +1004,9 @@ useEffect(() => {
   return () => ws.close(); // Cleanup
 }, []);
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1059,6 +1107,9 @@ function Profile() {
   return <button onClick={logout}>Logout {user.name}</button>;
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1167,6 +1218,9 @@ function Component() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 17. useRef vs useState
@@ -1242,6 +1296,9 @@ function Example() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1343,6 +1400,9 @@ function Parent() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 19. useMemo
@@ -1425,6 +1485,9 @@ const doubled = useMemo(() => count * 2, [count]); // Overkill!
 // ✅ Just do it directly
 const doubled = count * 2;
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1521,6 +1584,9 @@ function TodoApp() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 21. React.memo vs useMemo
@@ -1613,6 +1679,9 @@ function Parent() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1730,6 +1799,9 @@ function TodoApp() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 23. useReducer vs useState
@@ -1804,6 +1876,9 @@ function Form() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 24. useLayoutEffect
@@ -1870,6 +1945,9 @@ function MeasureExample() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1954,6 +2032,9 @@ useLayoutEffect(() => {
 }, []);
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 26. useTransition
@@ -2026,6 +2107,9 @@ function TabContainer() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2155,6 +2239,9 @@ Update: render → componentDidUpdate
 Unmount: componentWillUnmount
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 29. Lifecycle in Function Components
@@ -2250,6 +2337,9 @@ function Timer() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 30. Controlled Components
@@ -2329,6 +2419,9 @@ function UsernameInput() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 31. Uncontrolled Components
@@ -2401,6 +2494,9 @@ function FileUpload() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2517,6 +2613,9 @@ const UserList = ({ data }) => (
 const UserListWithData = withData(UserList, "/api/users");
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 33. Render Props Pattern
@@ -2620,6 +2719,9 @@ function DataProvider({ url, children }) {
 | **Composition** | Explicit         | Implicit              |
 | **Naming**      | No wrapper hell  | Possible wrapper hell |
 | **Use case**    | Dynamic behavior | Static enhancement    |
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2762,6 +2864,9 @@ function SearchBox() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 
@@ -2772,6 +2877,9 @@ fetchResults(debouncedSearch);
 return <input value={search} onChange={(e) => setSearch(e.target.value)} />;
 }
 `
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2821,6 +2929,9 @@ function Counter() {
 
 **Key Point:**  
 Reconciliation makes React FAST by updating only what changed, not the entire page.
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2888,6 +2999,9 @@ The **Diffing Algorithm** is the specific algorithm React uses during reconcilia
 // React only creates ONE new element and repositions existing ones
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 37. Reconciliation vs Diffing
@@ -2903,6 +3017,9 @@ The **Diffing Algorithm** is the specific algorithm React uses during reconcilia
 
 - **Reconciliation** = The entire process of updating your house
 - **Diffing** = Comparing old blueprint vs new blueprint to find changes
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2981,6 +3098,9 @@ const User = memo(
 );
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 39. Key Prop
@@ -3051,6 +3171,9 @@ const todos = [
 ];
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 40. Code Splitting
@@ -3118,6 +3241,9 @@ function App() {
 - Better performance
 - Load code only when needed
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 41. Lazy Loading
@@ -3179,6 +3305,9 @@ function App() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3249,6 +3378,9 @@ function Page() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 43. Concurrent Rendering
@@ -3297,6 +3429,9 @@ function SearchPage() {
 - Input stays responsive
 - No UI freezing
 - Better user experience
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3420,6 +3555,9 @@ setUser({
 .reverse()
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 5: React Router
@@ -3466,6 +3604,9 @@ function App() {
 - `Routes` - Container for Route components
 - `Route` - Defines a route
 - `Link` - Navigation link (doesn't reload page)
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3535,6 +3676,9 @@ function ProtectedRoute({ children }) {
   }
 />;
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3649,6 +3793,9 @@ function ProductList() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 6: State Management
@@ -3719,6 +3866,9 @@ function Counter() {
   );
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3802,6 +3952,9 @@ function todoReducer(state = [], action) {
 // 5. Store updates and notifies React
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 50. When to Use Redux vs useContext
@@ -3872,6 +4025,9 @@ function Dashboard() {
   return <div>Welcome, {user?.name}</div>;
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3970,6 +4126,9 @@ const rootReducer = combineReducers({
   user: userReducer,
 });
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4106,6 +4265,9 @@ function UserList() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 7: Advanced Topics
@@ -4184,6 +4346,9 @@ function InfiniteList() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 54. React vs Library/Framework
@@ -4230,6 +4395,9 @@ function App() {
 | **File Structure** | You decide         | Opinionated         |
 | **Flexibility**    | High               | Medium              |
 | **Setup Time**     | Longer             | Faster              |
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4292,6 +4460,9 @@ function App() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 56. Streaming SSR
@@ -4343,6 +4514,9 @@ function Page() {
 - Faster Time to First Byte (TTFB)
 - Progressive page loading
 - Better user experience
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4433,6 +4607,9 @@ function App() {
 - Async code
 - Server-side rendering errors
 - Errors in the error boundary itself
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4536,6 +4713,9 @@ function Tooltip({ text, children }) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 59. Context vs Props
@@ -4612,6 +4792,9 @@ function Level3() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 60. StrictMode
@@ -4685,6 +4868,9 @@ function Component() {
 
 **Note:** StrictMode checks only run in **development mode**, not in production.
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## 🎯 Interview Quick Reference
@@ -4719,6 +4905,9 @@ function Component() {
 - ✅ Avoid inline functions in JSX
 - ✅ Keep state close to where it's used
 - ✅ Normalize Redux state
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 

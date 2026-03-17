@@ -4,6 +4,9 @@
 
 > **Interview Focus**: This guide covers 80+ essential JavaScript topics with definitions, examples, and real-world use cases.
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## 📌 Table of Contents
@@ -130,6 +133,9 @@
 88. [String Methods](#88-string-methods)
 89. [Array Methods Complete](#89-array-methods-complete)
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ## Part 1: Core JavaScript Fundamentals
@@ -166,6 +172,9 @@ function greet(user) {
 
 console.log(greet("Alice")); // "Hello, Alice!"
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -241,6 +250,9 @@ console.log(name); // "Global"
 │   - this: (depends on call)         │
 └─────────────────────────────────────┘
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -376,6 +388,9 @@ a();
 // a ended
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 4. Hoisting
@@ -484,6 +499,9 @@ const baz = () => {
 };
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 5. Temporal Dead Zone (TDZ)
@@ -550,6 +568,9 @@ test(); // ✅ 2, 2
   console.log(name); // ✅ Works now
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -622,6 +643,9 @@ let user; // undefined
 let user2 = null; // null
 // Pick one convention and stick with it!
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -746,6 +770,9 @@ console.log(Array.isArray([])); // true
 console.log([] instanceof Array); // true
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 8. Type Coercion
@@ -819,6 +846,9 @@ console.log("5" - "2"); // 3
 console.log("5" + -"2"); // "5-2"
 console.log([1, 2] + [3, 4]); // "1,23,4"
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -914,6 +944,9 @@ if (user) {
 !![]; // true
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 10. NaN - Not a Number
@@ -958,6 +991,9 @@ console.log(NaN === NaN); // false (only value not equal to itself)
 // Detecting NaN with Object.is
 console.log(Object.is(NaN, NaN)); // true
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1009,6 +1045,9 @@ function checkAge(age) {
 console.log(checkAge(18)); // "Adult" ✅
 console.log(checkAge("18")); // "Not adult" ✅
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1065,6 +1104,9 @@ console.log(blockVar); // ❌ ReferenceError
 console.log(notBlockScoped); // ✅ Works (var ignores block scope)
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 13. Function Scope vs Block Scope
@@ -1115,11 +1157,17 @@ for (let i = 0; i < 3; i++) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 14. Global Scope vs Block Scope
 
 Already covered in [#12](#12-scope) and [#13](#13-function-scope-vs-block-scope)
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1133,7 +1181,7 @@ function can able access the outer function variable during the runtime is known
 
 **Key Point:** Inner function "remembers" variables from outer function.
 
-**Simple Example:**
+**Simple Example 1:**
 
 ```javascript
 function outer() {
@@ -1150,6 +1198,41 @@ const result = outer();
 result(); // 1
 result(); // 2
 result(); // 3
+```
+**Simple Example 2:**
+
+```javascript
+function outer() {
+  let a = 0; // Private variable trapped by closure
+  return function inner() {
+    a = a + 1;
+    console.log(a);
+  }
+  // Note: The second 'return inner;' is unreachable code, 
+  // but logically the first 'return' returns the function.
+}
+
+const counter = outer(); // 'counter' now holds the 'inner' function
+counter(); // Output: 1
+counter(); // Output: 2
+counter(); // Output: 3
+```
+**Simple Example 3:**
+
+```javascript
+function outer() {
+    let a = 0; // Private variable trapped by closure
+    return function inner() {
+        a = a + 1; // Modifies the same 'a' in the outer scope
+        return a;
+    };
+    // return inner; // This line is redundant if the inner function is returned above
+}
+
+const counter = outer();
+console.log(counter()); // Output: 1
+console.log(counter()); // Output: 2
+console.log(counter()); // Output: 3
 ```
 
 **Visual:**
@@ -1198,6 +1281,9 @@ console.log(counter.decrement()); // 1
 console.log(counter.getCount()); // 1
 console.log(counter.count); // undefined (private!)
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1289,6 +1375,9 @@ console.log(expensiveFunction(5)); // Computing... 10
 console.log(expensiveFunction(5)); // From cache 10
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 17. Closure Memory Issues
@@ -1352,6 +1441,9 @@ for (var i = 0; i < 5; i++) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ### 18. Lexical Scope
@@ -1407,6 +1499,9 @@ function level1() {
 
 level1();
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1473,6 +1568,9 @@ const obj = {
 
 arr.map(function (item) {});
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1592,6 +1690,9 @@ const Person2 = (name) => {
 const person2 = new Person2("John"); // ❌ TypeError
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -1673,6 +1774,9 @@ console.log(getValue()); // undefined (this is lost!)
 const boundGetValue = obj.getValue.bind(obj);
 console.log(boundGetValue()); // 42
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -1795,6 +1899,9 @@ button.addEventListener("click", () => {
 });
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -1912,6 +2019,9 @@ class Button {
 | `apply()` | Result of function | Array      | Immediate invocation with array |
 | `bind()`  | New function       | Individual | Create reusable bound function  |
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -2016,6 +2126,9 @@ console.log(curriedSum(1)(2)(3)); // 6
 console.log(curriedSum(1, 2)(3)); // 6
 console.log(curriedSum(1, 2, 3)); // 6
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2162,6 +2275,9 @@ cart = PureCart.add(cart, { id: 1, price: 100 });
 cart = PureCart.add(cart, { id: 2, price: 200 });
 console.log(PureCart.getTotal(cart)); // 300
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2335,6 +2451,9 @@ function memoizeWithLimit(fn, limit = 100) {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -2439,6 +2558,9 @@ Stack:              Heap:
 */
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -2542,6 +2664,9 @@ console.log("speak" in dog); // true
 console.log(Object.getPrototypeOf(dog) === Animal.prototype); // true
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -2644,6 +2769,9 @@ obj.deepProperty = "value";
 // Accessing inherited property from 4 levels up is slower
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -2734,6 +2862,9 @@ console.log(Dog.prototype.__proto__ === Animal.prototype); // true
 console.log(Dog.__proto__ === Function.prototype); // true
 console.log(Animal.prototype.__proto__ === Object.prototype); // true
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2831,6 +2962,9 @@ const vehicle = Object.assign(Object.create(driveable), startable, {
   mileage: 0,
 });
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -2931,6 +3065,9 @@ console.log(original.address.city); // 'NYC' ? (unchanged)
 console.log(original.hobbies); // ['reading', 'gaming'] ? (unchanged)
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -3012,6 +3149,9 @@ console.log(arr[3][0]); // 99 (modified!)
 deepCopy[3][0] = 88;
 console.log(arr[3][0]); // 4 (unchanged!)
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3152,6 +3292,9 @@ const newState = {
 };
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -3267,6 +3410,9 @@ const result = users
 console.log(result); // 272 (85 + 92 + 95)
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -3346,6 +3492,9 @@ const evens = numbers.reduce((acc, n) => {
 const evens = numbers.filter((n) => n % 2 === 0); // ✅ Better!
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -3413,6 +3562,9 @@ const uniqueUsersReduce = users.reduce((acc, user) => {
 }, []);
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -3462,6 +3614,9 @@ console.log(arr.flat(1)); // [1, 2, [3, [4]]]
 console.log(arr.flat(2)); // [1, 2, 3, [4]]
 console.log(arr.flat(3)); // [1, 2, 3, 4]
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3516,6 +3671,9 @@ console.log(arr3); // [1, 'a', 'b', 4, 5]
 | Parameters       | (start, end)                      | (start, deleteCount, ...items) |
 | Return value     | New array with extracted elements | Array of removed elements      |
 | Use case         | Get copy or portion               | Add/remove/replace elements    |
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3579,6 +3737,9 @@ console.log(lastUser); // { id: 3, name: 'Charlie', age: 30 }
 const lastIndex = users.findLastIndex((u) => u.age === 30);
 console.log(lastIndex); // 2
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3671,6 +3832,9 @@ const hasAllPermissions = ["read", "write", "delete"].every((p) =>
 );
 console.log(hasAllPermissions); // false
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -3775,6 +3939,9 @@ const replaceTodo = todos.map((todo) =>
 );
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -3862,6 +4029,9 @@ button.onclick = async () => {
 };
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -3947,6 +4117,9 @@ console.log("End");
 // Timeout in Promise
 // Timeout 2
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4043,6 +4216,9 @@ setTimeout(() => {
 }, 0);
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -4133,6 +4309,9 @@ fetchUser(123)
   .then((user) => console.log("Got user:", user))
   .catch((error) => console.error("Failed:", error));
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4233,6 +4412,9 @@ function badChain() {
     .then((data) => console.log(data)); // data is undefined!
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4341,6 +4523,9 @@ getUserWithPosts(123)
   .catch((error) => console.error(error));
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -4440,6 +4625,9 @@ async function fetchAllData() {
 }
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -4524,6 +4712,9 @@ Promise.any([Promise.reject(1), Promise.reject(2)]).catch((error) =>
 | `Promise.allSettled()` | ALL settle     | Never                    | Want all results regardless     |
 | `Promise.race()`       | FIRST settles  | FIRST rejects (if first) | Timeout, fastest response       |
 | `Promise.any()`        | FIRST fulfills | ALL reject               | Fallback URLs, redundancy       |
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4625,6 +4816,9 @@ async function processFiles() {
   }
 }
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4729,6 +4923,9 @@ fetchUserData(123, (error, user) => {
 });
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -4822,6 +5019,9 @@ fetch("/api/primary-data")
   });
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 📝 [Back to Top](#-table-of-contents)
@@ -4854,6 +5054,9 @@ element.addEventListener("click", (e) => {
   console.log("Clicked!", e.target);
 });
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4892,6 +5095,9 @@ localStorage.clear();
 document.cookie = "user=John; max-age=3600; path=/";
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -4903,6 +5109,9 @@ document.cookie = "user=John; max-age=3600; path=/";
 **Same-Origin Policy:** Browser security that restricts how documents/scripts from one origin can interact with resources from another origin.
 
 **Browser Rendering:** HTML ? DOM Tree, CSS ? CSSOM Tree ? Render Tree ? Layout ? Paint
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4922,6 +5131,9 @@ document.cookie = "user=John; max-age=3600; path=/";
 - Modules
 - Default parameters
 - Enhanced object literals
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4951,6 +5163,9 @@ z = 2; // Error!
 const obj = { a: 1 };
 obj.a = 2; // OK - object is mutable
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -4988,6 +5203,9 @@ export default class MyClass {}
 import MyClass, { myFunc } from './module.js';
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -5010,6 +5228,9 @@ const handleSearch = debounce((query) => {
   console.log("Searching:", query);
 }, 300);
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -5035,6 +5256,9 @@ const handleScroll = throttle(() => {
 }, 100);
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -5057,6 +5281,9 @@ const worker = new Worker("worker.js");
 worker.postMessage({ data: "process this" });
 worker.onmessage = (e) => console.log(e.data);
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -5110,6 +5337,9 @@ window.addEventListener("unhandledrejection", (event) => {
 // eval(code); // ? Never do this!
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -5131,6 +5361,9 @@ if (!Array.prototype.includes) {
 // Promise polyfill (use libraries like core-js)
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -5150,6 +5383,9 @@ let item = { id: 1 };
 ws.add(item);
 item = null; // Can be garbage collected
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -5180,6 +5416,9 @@ str.charCodeAt(0); // 72
 str.padStart(15, "*"); // '****Hello World'
 str.padEnd(15, "*"); // 'Hello World****'
 ```
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
@@ -5217,6 +5456,9 @@ arr.flat(); // Flatten nested arrays
 arr.flatMap((x) => [x, x * 2]); // Map + flatten
 ```
 
+
+[⬆️ Back to Top](#-table-of-contents)
+
 ---
 
 ?? [Back to Top](#-table-of-contents)
@@ -5240,6 +5482,9 @@ arr.flatMap((x) => [x, x * 2]); // Map + flatten
 11. **Additional** (86-89): Polyfills, WeakMap/Set, string/array methods
 
 **Total:** 89 comprehensive topics with examples, use cases, and best practices!
+
+
+[⬆️ Back to Top](#-table-of-contents)
 
 ---
 
