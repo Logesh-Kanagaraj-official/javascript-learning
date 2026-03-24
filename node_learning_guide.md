@@ -12,9 +12,14 @@
 8. [Creating HTTP Server](#8-http-server)
 9. [Working with JSON](#9-json)
 10. [Environment Variables](#10-env)
-
-
-[⬆️ Back to Top](#table-of-contents)
+11. [Streams](#11-streams)
+12. [EventEmitter](#12-events)
+13. [process Object](#13-process)
+14. [Path & URL Utilities](#14-path-url)
+15. [JWT Authentication in Node.js](#15-jwt)
+16. [Blocking vs Non-Blocking I/O](#16-blocking)
+17. [Interview Questions — Node.js](#17-interview)
+18. [⚠️ Gap Analysis](#gap-analysis)
 
 ---
 
@@ -691,6 +696,394 @@ After mastering Node.js basics, move to:
 
 
 [⬆️ Back to Top](#table-of-contents)
+
+---
+
+**Happy Learning! 🚀**
+
+---
+
+## 11. Streams {#11-streams}
+
+Streams are objects that let you read/write data **piece by piece** instead of loading everything into memory.
+
+**4 Types of Streams:**
+
+| Type | Description | Example |
+|------|-------------|---------|
+| `Readable` | Data can be read | `fs.createReadStream` |
+| `Writable` | Data can be written | `fs.createWriteStream` |
+| `Duplex` | Both read & write | TCP socket |
+| `Transform` | Modify data in transit | `zlib.createGzip()` |
+
+```javascript
+const fs = require('fs');
+
+// ❌ BAD — loads entire file into memory
+const data = fs.readFileSync('bigfile.txt', 'utf8');
+console.log(data);
+
+// ✅ GOOD — streams chunk by chunk (memory efficient)
+const readStream = fs.createReadStream('bigfile.txt', { encoding: 'utf8' });
+
+readStream.on('data', (chunk) => {
+  console.log('Chunk received:', chunk.length, 'bytes');
+});
+readStream.on('end', () => console.log('Done reading!'));
+readStream.on('error', (err) => console.error('Error:', err));
+
+// Pipe — read from file, write to another file
+const readStream  = fs.createReadStream('source.txt');
+const writeStream = fs.createWriteStream('dest.txt');
+readStream.pipe(writeStream);
+writeStream.on('finish', () => console.log('File copied!'));
+
+// Transform stream (compress a file)
+const zlib = require('zlib');
+fs.createReadStream('file.txt')
+  .pipe(zlib.createGzip())
+  .pipe(fs.createWriteStream('file.txt.gz'))
+  .on('finish', () => console.log('Compressed!'));
+```
+
+**Why Streams matter for interviews:**
+- Reading a 5GB log file with `readFileSync` → crashes (no memory)
+- With streams → reads 64KB at a time, uses constant memory
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 12. EventEmitter {#12-events}
+
+Node.js is **event-driven**. The `events` module provides `EventEmitter`.
+
+```javascript
+const EventEmitter = require('events');
+
+// Create an emitter
+const emitter = new EventEmitter();
+
+// Register listeners
+emitter.on('data', (payload) => {
+  console.log('data event received:', payload);
+});
+
+emitter.once('connect', () => {
+  console.log('Connected! (fires only once)');
+});
+
+// Emit events
+emitter.emit('connect');           // 'Connected!'
+emitter.emit('connect');           // nothing (once only)
+emitter.emit('data', { id: 1 });   // 'data event received: { id: 1 }'
+
+// Remove listener
+const handler = (d) => console.log(d);
+emitter.on('update', handler);
+emitter.off('update', handler); // or removeListener
+
+// EventEmitter in a class (real-world pattern)
+class Database extends EventEmitter {
+  connect(url) {
+    // simulate connection
+    setTimeout(() => {
+      this.emit('connected', { url });
+    }, 500);
+  }
+}
+
+const db = new Database();
+db.on('connected', ({ url }) => console.log('DB connected to', url));
+db.connect('mongodb://localhost:27017');
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 13. process Object {#13-process}
+
+`process` is a global that gives info about and control over the Node.js process.
+
+```javascript
+// Environment & args
+console.log(process.env.NODE_ENV);    // 'development'
+console.log(process.argv);            // ['node', 'app.js', '--port', '3000']
+console.log(process.cwd());           // Current working directory
+console.log(process.platform);        // 'win32', 'linux', 'darwin'
+console.log(process.version);         // 'v22.x.x'
+
+// Memory usage
+const mem = process.memoryUsage();
+console.log('Heap used:', (mem.heapUsed / 1024 / 1024).toFixed(2), 'MB');
+
+// Exit
+process.exit(0);   // Exit with success
+process.exit(1);   // Exit with failure (error)
+
+// Graceful shutdown
+process.on('SIGINT', () => {
+  console.log('\nGracefully shutting down...');
+  // Close DB connections, save state
+  server.close(() => process.exit(0));
+});
+
+// Catch unhandled errors
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+  process.exit(1);
+});
+
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled Rejection:', reason);
+  process.exit(1);
+});
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 14. Path & URL Utilities {#14-path-url}
+
+```javascript
+const path = require('path');
+const url  = require('url');
+
+// __dirname — directory of current file
+console.log(__dirname);  // 'D:\JavaScript'
+
+// __filename — full path of current file
+console.log(__filename); // 'D:\JavaScript\app.js'
+
+// path.join — safely join paths (handles OS separators)
+const fullPath = path.join(__dirname, 'config', 'db.js');
+
+// path.resolve — returns absolute path
+path.resolve('config', 'db.js'); // D:\JavaScript\config\db.js
+
+// path.extname / basename / dirname
+path.extname('app.js');           // '.js'
+path.basename('/users/app.js');   // 'app.js'
+path.basename('/users/app.js', '.js'); // 'app' (strip extension)
+path.dirname('/users/app.js');    // '/users'
+
+// URL parsing
+const myUrl = new URL('https://example.com:8080/api/users?page=2&limit=10');
+myUrl.hostname;  // 'example.com'
+myUrl.port;      // '8080'
+myUrl.pathname;  // '/api/users'
+myUrl.searchParams.get('page');   // '2'
+myUrl.searchParams.get('limit');  // '10'
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 15. JWT Authentication in Node.js {#15-jwt}
+
+JWT (JSON Web Token) is the standard for stateless authentication in REST APIs.
+
+**Install:**
+
+```bash
+npm install jsonwebtoken bcryptjs
+```
+
+**Token flow:**
+```
+1. User logs in → server validates credentials
+2. Server creates JWT (signed with secret)
+3. Server sends JWT to client
+4. Client stores JWT (localStorage / httpOnly cookie)
+5. Client sends JWT in Authorization header on every request
+6. Server verifies JWT → grants or denies access
+```
+
+```javascript
+const jwt  = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const JWT_SECRET = process.env.JWT_SECRET || 'your-super-secret';
+
+// --- SIGN TOKEN ---
+function generateToken(userId) {
+  return jwt.sign(
+    { id: userId },          // payload
+    JWT_SECRET,               // secret
+    { expiresIn: '7d' }       // options
+  );
+}
+
+// --- VERIFY TOKEN MIDDLEWARE ---
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // "Bearer <token>"
+
+  if (!token) {
+    return res.status(401).json({ message: 'Access token required' });
+  }
+
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded; // { id, iat, exp }
+    next();
+  } catch (err) {
+    return res.status(403).json({ message: 'Invalid or expired token' });
+  }
+}
+
+// --- HASH PASSWORD ---
+async function hashPassword(plainText) {
+  const salt = await bcrypt.genSalt(10);
+  return bcrypt.hash(plainText, salt);
+}
+
+// --- COMPARE PASSWORD ---
+async function verifyPassword(plainText, hash) {
+  return bcrypt.compare(plainText, hash);
+}
+
+// --- USAGE ---
+// POST /login
+app.post('/login', async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+
+  if (!user || !(await verifyPassword(password, user.password))) {
+    return res.status(401).json({ message: 'Invalid credentials' });
+  }
+
+  const token = generateToken(user._id);
+  res.json({ token, user: { id: user._id, email: user.email } });
+});
+
+// Protected route
+app.get('/profile', authenticateToken, (req, res) => {
+  res.json({ message: `Hello user ${req.user.id}` });
+});
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 16. Blocking vs Non-Blocking I/O {#16-blocking}
+
+This is **the most important Node.js concept** for interviews.
+
+```javascript
+const fs = require('fs');
+
+// ❌ BLOCKING (Synchronous) — freezes the entire process
+console.log('Before read');
+const data = fs.readFileSync('file.txt', 'utf8'); // blocks here
+console.log('After read'); // only runs after file is fully read
+
+// ✅ NON-BLOCKING (Asynchronous) — continues immediately
+console.log('Before read');
+fs.readFile('file.txt', 'utf8', (err, data) => {
+  if (err) throw err;
+  console.log('File content:', data); // runs when ready
+});
+console.log('After read'); // runs immediately, BEFORE file is read
+// Output: Before read → After read → File content
+```
+
+**When to use Sync:**
+- Startup config files (once, at boot time)
+- CLI scripts where blocking doesn't matter
+
+**When to use Async:**
+- Web servers (ALWAYS — blocking one request blocks ALL users)
+- Any I/O in production
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 17. Interview Questions — Node.js {#17-interview}
+
+**Q1: What is Node.js and how does it differ from browser JavaScript?**
+- Node.js is a JS runtime built on V8 engine. It has `fs`, `http`, `path`, `process`, `Buffer` — no `document`, `window`, `localStorage`.
+
+**Q2: What is the Event Loop in Node.js?**
+- Single-threaded loop that picks tasks from the queue once the call stack is empty. Phases: timers → pending callbacks → idle → poll → check (setImmediate) → close callbacks.
+
+**Q3: What is the difference between `process.nextTick()` and `setImmediate()`?**
+
+```javascript
+setImmediate(() => console.log('setImmediate'));
+process.nextTick(() => console.log('nextTick'));
+// Output: nextTick → setImmediate
+// nextTick fires before any I/O/timer callbacks; setImmediate fires in check phase
+```
+
+**Q4: What is the difference between `require()` and `import`?**
+
+| | `require()` (CJS) | `import` (ESM) |
+|--|--|--|
+| Sync/Async | Synchronous | Asynchronous |
+| Dynamic | ✅ Can be conditional | Mostly static |
+| Tree-shaking | ❌ | ✅ |
+| File extension | `.js` (default CJS) | `.mjs` or `"type":"module"` |
+
+**Q5: What are streams and why are they used?**
+- Streams handle large data chunk by chunk to avoid loading it all in memory. Used for file processing, HTTP responses, compression.
+
+**Q6: What is middleware in Node/Express context?**
+- A function with `(req, res, next)` signature. Can inspect, modify, or end the request-response cycle. Executed in order. Must call `next()` to pass to the next middleware.
+
+**Q7: How do you prevent callback hell?**
+- Use Promises, async/await, or named functions instead of anonymous nested callbacks.
+
+**Q8: What is `package.json` vs `package-lock.json`?**
+- `package.json`: Lists your direct dependencies (ranges like `^4.18.0`).
+- `package-lock.json`: Locks EXACT versions of every installed package (including nested deps) for reproducible installs.
+
+**Q9: What is `__dirname`?**
+- The absolute path of the directory containing the current file. Unlike `process.cwd()`, it doesn't change based on where you run Node from.
+
+**Q10: How do you handle errors in async code in Node.js?**
+```javascript
+// With callbacks — first argument is always error
+fs.readFile('file.txt', (err, data) => {
+  if (err) return handleError(err);
+  // use data
+});
+
+// With async/await
+try {
+  const data = await fs.promises.readFile('file.txt', 'utf8');
+} catch (err) {
+  handleError(err);
+}
+
+// Global unhandled rejections
+process.on('unhandledRejection', (reason) => {
+  console.error(reason);
+  process.exit(1);
+});
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## ⚠️ Gap Analysis — What's Missing From This Guide
+
+| Missing Topic | Priority | Description |
+|---------------|----------|-------------|
+| **Cluster module** | 🔴 High | Use all CPU cores: `cluster.fork()` |
+| **Worker Threads** | 🔴 High | True parallelism for CPU-heavy tasks |
+| **http2 module** | 🟡 Medium | HTTP/2 server in Node |
+| **crypto module** | 🟡 Medium | Hashing, encryption, UUID |
+| **Buffer** | 🟡 Medium | Binary data handling |
+| **net / dgram** | 🟢 Low | TCP/UDP raw sockets |
+| **Debugging** | 🟡 Medium | `node --inspect`, Chrome DevTools for Node |
+| **Performance profiling** | 🟡 Medium | `--prof` flag, flame graphs |
 
 ---
 

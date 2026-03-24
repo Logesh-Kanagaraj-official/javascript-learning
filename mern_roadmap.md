@@ -111,7 +111,7 @@
 
 ### Week 7-8: React Frontend
 
-**File:** `react_learning_guide.md`
+**File:** `react_complete_guide.md`
 
 **Topics to Cover:**
 
@@ -222,14 +222,16 @@
 
 ### Next Steps to Level Up:
 
-1. **TypeScript** - Add type safety to your code
-2. **Next.js** - React framework for production
-3. **Redux** - State management library
-4. **Authentication** - JWT, OAuth, Passport.js
-5. **Testing** - Jest, React Testing Library
-6. **Deployment** - Heroku, Vercel, AWS, Digital Ocean
-7. **Docker** - Containerization
-8. **GraphQL** - Alternative to REST APIs
+1. **TypeScript** — Add type safety to your code (high demand in every React job)
+2. **Next.js** — React framework for SSR/SSG, file-based routing, API routes
+3. **Testing** — Jest, Vitest, React Testing Library
+4. **Redux / Zustand** — State management libraries
+5. **Authentication** — JWT, OAuth 2.0, Passport.js, refresh tokens
+6. **Deployment** — Vercel (frontend), Railway/Render (backend), MongoDB Atlas
+7. **Docker** — Containerization for consistent environments
+8. **GraphQL** — Alternative to REST APIs with flexible queries
+9. **Redis** — Caching, sessions, rate limiting
+10. **WebSockets / Socket.io** — Real-time features (chat, notifications)
 
 ---
 
@@ -305,10 +307,22 @@ mern-project/
 
 ## 🎓 Learning Files
 
-1. **[Node.js Learning Guide](node_learning_guide.md)** - Complete Node.js guide
-2. **[Express.js Learning Guide](express_learning_guide.md)** - Complete Express.js guide
-3. **[MongoDB Learning Guide](mongodb_learning_guide.md)** - Complete MongoDB guide
-4. **[React Learning Guide](react_learning_guide.md)** - Complete React guide
+### Core Guides
+1. **[Node.js Learning Guide](node_learning_guide.md)** — Complete Node.js guide (17 topics + interview Q&A)
+2. **[Express.js Learning Guide](express_learning_guide.md)** — Complete Express.js guide (16 topics + interview Q&A)
+3. **[MongoDB Learning Guide](mongodb_learning_guide.md)** — Complete MongoDB guide (17 topics + interview Q&A)
+4. **[React Complete Guide](react_complete_guide.md)** — Complete React interview guide (60+ topics)
+
+### Frontend Guides
+5. **[JavaScript Complete Guide](javascript_complete_guide.md)** — 80+ topics, interview-focused
+6. **[JavaScript Missing Topics](javascript_missing_topics.md)** — 23 supplemental topics
+7. **[HTML Learning Guide](html_learning_guide.md)** — HTML to HTML5 (28 topics)
+8. **[CSS Learning Guide](css_learning_guide.md)** — CSS deep dive (18 topics)
+9. **[Bootstrap Complete Guide](bootstrap_complete_guide.md)** — 50 topics, interview-ready
+10. **[Tailwind Complete Guide](tailwind_complete_guide.md)** — 52 topics, interview-ready
+
+### System Guide
+11. **[JS Learning System](js_learning_system.md)** — Full roadmap, gap analysis, interview checklist
 
 ---
 

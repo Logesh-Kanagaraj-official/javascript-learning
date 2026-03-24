@@ -12,9 +12,13 @@
 8. [Error Handling](#8-error-handling)
 9. [CORS Configuration](#9-cors)
 10. [Building a Complete API](#10-complete-api)
-
-
-[⬆️ Back to Top](#table-of-contents)
+11. [Rate Limiting](#11-rate-limiting)
+12. [Input Validation](#12-validation)
+13. [async Error Handler Wrapper](#13-async-wrapper)
+14. [Express Router — Modular Structure](#14-router)
+15. [HTTP Status Codes Reference](#15-status-codes)
+16. [Interview Questions — Express.js](#16-interview)
+17. [⚠️ Gap Analysis](#gap-analysis)
 
 ---
 
@@ -639,6 +643,343 @@ After mastering Express.js, move to:
 
 
 [⬆️ Back to Top](#table-of-contents)
+
+---
+
+**Happy Learning! 🚀**
+
+---
+
+## 11. Rate Limiting {#11-rate-limiting}
+
+Prevent API abuse by limiting the number of requests per IP.
+
+```bash
+npm install express-rate-limit
+```
+
+```javascript
+const rateLimit = require('express-rate-limit');
+
+// General limiter — 100 requests per 15 minutes
+const generalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,
+  message: { error: 'Too many requests, please try again later.' },
+  standardHeaders: true,  // Send rate limit info in headers
+  legacyHeaders: false,
+});
+
+// Strict limiter for auth routes
+const authLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5,
+  message: { error: 'Too many login attempts, please try again in 1 hour.' },
+});
+
+app.use('/api/', generalLimiter);
+app.use('/api/auth/login', authLimiter);
+app.use('/api/auth/register', authLimiter);
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 12. Input Validation {#12-validation}
+
+Always validate incoming request data before processing.
+
+```bash
+npm install express-validator
+```
+
+```javascript
+const { body, param, query, validationResult } = require('express-validator');
+
+// Validation rules
+const createUserRules = [
+  body('name')
+    .trim()
+    .notEmpty().withMessage('Name is required')
+    .isLength({ min: 2, max: 50 }).withMessage('Name must be 2–50 characters'),
+
+  body('email')
+    .trim()
+    .isEmail().withMessage('Invalid email address')
+    .normalizeEmail(),
+
+  body('password')
+    .isLength({ min: 8 }).withMessage('Password must be at least 8 characters')
+    .matches(/[A-Z]/).withMessage('Must contain uppercase letter')
+    .matches(/[0-9]/).withMessage('Must contain a number'),
+
+  body('age')
+    .optional()
+    .isInt({ min: 18, max: 120 }).withMessage('Age must be 18–120'),
+];
+
+// Middleware to check results
+const validate = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+};
+
+// Use in routes
+app.post('/api/users', createUserRules, validate, async (req, res) => {
+  // req.body is now validated and sanitized
+  const { name, email, password } = req.body;
+  // create user...
+  res.status(201).json({ message: 'User created' });
+});
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 13. async Error Handler Wrapper {#13-async-wrapper}
+
+Without this, async errors in route handlers crash Express silently.
+
+```javascript
+// ❌ BAD — uncaught promise rejection if DB fails
+app.get('/api/users', async (req, res) => {
+  const users = await User.find(); // if this throws, Express doesn't catch it
+  res.json(users);
+});
+
+// ✅ GOOD Option 1 — try/catch manually (repetitive)
+app.get('/api/users', async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    next(err); // passes to global error handler
+  }
+});
+
+// ✅ GOOD Option 2 — wrap utility (DRY)
+const asyncHandler = (fn) => (req, res, next) =>
+  Promise.resolve(fn(req, res, next)).catch(next);
+
+// Now all async errors auto-forward to error middleware
+app.get('/api/users', asyncHandler(async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+}));
+
+app.delete('/api/users/:id', asyncHandler(async (req, res) => {
+  const user = await User.findByIdAndDelete(req.params.id);
+  if (!user) return res.status(404).json({ message: 'User not found' });
+  res.json({ message: 'Deleted' });
+}));
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 14. Express Router — Modular Structure {#14-router}
+
+For production apps, never define all routes in `server.js`.
+
+**Recommended Production Structure:**
+
+```
+project/
+├── controllers/
+│   ├── authController.js
+│   ├── userController.js
+│   └── productController.js
+├── routes/
+│   ├── auth.js
+│   ├── users.js
+│   └── products.js
+├── middleware/
+│   ├── auth.js          ← JWT verify middleware
+│   ├── validate.js      ← validation result handler
+│   └── errorHandler.js  ← global error handler
+├── models/
+│   └── User.js
+├── config/
+│   └── db.js
+├── utils/
+│   └── asyncHandler.js
+├── .env
+└── server.js
+```
+
+**routes/users.js:**
+
+```javascript
+const express = require('express');
+const router = express.Router();
+const { getAllUsers, getUser, createUser, updateUser, deleteUser } = require('../controllers/userController');
+const authenticate = require('../middleware/auth');
+const { createUserRules } = require('../middleware/validate');
+const asyncHandler = require('../utils/asyncHandler');
+
+// Public routes
+router.post('/', createUserRules, asyncHandler(createUser));
+
+// Protected routes (require token)
+router.use(authenticate); // applies to all routes below
+router.get('/', asyncHandler(getAllUsers));
+router.get('/:id', asyncHandler(getUser));
+router.put('/:id', asyncHandler(updateUser));
+router.delete('/:id', asyncHandler(deleteUser));
+
+module.exports = router;
+```
+
+**server.js — clean entry point:**
+
+```javascript
+require('dotenv').config();
+const express = require('express');
+const cors    = require('cors');
+const connectDB = require('./config/db');
+const errorHandler = require('./middleware/errorHandler');
+
+// Routes
+const authRoutes    = require('./routes/auth');
+const userRoutes    = require('./routes/users');
+const productRoutes = require('./routes/products');
+
+const app = express();
+
+connectDB(); // Connect to MongoDB
+
+// Global middleware
+app.use(cors({ origin: process.env.CLIENT_URL }));
+app.use(express.json({ limit: '10kb' })); // prevent large payloads
+
+// Mount routes
+app.use('/api/auth',     authRoutes);
+app.use('/api/users',    userRoutes);
+app.use('/api/products', productRoutes);
+
+// 404 handler
+app.all('*', (req, res) => {
+  res.status(404).json({ message: `Route ${req.originalUrl} not found` });
+});
+
+// Global error handler (MUST be last)
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 15. HTTP Status Codes Reference {#15-status-codes}
+
+| Code | Meaning | When to Use |
+|------|---------|-------------|
+| `200` | OK | GET success, PUT/PATCH success |
+| `201` | Created | POST success (resource created) |
+| `204` | No Content | DELETE success (no body) |
+| `400` | Bad Request | Validation error, malformed data |
+| `401` | Unauthorized | Not logged in (no/invalid token) |
+| `403` | Forbidden | Logged in but no permission |
+| `404` | Not Found | Resource doesn't exist |
+| `409` | Conflict | Duplicate (e.g., email already exists) |
+| `422` | Unprocessable Entity | Data understood but invalid |
+| `429` | Too Many Requests | Rate limit exceeded |
+| `500` | Internal Server Error | Uncaught server error |
+| `503` | Service Unavailable | Server overloaded or down |
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## 16. Interview Questions — Express.js {#16-interview}
+
+**Q1: What is Express.js? Why use it over plain Node.js `http` module?**
+- Express adds routing, middleware, response helpers, and template engines on top of Node's `http` module. Writing a REST API with raw `http` is repetitive and error-prone; Express makes it declarative and structured.
+
+**Q2: What is middleware? What are the 4 types?**
+1. **Application-level** — `app.use(fn)`
+2. **Router-level** — `router.use(fn)`
+3. **Error-handling** — `app.use((err, req, res, next) => {})`  ← 4 params!
+4. **Built-in** — `express.json()`, `express.static()`
+5. **Third-party** — `cors`, `morgan`, `helmet`
+
+**Q3: What happens if `next()` is not called in middleware?**
+- The request hangs and the client eventually times out. You MUST call `next()`, `next(err)`, or send a response to end the cycle.
+
+**Q4: What is the difference between `app.use()` and `app.get()`?**
+- `app.use()` — matches ALL HTTP methods, matches if path STARTS WITH the pattern
+- `app.get()` — matches only GET, requires EXACT path match
+
+**Q5: How does Express error handling middleware work?**
+```javascript
+// 4 parameters = error handler (Express detects automatically)
+app.use((err, req, res, next) => {
+  res.status(err.status || 500).json({ error: err.message });
+});
+// Must be defined AFTER all routes and regular middleware
+```
+
+**Q6: How do you handle async errors in Express?**
+- Without wrapper: use try/catch + `next(err)` in every handler
+- With wrapper: use `asyncHandler` utility that wraps every handler in `.catch(next)`
+
+**Q7: What is the difference between `req.params`, `req.query`, and `req.body`?**
+
+```javascript
+// GET /users/42?sort=name
+// POST /users with body { name: 'Alice' }
+
+req.params.id    // '42'       — URL segments (:id)
+req.query.sort   // 'name'     — query string (?sort=name)
+req.body.name    // 'Alice'    — request body (POST/PUT, needs express.json())
+```
+
+**Q8: How do you structure a large Express application?**
+- MVC pattern: `models/`, `controllers/`, `routes/`, `middleware/`, `config/`, `utils/`
+- One router file per resource
+- Controllers contain business logic (no Express in controllers ideally)
+- Middleware for cross-cutting concerns (auth, logging, validation)
+
+**Q9: What is CORS and how do you configure it in Express?**
+- Cross-Origin Resource Sharing — browser security policy that blocks requests from different origins. Configure with `cors` package: `app.use(cors({ origin: 'https://yourfrontend.com' }))`.
+
+**Q10: How do you protect an Express route with JWT?**
+```javascript
+// Middleware checks Authorization header
+// If valid → sets req.user → calls next()
+// If invalid → returns 401/403
+app.get('/dashboard', authenticateToken, (req, res) => {
+  res.json({ user: req.user });
+});
+```
+
+[⬆️ Back to Top](#table-of-contents)
+
+---
+
+## ⚠️ Gap Analysis — What's Missing From This Guide
+
+| Missing Topic | Priority | Description |
+|---------------|----------|-------------|
+| **JWT full implementation** | 🔴 High | Register, login, refresh token, logout |
+| **File uploads (Multer)** | 🔴 High | `npm install multer`, multipart forms |
+| **Helmet.js** | 🔴 High | Security headers (`X-XSS-Protection`, `Content-Security-Policy`) |
+| **Morgan logger** | 🟡 Medium | HTTP request logging middleware |
+| **Compression** | 🟡 Medium | `npm install compression` — gzip responses |
+| **Cookie-parser** | 🟡 Medium | Parse cookies, use with httpOnly JWT |
+| **Express + WebSockets** | 🟡 Medium | Real-time with `socket.io` |
+| **API versioning** | 🟡 Medium | `/api/v1/`, `/api/v2/` routes |
+| **Response caching** | 🟢 Low | `Cache-Control` headers, Redis |
+| **Testing routes** | 🔴 High | Supertest + Jest for API testing |
 
 ---
 

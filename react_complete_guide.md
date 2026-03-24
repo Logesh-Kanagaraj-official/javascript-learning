@@ -4,7 +4,6 @@
 
 > **Focus**: Complete React interview preparation covering 60+ topics with examples and real-world patterns
 
-
 [⬆️ Back to Top](#-table-of-contents)
 
 ---

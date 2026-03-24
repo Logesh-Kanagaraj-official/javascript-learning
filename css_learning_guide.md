@@ -1,12 +1,13 @@
 # CSS Complete Learning Guide
-**From Basics to Advanced**
 
+**From Basics to Advanced**
 
 [⬆️ Back to Top](#-table-of-contents)
 
 ---
 
 ## 📌 Table of Contents
+
 1. [What is CSS?](#what-is-css)
 2. [Types of CSS](#types-of-css)
 3. [CSS Selectors](#css-selectors)
@@ -25,7 +26,6 @@
 16. [Tailwind vs Traditional CSS](#tailwind-vs-traditional-css)
 17. [min() and max()](#min-and-max)
 18. [inherit, initial, and unset](#inherit-initial-and-unset)
-
 
 [⬆️ Back to Top](#-table-of-contents)
 

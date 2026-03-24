@@ -4,7 +4,6 @@
 
 > **Interview Focus**: This guide covers 80+ essential JavaScript topics with definitions, examples, and real-world use cases.
 
-
 [⬆️ Back to Top](#-table-of-contents)
 
 ---
