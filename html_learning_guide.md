@@ -5714,7 +5714,7 @@ Specifies the language of content for accessibility and SEO.
       <p>Bonjour ! Nous parlons votre langue.</p>
     </section>
 
-    <!-- German -->
+    <!-- German -->git remote set-url origin
     <section lang="de">
       <span class="lang-label">DE</span>
       <h2>Willkommen</h2>
